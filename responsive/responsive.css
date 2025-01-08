@@ -1,0 +1,140 @@
+/* for phone */
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  body {
+    /* background-color: blue; */
+    margin: 0px;
+    /* padding: 0; */
+  }
+  #sidebar {
+    display: none;
+  }
+  #contact {
+    padding: 5%;
+  }
+
+  #contact i {
+    padding-left: 5%;
+  }
+  #menu {
+    display: block;
+  }
+  .fa-bars {
+    display: flex;
+    background-color: red;
+    right: 0px;
+  }
+  #hero {
+    /* width: 100%; */
+    margin: 5%;
+    /* background-color: red; */
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+  #hero-main {
+    /* background-color: yellow; */
+    flex-direction: column;
+    justify-content: center;
+    /* height: 100vh; */
+    padding-left: 0px;
+    padding-top: 50%;
+    margin: 0px;
+    width: 100%;
+  }
+  #hero-contents {
+    /* background-color: pink; */
+    width: 90%;
+    padding: 5%;
+  }
+  #hero-title {
+    font-size: clamp(1rem, 1vw + 2.5em, 9rem);
+  }
+  #hero-image img {
+    /* height: 50%; */
+  }
+}
+
+/* for tablets */
+@media only screen and (min-width: 600px) and (max-width: 786px) {
+  #contact {
+    padding: 1%;
+    width: 85%;
+  }
+  #contact i {
+    /* padding-left: 5%; */
+  }
+  #menu {
+    display: none;
+  }
+  #sidebar {
+    height: 105vh;
+  }
+  #hero {
+    /* width: 100%; */
+    margin: 5%;
+    /* background-color: red; */
+    padding-left: 20%;
+    padding-top: 20%;
+    justify-content: center;
+    align-items: center;
+  }
+  #hero-main {
+    /* background-color: yellow; */
+    flex-direction: column;
+    justify-content: center;
+    /* height: 100vh; */
+    /* padding-left: 50%; */
+    padding-top: 50%;
+    margin: 0px;
+    width: 100%;
+  }
+  /* #hero-image img {
+    height: 20%;
+  } */
+}
+
+/* for laptops */
+@media only screen and (min-width: 786px) and (max-width: 992px) {
+}
+
+/* for large screen */
+@media only screen and (min-width: 992px) {
+  body {
+    /* background-color: green; */
+  }
+}
+/* 
+
+ #sidebar {
+    display: none;
+  }
+
+  #hero-main {
+
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 50vh;
+    background-color: green;
+  }
+  #hero-contents {
+    width: 90%;
+    height: 100vh;
+    background-color: blue;
+  }
+  #hero {
+    margin: 0;
+    height: 100vh;
+
+    background-color: red;
+  
+  }
+  #hero-image img {
+    height: 10%;
+  }
+  #hero-description {
+    background-color: yellow;
+  } */
