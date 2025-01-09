@@ -1,0 +1,550 @@
+/* :root {
+    --bg: #cdcdcd;
+   --card: #ffffff;
+   --text: #1d5442;
+   --altText: #ffffff;
+   --link: green;
+   --header: #1d5442;
+   --headerText: #ffffff;
+   --headerAlt: #28785d;
+   --headerAltText: #ffffff;
+   --headerAltLink: #99ff99;
+   --accent: #169e71;
+  --grey: #888888;
+} */
+
+:root {
+    --bg: #cdcdcd;
+    --card: #ffffff;
+    --text: #39395b;
+    --altText: #ffffff;
+    --link: green;
+    --header: #39395b;
+    --headerText: #ffffff;
+    --headerAlt: #545487;
+    --headerAltText: #ffffff;
+    --headerAltLink: #b08fff;
+    --accent: #8D61F7;
+    --grey: #888888;
+}
+
+@font-face {
+    font-family: "Proxima";
+    src: url("../font/proximanovacond_extrabold.otf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Proxima";
+    src: url("../font/proximanovacond_semibold.otf");
+}
+
+* {
+    font-family: Proxima, Montserrat, Georgia, serif;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+
+}
+
+.container {
+    background: var(--card);
+    max-width: 874px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.splash {
+    position: fixed;
+    background: linear-gradient(to top, var(--accent), var(--header));
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 999;
+    overflow: hidden;
+    transition: all linear 500ms;
+}
+
+
+.splash img {
+    max-width: 280px;
+    max-height: 360px;
+    object-fit: cover;
+    object-position: center;
+    width: 60vw;
+    height: 70vw;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.splash.animate {
+    animation: hideSplash 500ms;
+}
+
+@keyframes hideSplash {
+    0% {
+        transform-origin: 150% 40px;
+        transform: scale(1);
+        opacity: 1.0;
+        background: none;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0.0;
+        transform-origin: 70% 40px;
+    }
+
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+.top-header {
+    background: var(--header);
+    padding: 25px 0 10px;
+    color: var(--headerText);
+}
+
+
+p,
+a {
+    font-size: 13px;
+}
+
+.top-header h2 {
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.top-header h4 {
+    font-size: 15px;
+}
+
+.top-header img {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.bottom-header {
+    background: var(--headerAlt);
+    padding: 5px 0;
+}
+
+.bottom-header svg {
+    margin-right: 5px;
+}
+
+.bottom-header svg path {
+    fill: var(--headerAltText);
+}
+
+.bottom-header i.fa {
+    color: var(--headerAltText);
+    margin-right: 5px;
+}
+
+.bottom-header a,
+.bottom-header a:link {
+    color: var(--headerAltText);
+    text-decoration: none;
+}
+
+.bottom-header a:hover {
+    color: var(--headerAltLink);
+}
+
+.footer {
+    border-top: 1px solid rgba(54, 54, 87, 0.2);
+    max-width: 1020px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 0;
+    bottom: 0;
+}
+
+.screen40 {
+    width: 40%;
+    float: left;
+}
+
+.screen50 {
+    width: 50%;
+    float: left;
+}
+
+.screen60 {
+    width: 60%;
+    float: left;
+    margin: 5px 0;
+}
+
+.screen50>table {
+    margin: 0 5px;
+}
+
+
+.container-inner {
+    margin: 0 30px;
+}
+
+.block-section {
+    margin: 20px 0;
+}
+
+.block-section h2 {
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 5px 0;
+    font-size: 16px;
+    padding-left: 5px;
+    border-left: 5px solid var(--accent);
+}
+
+.block-section table {
+    table-layout: fixed;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+table td {
+    vertical-align: top;
+}
+
+table .title {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+table .description,
+table .description>p {
+    font-size: 12px;
+}
+
+
+table .emphasis {
+    color: var(--accent);
+    font-style: italic;
+    font-size: 11px;
+}
+
+table .strong {
+    color: var(--link);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.light {
+    font-weight: normal;
+}
+
+table .grey {
+    color: var(--grey);
+    font-size: 11px;
+    font-style: italic;
+}
+
+.to-right {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.white {
+    color: white;
+}
+
+.center {
+    text-align: center;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.white70 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+table .icon {
+    font-size: 14px;
+    width: 20px;
+}
+
+table .text-icon {
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px;
+}
+
+table .progress {
+    width: 100px;
+    text-align: right;
+}
+
+.clear {
+    clear: both;
+}
+
+ul.tags {
+    margin: 0;
+    padding: 0;
+}
+
+ul.tags>li {
+    list-style-type: none;
+    float: left;
+    font-size: 11px;
+    background: var(--accent);
+    margin: 2px;
+    padding: 2px 5px;
+    color: var(--altText);
+    border: 1px solid var(--accent);
+}
+
+ul.tags>li.o {
+    list-style-type: none;
+    float: left;
+    font-size: 11px;
+    color: var(--accent);
+    margin: 2px;
+    padding: 2px 5px;
+    background: none;
+}
+
+ul.tags.bordered>li {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: none;
+}
+
+.tooltip {
+    cursor: pointer;
+}
+
+table.tooltip:hover {
+    background: rgba(90, 90, 240, 0.1);
+}
+
+ul.social {
+    margin: 0;
+    padding: 0;
+}
+
+ul.social>li {
+    list-style-type: none;
+    float: left;
+    margin: 5px;
+}
+
+.justify {
+    text-align: justify;
+}
+
+ul.social>li a,
+ul.social>li a:link {
+    padding: 5px;
+    font-size: larger;
+    color: var(--text);
+}
+
+ul.social>li a:hover {
+    color: var(--link);
+}
+
+ul.social>li a.Github:hover {
+    color: #323131;
+}
+
+ul.social>li a.Stack-Overflow:hover {
+    color: #f19558;
+}
+
+ul.social>li a.LinkedIn:hover {
+    color: #2A7BB6;
+}
+
+ul.social>li a.Quora:hover {
+    color: #DC5043;
+}
+
+.fa-square-full {
+    font-size: 8px;
+    margin-left: 3px;
+}
+
+.fa-square-full.o {
+    opacity: 0.3;
+}
+
+.footer h3 {
+    color: var(--text);
+}
+
+a:link,
+a {
+    color: var(--link);
+}
+
+@media screen and (max-width: 800px) {
+
+    .screen40,
+    .screen50,
+    .screen60 {
+        width: 100%;
+    }
+
+    .container-inner {
+        margin: 0 25px;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 80%;
+    }
+}
+
+@keyframes animateImage {
+    from {
+        transform: scale(0.0);
+        border-width: 5px;
+    }
+
+    to {
+        transform: scale(1.0);
+        border-width: 15px;
+    }
+}
+
+@keyframes animateRaj {
+    from {
+        transform: translateY(500px);
+        opacity: 0.0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1.0;
+    }
+}
+
+.flutter-icon {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    background: url("https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png") 0 0 no-repeat;
+    background-size: auto 13px;
+    filter: saturate(90%) hue-rotate(258deg);
+    /*-webkit-filter: invert(25%) sepia(1) saturate(100000%) hue-rotate(258deg);*/
+}
+
+.icon-button {
+    margin-left: 5px;
+}
+
+.pr-5 {
+    padding-right: 5px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
+.break+h2 {
+    display: none;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.float-button,
+.float-button:link {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    background: var(--accent);
+    box-shadow: 2px 2px 3px #00000022;
+}
+
+@media print {
+
+    html,
+    body {
+        background: var(--card);
+        position: relative;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .float-button {
+        display: none;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    .break+h2 {
+        display: block;
+    }
+
+    .break {
+        page-break-before: always;
+        padding-top: 25px;
+    }
+
+    .break.extra-margin {
+        margin-top: 30px;
+    }
+
+    .last {
+        height: calc(85mm);
+    }
+
+    .footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+}

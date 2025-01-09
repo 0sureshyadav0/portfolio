@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Resume => RajYadav</title>
+
+    <meta name="viewport" content="width=device-width" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+      integrity="sha512-fzff82+8pzHnwA1mQ0dzz9/E0B+ZRizq08yZfya66INZBz86qKTCt9MLU0NCNIgaMJCgeyhujhasnFUsYMsi0Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="splash flex"></div>
+    <div class="container">
+      <section class="top-header">
+        <div class="container-inner"></div>
+      </section>
+
+      <section class="bottom-header"></section>
+
+      <section class="body">
+        <section class="screen40">
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="skill-set"></div>
+            </div>
+          </div>
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="strengths"></div>
+            </div>
+          </div>
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="languages"></div>
+            </div>
+          </div>
+
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="interests"></div>
+            </div>
+          </div>
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="personal"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen60">
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="experience"></div>
+            </div>
+          </div>
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="education"></div>
+            </div>
+          </div>
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="personal-projects"></div>
+            </div>
+          </div>
+
+          <div class="block-section">
+            <div class="container-inner">
+              <div class="company-projects"></div>
+            </div>
+          </div>
+        </section>
+        <div class="clear"></div>
+      </section>
+
+      <div class="last"></div>
+      <section class="footer">
+        <div class="container-inner"></div>
+      </section>
+    </div>
+
+    <a class="float-button" href="javascript:_toggleStyle()">Style 1</a>
+
+    <script src="../data.js"></script>
+    <script src="script.js"></script>
+    <script>
+      buildSplash(userDetails);
+      buildTopHeader(userDetails);
+      buildBottomHeader(userDetails);
+      buildSkills(skills);
+      buildStrengths(strengths);
+      buildLanguages(languages);
+      buildExperiences(experiences);
+      buildEducation(education);
+      buildInterests(interests);
+      buildPersonal(personal);
+      buildProjects(personalProjects);
+      buildProjects(companyProjects, true);
+      buildFooter(userDetails);
+    </script>
+
+    <script>
+      window.onload = () => {
+        let splash = document.querySelector(".splash");
+        setTimeout(() => {
+          splash.classList.add("animate");
+          setTimeout(() => {
+            splash.style.display = "none";
+          }, 500);
+        }, 1000);
+      };
+      const _toggleStyle = () => {
+        let host = window.location.hostname;
+        if (!(host.startsWith("https://") || host.startsWith("http://"))) {
+          host = "https://" + host;
+        }
+        window.location.replace(host);
+      };
+    </script>
+  </body>
+</html>
