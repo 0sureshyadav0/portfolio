@@ -25,7 +25,7 @@
   }
   #hero {
     /* width: 100%; */
-    margin: 5%;
+    margin: 0%;
     /* background-color: red; */
     padding: 0px;
     justify-content: center;
@@ -51,6 +51,31 @@
   }
   #hero-image img {
     /* height: 50%; */
+  }
+  #projects {
+    width: 110%;
+  }
+  footer {
+    width: 120%;
+  }
+
+  #footerContainer {
+    display: flex;
+    justify-content: start;
+    padding: 0px;
+
+    /* height: 8vh; */
+    margin: 15px;
+    /* height: 20vh; */
+    width: 88%;
+    padding: clamp(1rem, 1vw + 1.5rem, 3rem);
+  }
+  #footerContainer .footerCard {
+    /* margin: 50px; */
+    padding: 20px;
+    margin: 10px;
+    width: 120%;
+    height: 8vh;
   }
 }
 
