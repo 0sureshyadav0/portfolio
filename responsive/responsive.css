@@ -1,26 +1,30 @@
 /* for phone */
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  body {
-    /* background-color: blue; */
-    margin: 0px;
-    /* padding: 0; */
-  }
   #sidebar {
+    padding: 0px;
+    margin: 0px;
     display: none;
   }
   #contact {
-    padding: 5%;
+    padding: 20px 100px;
+    width: 100%;
+    margin: auto;
+
+    /* display: none; */
   }
 
   #contact i {
     padding-left: 5%;
+    /* display: none; */
   }
   #menu {
     display: block;
+    padding-left: 19%;
   }
   .fa-bars {
     display: flex;
-    background-color: red;
+    /* background-color: red; */
+
     right: 0px;
   }
   #hero {
@@ -49,33 +53,34 @@
   #hero-title {
     font-size: clamp(1rem, 1vw + 2.5em, 9rem);
   }
-  #hero-image img {
-    /* height: 50%; */
-  }
+
   #projects {
-    width: 110%;
+    width: 100%;
+  }
+  .projects-header {
+    padding-left: 0px;
   }
   footer {
-    width: 120%;
+    width: 100%;
   }
 
   #footerContainer {
     display: flex;
     justify-content: start;
     padding: 0px;
-
+    margin: 0px;
     /* height: 8vh; */
-    margin: 15px;
+    /* margin: 15px; */
     /* height: 20vh; */
     width: 88%;
-    padding: clamp(1rem, 1vw + 1.5rem, 3rem);
+    padding: clamp(1rem, 1vw, 3rem);
   }
   #footerContainer .footerCard {
     /* margin: 50px; */
-    padding: 20px;
-    margin: 10px;
-    width: 120%;
-    height: 8vh;
+    /* padding: 20px; */
+    /* margin: 10px; */
+    width: 100%;
+    height: 1vh;
   }
 }
 

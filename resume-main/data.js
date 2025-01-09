@@ -323,7 +323,6 @@ const personalProjects = [
     refs: [
       {
         link: "fa fa-link",
-
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/h6yxm234dgdu8ev/Todo.apk/file",
       },

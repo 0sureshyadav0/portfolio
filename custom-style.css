@@ -1,0 +1,138 @@
+/* Body styling */
+body {
+  font-family: "Playfair Display", sans-serif; /* Set the font family */
+  font-size: 16px; /* Set the font size */
+  line-height: 1.6; /* Set line height */
+  color: black; /* Text color */
+  background-color: #f9f9f9; /* Background color */
+  /* margin: 20px; */
+}
+
+/* Heading styling */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Georgia", serif;
+  color: #2c3e50; /* Dark gray-blue color for headings */
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em; /* Large font for main headings */
+  border-bottom: 2px solid #3498db; /* Add a blue border under h1 */
+  /* padding-bottom: 5px; */
+}
+
+h2 {
+  font-size: 1.8em; /* Slightly smaller for h2 */
+  color: #2980b9; /* Different shade for h2 */
+}
+h6 {
+  font-size: 0.8em;
+}
+
+/* Paragraph and text */
+p {
+  /* margin-bottom: 15px; */
+  text-align: justify;
+  color: black;
+}
+
+/* Code block styling */
+/* Inline code (between single backticks `) */
+
+/* Code block (for code wrapped in triple backticks) */
+code {
+  /* Light background for code block */
+  color: rgb(11, 236, 11); /* Pinkish-red text for code block */
+
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px; /* Rounded corners for code block */
+  font-family: "Playfair Display", Courier, monospace; /* Monospace font */
+  font-size: 1em; /* Font size for code block */
+  white-space: pre-wrap; /* Ensures that long code lines wrap properly */
+  overflow-x: auto; /* Adds horizontal scrolling if needed */
+  word-wrap: break-word;
+}
+pre {
+  background-color: black;
+  border-radius: 5px; /* Rounded corners for code block */
+  padding: 10px;
+  word-wrap: break-word;
+}
+pre.dart {
+  background-color: rgb(99, 98, 98);
+  color: black; /* Light text color */
+  /* padding: 5px; */
+  border-radius: 5px;
+  overflow: auto;
+  font-family: "Playfair Display", Courier, monospace;
+}
+
+/* Links */
+a {
+  color: #3498db; /* Blue links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+/* Blockquotes */
+blockquote {
+  /* Blue left border */
+  /* padding-left: 15px; */
+  color: rgb(245, 6, 46);
+  font-style: italic;
+}
+
+/* Lists */
+ul,
+ol {
+  margin-bottom: 15px;
+  padding-left: 25px;
+}
+
+ul li,
+ol li {
+  margin-bottom: 8px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #888888;
+  margin-top: 50px;
+}
