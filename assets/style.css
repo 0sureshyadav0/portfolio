@@ -92,20 +92,18 @@ nav ul li:hover {
   height: 40%;
   width: 50%;
 }
+#hero > section {
+  display: none;
+}
 #company {
-  height: 1%;
   width: 100%;
   background-color: var(--navBar-bg);
-  display: flex;
-  justify-content: start;
-  gap: 3%;
-}
-#hero .isVisible {
-  display: none;
+  gap: 5%;
 }
 #company img {
   margin-left: 5%;
   height: 100%;
+  width: 10%;
 }
 
 #company > #secondContainer {

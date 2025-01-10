@@ -25,25 +25,22 @@
     right: 0px;
   }
   #hero {
-    /* width: 100%; */
     margin: 0%;
-    /* background-color: red; */
     padding-top: 0%;
-    justify-content: center;
     align-items: center;
   }
-  #hero .isVisible {
+
+  #hero > section {
     display: flex;
   }
+
   #hero-main {
     flex-direction: column;
     justify-content: center;
-    /* height: 100vh; */
     padding-left: 0px;
     padding-top: 10%;
     gap: 0px;
     margin: 0px;
-
     width: 100%;
   }
   #hero-contents {
