@@ -30,9 +30,9 @@
     align-items: center;
   }
 
-  #hero > section {
+  /* #hero > section {
     display: flex;
-  }
+  } */
 
   #hero-main {
     flex-direction: column;
