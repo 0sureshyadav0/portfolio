@@ -131,7 +131,7 @@
           <div class="contact-form">
             <h1 style="color: black">Contact Us</h1>
             <br />
-            <form action="#" method="post">
+            <form id="email-form">
               <label for="name">Name</label>
               <input
                 type="text"
@@ -141,12 +141,12 @@
                 required
               />
 
-              <label for="email">Email</label>
+              <label for="subject">Subject</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your email"
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
                 required
               />
 
@@ -185,5 +185,6 @@
     </div>
     <script src="../assets/build.js"></script>
     <script type="module" src="../assets/data.js"></script>
+    <script src="../mail/script.js"></script>
   </body>
 </html>
