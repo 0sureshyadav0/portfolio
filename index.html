@@ -31,7 +31,10 @@
     <div id="main-container">
       <sidebar id="sidebar">
         <div id="first-block">
-          <header>Suresh Yadav</header>
+          <img src="../assets/image/appicon.png" alt="logo" />
+          <header>A P P A Z O N</header>
+          <br />
+          <br />
           <nav>
             <ul>
               <li>
@@ -47,7 +50,7 @@
                 >
               </li>
               <li>
-                <a href="../index.html">
+                <a href="#contact">
                   <i class="fa fa-address-book"></i>
 
                   Contact</a
@@ -56,15 +59,20 @@
             </ul>
           </nav>
         </div>
+        <br />
         <div id="second-block">Version: 1.0.0</div>
       </sidebar>
       <!-- hero -->
       <div id="hero">
-        <section id="contact">
-          <i class="fa fa-envelope"></i>
-          sureshyadav.info.np@gmail.com
-          <div id="menu">
-            <i class="fa fa-bars"></i>
+        <section id="company" class="isVisible">
+          <!-- <i class="fa fa-envelope"></i> -->
+          <!-- sureshyadav.info.np@gmail.com -->
+          <img src="../assets/image/appicon.png" />
+          <div id="secondContainer">
+            <h1 id="companyTitle">A P P A Z O N</h1>
+            <div id="menu">
+              <i class="fa fa-bars"></i>
+            </div>
           </div>
         </section>
 
@@ -116,11 +124,12 @@
             </div>
           </div>
           <div id="hero-image">
-            <img src="../assets/image/hero.png" />
+            <img src="../assets/image/nobg-hero.png" />
           </div>
         </div>
+        <br />
         <hr width="100%" />
-        <br /><br />
+        <br />
         <h1 class="projects-header">Projects</h1>
         <div id="projects"></div>
         <br />
@@ -131,13 +140,30 @@
           <div class="contact-form">
             <h1 style="color: black">Contact Us</h1>
             <br />
-            <form id="email-form">
+            <form
+              id="email-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="7f6edf0a-47e0-49a4-bebf-2a8be167a68b"
+              />
               <label for="name">Name</label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 placeholder="Your name"
+                required
+              />
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your email"
                 required
               />
 
@@ -158,7 +184,7 @@
                 required
               ></textarea>
 
-              <button type="submit">Send</button>
+              <button id="sendButton" type="submit">Send</button>
             </form>
           </div>
         </div>
@@ -185,6 +211,18 @@
     </div>
     <script src="../assets/build.js"></script>
     <script type="module" src="../assets/data.js"></script>
-    <script src="../mail/script.js"></script>
+
+    <!-- Scroll to specific section if user click on home, search or contact  -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const contactLink = document.querySelector('a[href="#contact"]');
+        const contactSection = document.getElementById("contact");
+
+        contactLink.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent the default anchor behavior
+          contactSection.scrollIntoView({ behavior: "smooth" }); // Scroll smoothly to the contact section
+        });
+      });
+    </script>
   </body>
 </html>

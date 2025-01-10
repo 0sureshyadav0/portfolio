@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suresh Yadav - Projects</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
+      integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="../custom-style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #2a076e;
+        font-size: 15px;
+      }
+      #projectsDesc {
+        width: 60%;
+        background-color: white;
+        padding: 20px;
+        margin: auto;
+      }
+      img {
+        height: 80%;
+        width: 80%;
+      }
+      /* pre {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        width: 100%;
+      } */
+      /* code {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        width: 100%;
+      } */
+      @media only screen and (min-width: 0px) and (max-width: 600px) {
+        #projectsDesc {
+          width: 100%;
+        }
+
+        pre {
+          text-wrap: wrap;
+          flex-wrap: wrap;
+        }
+        code {
+          text-wrap: wrap;
+        }
+        hr {
+          width: 100%;
+          margin-left: 5%;
+          /* margin: auto; */
+        }
+      }
+      #projectTitle {
+        /* background-color: #007bff; */
+        background-color: #2a076e;
+        padding: 20px;
+        width: 100%;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="projectTitle">How it works</div>
+    <hr />
+
+    <div id="projectsDesc"></div>
+
+    <!-- get url parameters  -->
+    <!-- <script>
+      function getUrlParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+      const blogKey = getUrlParam("id");
+    </script> -->
+    <script type="module" src="../assets/build.js"></script>
+    <script type="module" src="../assets/data.js"></script>
+
+    <script>
+      async function fetchReadMe() {
+        let read = document.getElementById("projectsDesc");
+
+        let readMore =
+          "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md";
+        let readMoreContent = "";
+        try {
+          const response = await fetch(readMore);
+          if (!response.ok) throw new Error("Failed to fetch README");
+
+          readMoreContent = await response.text();
+
+          // Use the globally available 'marked' function (from the CDN)
+          // read.innerHTML += marked.parse(readMoreContent);
+          read.innerHTML += marked.parse(readMoreContent);
+        } catch (error) {
+          console.error(error);
+          alert("Failed to load README");
+        }
+      }
+      fetchReadMe();
+      // document.addEventListener("DOMContentLoaded", fetchReadMe);
+    </script>
+  </body>
+</html>
