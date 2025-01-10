@@ -1,7 +1,8 @@
 const personalProjects = [
   {
     name: "Sangeet",
-    description: "A music app",
+    description:
+      "A music app that allows users to listen available songs on their device.",
     duration: "2024",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
@@ -10,7 +11,8 @@ const personalProjects = [
   },
   {
     name: "Todo",
-    description: "A task tracker app",
+    description:
+      "A task tracker app that allows users to add and delete tasks to increase the productivity.",
     duration: "2024",
     icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
     tech: ["Flutter", "Dart"],
@@ -18,21 +20,23 @@ const personalProjects = [
   },
   {
     name: "Mausam",
+    description:
+      "A weather app that provides users with current weather and forecast based on their current location.",
     duration: "2024",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
-    description: "A weather app",
     downloadUrl:
       "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
   },
   {
     name: "Fly Bird",
+    description:
+      "A email generator app which uses AI to generate a random email based on user's subject.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
     ion: "An AI email generator\napp based on subject",
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
-    description: "A email generator app",
     downloadUrl:
       "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
   },
