@@ -128,7 +128,7 @@
     width: 100%;
   }
   #hero > section {
-    display: none;
+    display: flex;
   }
   /* #hero-image img {
     height: 20%;
