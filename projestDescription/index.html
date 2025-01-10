@@ -17,7 +17,7 @@
         padding: 0;
       }
       body {
-        background-color: rgb(228, 227, 227);
+        background-color: #2a076e;
       }
       #projectsDesc {
         width: 60%;
@@ -26,8 +26,8 @@
         margin: auto;
       }
       img {
-        height: 50%;
-        width: 50%;
+        height: 80%;
+        width: 80%;
       }
       /* pre {
         background-color: black;
@@ -55,9 +55,13 @@
         code {
           text-wrap: wrap;
         }
+        hr {
+          width: 105%;
+        }
       }
       #projectTitle {
-        background-color: blue;
+        /* background-color: #007bff; */
+        background-color: #2a076e;
         padding: 20px;
         width: 100%;
         font-size: 30px;
@@ -69,21 +73,29 @@
   </head>
   <body>
     <div id="projectTitle">How it works</div>
+    <hr />
+    <br />
     <div id="projectsDesc"></div>
-    <script type="module" src="../assets/build.js"></script>
+
+    <!-- get url parameters  -->
     <script>
+      function getUrlParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+      const blogKey = getUrlParam("id");
+    </script>
+    <script src="../assets/build.js"></script>
+    <script type="module" src="../assets/data.js"></script>
+
+    <script>
+      import { personalProjects } from "../assets/build.js";
       async function fetchReadMe() {
         let read = document.getElementById("projectsDesc");
-        console.log(read);
-        // Check if 'marked' is available
-        // if (typeof marked !== "function") {
-        //   console.error("Marked is not loaded properly.");
-        //   return;
-        // }
+
         let readMore =
           "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md";
         let readMoreContent = "";
-
         try {
           const response = await fetch(readMore);
           if (!response.ok) throw new Error("Failed to fetch README");

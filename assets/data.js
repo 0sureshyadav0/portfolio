@@ -1,4 +1,4 @@
-const personalProjects = [
+export const personalProjects = [
   {
     name: "Sangeet",
     description: "A music app",
