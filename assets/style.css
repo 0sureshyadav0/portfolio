@@ -93,7 +93,7 @@ nav ul li:hover {
   width: 50%;
 }
 #hero > section {
-  display: none;
+  display: flex;
 }
 #company {
   width: 100%;

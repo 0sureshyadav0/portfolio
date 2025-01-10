@@ -127,6 +127,9 @@
     margin: 0px;
     width: 100%;
   }
+  #hero > section {
+    display: none;
+  }
   /* #hero-image img {
     height: 20%;
   } */
@@ -140,6 +143,9 @@
 @media only screen and (min-width: 992px) {
   body {
     /* background-color: green; */
+  }
+  #hero > section {
+    display: none;
   }
 }
 /* 
