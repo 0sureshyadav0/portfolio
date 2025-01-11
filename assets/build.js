@@ -77,3 +77,39 @@ for (let i = 0; i < personalProjects.length; i++) {
 }
 
 projects.innerHTML = html;
+
+// upcoming projects
+const upcomingProjects = [
+  {
+    name: "Twitter Clone",
+    description:
+      "A twitter clone. Working on this project to get more clarity about how the large scale software is being build.",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+    icon: "https://cdn-icons-png.flaticon.com/512/124/124021.png",
+    downloadUrl: "#",
+  },
+];
+let domupcomingProjects = document.getElementById("upcomingProjects");
+let upcomingHtml = "";
+for (let i = 0; i < upcomingProjects.length; i++) {
+  let { name, description, icon, readMore, downloadUrl } = upcomingProjects[i];
+
+  upcomingHtml += `
+    <div class="card">
+      <img src='${icon}' alt="Project Thumbnail" style='object-fit:contain;background-color:#007bff;padding:20px 0px;'/>
+      <div class="card-content">
+        <h3 class="card-title">${name}</h3>
+        <p class="card-description">${description}</p>
+        <div class="card-button">
+          <a href='${downloadUrl}'>Download</a>
+
+ <a href="#">Read More</a>;
+
+        </div>
+      </div>
+    </div>
+  `;
+}
+domupcomingProjects.innerHTML = upcomingHtml;

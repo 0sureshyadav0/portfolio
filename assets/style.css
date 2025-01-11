@@ -378,6 +378,13 @@ footer {
 
   /* display: flex; */
 }
+#upcomingProjects {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 #footerContainer {
   margin: auto;
   /* background-color: green; */
