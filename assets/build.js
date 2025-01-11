@@ -40,6 +40,18 @@ const personalProjects = [
     downloadUrl:
       "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
   },
+  {
+    name: "TechVeda",
+    description:
+      "TechVeda is a app that offers guide for various programming languages, helping users learn and compare languages like Python, Java, Flutter, Dart, and more in an interactive and user-friendly way.",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
+    ion: "An AI email generator\napp based on subject",
+    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
+    downloadUrl:
+      "https://www.mediafire.com/file/9sgk5blwypfnre4/TechVeda.apk/file",
+  },
 ];
 
 // Render project cards
