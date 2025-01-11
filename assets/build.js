@@ -35,7 +35,7 @@ const personalProjects = [
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
-    ion: "An AI email generator\napp based on subject",
+
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
       "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
@@ -47,7 +47,6 @@ const personalProjects = [
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
-    ion: "An AI email generator\napp based on subject",
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
       "https://www.mediafire.com/file/9sgk5blwypfnre4/TechVeda.apk/file",

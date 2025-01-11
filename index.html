@@ -224,6 +224,13 @@
           contactSection.scrollIntoView({ behavior: "smooth" }); // Scroll smoothly to the contact section
         });
       });
+      let timeoutId = setTimeout(() => {
+        alert(
+          "Hey, it seems like you're enjoying here. Please, feel free to give your feedback."
+        );
+      }, 15000);
+
+      clearTimeout(timeoutId);
     </script>
   </body>
 </html>
