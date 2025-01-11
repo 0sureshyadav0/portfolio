@@ -5,7 +5,7 @@ const personalProjects = [
       "A music app that allows users to listen available songs on their device.",
     duration: "2024",
     tech: ["Flutter", "Dart"],
-    icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
+    icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
     downloadUrl:
       "https://www.mediafire.com/file/dobsb1afa1dm0ui/Sangeet.apk/file",
   },
