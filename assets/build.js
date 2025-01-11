@@ -83,7 +83,7 @@ const upcomingProjects = [
   {
     name: "Twitter Clone",
     description:
-      "A twitter clone. Working on this project to get more clarity about how the large scale software is being build.",
+      "A twitter clone. Working on this project to get more clarity about how large scale software is being build.",
     duration: "2024",
     tech: ["Flutter", "Dart"],
     // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
