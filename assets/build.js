@@ -43,7 +43,7 @@ const personalProjects = [
   {
     name: "TechVeda",
     description:
-      "TechVeda is a app that offers guide for various programming languages, helping users learn and compare languages like Python, Java, Flutter, Dart, and more in an interactive and user-friendly way.",
+      "TechVeda is a app that offers guide for various programming languages, helping users learn and compare languages like Python, Java, Flutter, Dart and more is easy way through pdf.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
