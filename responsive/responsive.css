@@ -102,9 +102,7 @@
     padding: 1%;
     width: 85%;
   }
-  #contact i {
-    /* padding-left: 5%; */
-  }
+
   #menu {
     display: none;
   }
@@ -127,6 +125,13 @@
     margin: 0px;
     width: 100%;
   }
+  #company img {
+    opacity: 0;
+  }
+  #companyTitle {
+    opacity: 0;
+  }
+
   #hero > section {
     display: flex;
   }
