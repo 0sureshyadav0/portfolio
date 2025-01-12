@@ -87,7 +87,7 @@ const upcomingProjects = [
     duration: "2024",
     tech: ["Flutter", "Dart"],
     // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
-    icon: "https://cdn-icons-png.flaticon.com/512/124/124021.png",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/b/b7/X_logo.jpg",
     downloadUrl: "#",
   },
 ];
