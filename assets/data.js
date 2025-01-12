@@ -1,64 +1,78 @@
-// const personalProjects = [
-//   {
-//     name: "Sangeet",
-//     description: "A music app",
-//     duration: "2024",
-//     tech: ["Flutter", "Dart"],
-//     icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
-//     refs: [
-//       {
-//         // icon: "fa fa-link",
-//         link: "fa fa-link",
-//         // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
-//         tooltip: "Check it out",
-//         url: "https://www.mediafire.com/file/dobsb1afa1dm0ui/Sangeet.apk/file",
-//       },
-//     ],
-//   },
-//   {
-//     name: "Todo",
-//     description: "A task tracker app",
-//     duration: "2024",
-//     icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
-//     tech: ["Flutter", "Dart"],
-//     refs: [
-//       {
-//         link: "fa fa-link",
+const personalProjects = [
+  {
+    name: "Sangeet",
+    description:
+      "A music app that allows users to listen available songs on their device.",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/dobsb1afa1dm0ui/Sangeet.apk/file",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
+  },
+  {
+    name: "Todo",
+    description:
+      "A task tracker app that allows users to add and delete tasks to increase the productivity.",
+    duration: "2024",
+    icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
+    tech: ["Flutter", "Dart"],
+    downloadUrl: "https://www.mediafire.com/file/h6yxm234dgdu8ev/Todo.apk/file",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/todo/master/README.md",
+  },
+  {
+    name: "Mausam",
+    description:
+      "A weather app that provides users with current weather and forecast based on their current location.",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/mausam/master/README.md",
+  },
+  {
+    name: "Fly Bird",
+    description:
+      "A email generator app which uses AI to generate a random email based on user's subject.",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
 
-//         tooltip: "Check it out",
-//         url: "https://www.mediafire.com/file/h6yxm234dgdu8ev/Todo.apk/file",
-//       },
-//     ],
-//   },
-//   {
-//     name: "Mausam",
-//     duration: "2024",
-//     tech: ["Flutter", "Dart"],
-//     icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
-//     description: "A weather app",
-//     refs: [
-//       {
-//         link: "fa fa-link",
-//         icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
-//         tooltip: "Check it out",
-//         url: "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
-//       },
-//     ],
-//   },
-//   {
-//     name: "Fly Bird",
-//     duration: "2025",
-//     tech: ["Flutter", "Dart"],
-//     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
-//     ion: "An AI email generator\napp based on subject",
-//     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
-//     description: "A email generator app",
-//     refs: [
-//       {
-//         link: "fa fa-link",
-//         tooltip: "Check it out",
-//         url: "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
-//       },
-//     ],
-//   },
-// ];
+    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
+    downloadUrl:
+      "https://www.mediafire.com/file/ivcxiixlci72jiw/Fly_Bird.apk/file",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/flyBird/master/README.md",
+  },
+  {
+    name: "TechVeda",
+    description:
+      "TechVeda is a app that offers guide for various programming languages, helping users learn and compare languages like Python, Java, Flutter, Dart and more in easy way through pdf.",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
+    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
+    downloadUrl:
+      "https://www.mediafire.com/file/9sgk5blwypfnre4/TechVeda.apk/file",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/techVeda/master/README.md",
+  },
+];
+
+// upcoming projects
+const upcomingProjects = [
+  {
+    name: "Twitter Clone",
+    description:
+      "A twitter clone. Working on this project to get more clarity about how large scale software is being built.",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/b/b7/X_logo.jpg",
+    downloadUrl: "#",
+  },
+];

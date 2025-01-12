@@ -229,26 +229,19 @@
         <!-- add contents above  -->
       </div>
     </div>
-    <script src="../assets/build.js"></script>
-    <script type="module" src="../assets/data.js"></script>
-    <script src="./toogleMenu/toogleMenu.js"></script>
-    <!-- Scroll to specific section if user click on home, search or contact  -->
+    <script src="./assets/data.js"></script>
+    <script src="./assets/build.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const contactLink = document.querySelector('a[href="#contact"]');
-        const contactSection = document.getElementById("contact");
+      buildPersonalProjects(personalProjects);
+      buildUpcomingProjects(upcomingProjects);
+    </script>
 
-        contactLink.addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent the default anchor behavior
-          contactSection.scrollIntoView({ behavior: "smooth" }); // Scroll smoothly to the contact section
-        });
-      });
+    <script>
       let timeoutId = setTimeout(() => {
         alert(
           "Hey, it seems like you're enjoying here. Please, feel free to contact and give your feedback."
         );
       }, 100000);
-
       // clearTimeout(timeoutId);
     </script>
 

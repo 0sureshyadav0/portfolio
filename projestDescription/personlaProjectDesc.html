@@ -79,41 +79,33 @@
     <hr />
 
     <div id="projectsDesc"></div>
-
-    <!-- get url parameters  -->
-    <!-- <script>
-      function getUrlParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-      }
-      const blogKey = getUrlParam("id");
-    </script> -->
-    <script type="module" src="../assets/build.js"></script>
-    <script type="module" src="../assets/data.js"></script>
-
+    <script src="../assets/data.js"></script>
     <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const productIndex = urlParams.get("product") - 1;
       async function fetchReadMe() {
-        let read = document.getElementById("projectsDesc");
-
-        let readMore =
-          "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md";
-        let readMoreContent = "";
-        try {
-          const response = await fetch(readMore);
-          if (!response.ok) throw new Error("Failed to fetch README");
-
-          readMoreContent = await response.text();
-
-          // Use the globally available 'marked' function (from the CDN)
-          // read.innerHTML += marked.parse(readMoreContent);
-          read.innerHTML += marked.parse(readMoreContent);
-        } catch (error) {
-          console.error(error);
-          alert("Failed to load README");
+        for (let i = 0; i < personalProjects.length; i++) {
+          if (i == productIndex) {
+            console.log("index is: " + i);
+            let read = document.getElementById("projectsDesc");
+            let readMoreContent = "";
+            let projectReadMeUrl = personalProjects[i]["readMoreUrl"];
+            console.log("project read me url: " + projectReadMeUrl);
+            try {
+              const response = await fetch(projectReadMeUrl);
+              if (!response.ok) throw new Error("Failed to fetch README");
+              readMoreContent = await response.text();
+              read.innerHTML += marked.parse(readMoreContent);
+            } catch (error) {
+              console.error(error);
+              alert("Failed to load README");
+            }
+          }
         }
       }
       fetchReadMe();
-      // document.addEventListener("DOMContentLoaded", fetchReadMe);
     </script>
+    <script type="module" src="../assets/build.js"></script>
+    <script type="module" src="../assets/data.js"></script>
   </body>
 </html>
