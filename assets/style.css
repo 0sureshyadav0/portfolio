@@ -168,8 +168,7 @@ nav ul li:hover {
 #hero-image {
   margin-top: 15%;
   border: 2px solid var(--navBar-bg);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 20px;
 
   /* padding-top: 15%; */
   height: 60%;
