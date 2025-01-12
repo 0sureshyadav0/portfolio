@@ -94,7 +94,7 @@
 
         <div id="hero-main">
           <div id="hero-contents">
-            <div id="hero-description">
+            <div id="hero-description" data-aos="zoom-in">
               <h1 id="hero-title">Suresh Yadav</h1>
               <p id="hero-role">
                 👉 Full Stack Developer | Flutter - Android, iOS
@@ -139,7 +139,7 @@
               </button>
             </div>
           </div>
-          <div id="hero-image">
+          <div id="hero-image" data-aos="flip-right">
             <img src="../assets/image/nobg-hero.png" />
           </div>
         </div>
@@ -147,17 +147,17 @@
         <hr width="100%" />
         <br />
         <h1 class="projects-header">Products</h1>
-        <div id="projects"></div>
+        <div id="projects" data-aos="zoom-in"></div>
         <br />
         <hr width="100%" />
         <br />
         <h1 class="projects-header">Ongoing Products</h1>
-        <div id="upcomingProjects"></div>
+        <div id="upcomingProjects" data-aos="zoom-in"></div>
         <hr width="100%" />
 
         <br />
         <div id="contact-form-container">
-          <div class="contact-form">
+          <div class="contact-form" data-aos="zoom-in">
             <h1 style="color: black">Contact Us</h1>
             <br />
             <form
@@ -250,6 +250,13 @@
       }, 100000);
 
       // clearTimeout(timeoutId);
+    </script>
+
+    <!-- animate on scroll  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
     </script>
   </body>
 </html>
