@@ -1,4 +1,4 @@
-const personalProjects = [
+export const personalProjects = [
   {
     name: "Sangeet",
     description:
@@ -38,7 +38,7 @@ const personalProjects = [
 
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
-      "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
+      "https://www.mediafire.com/file/4dmss3umkqp12mu/FlyBird.apk/file",
   },
   {
     name: "TechVeda",
