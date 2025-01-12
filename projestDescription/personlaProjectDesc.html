@@ -86,11 +86,9 @@
       async function fetchReadMe() {
         for (let i = 0; i < personalProjects.length; i++) {
           if (i == productIndex) {
-            console.log("index is: " + i);
             let read = document.getElementById("projectsDesc");
             let readMoreContent = "";
             let projectReadMeUrl = personalProjects[i]["readMoreUrl"];
-            console.log("project read me url: " + projectReadMeUrl);
             try {
               const response = await fetch(projectReadMeUrl);
               if (!response.ok) throw new Error("Failed to fetch README");
