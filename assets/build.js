@@ -38,7 +38,7 @@ const personalProjects = [
 
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
-      "https://www.mediafire.com/file/frsf35t5w4w5f3n/Fly_Bird.apk/file",
+      "https://www.mediafire.com/file/ivcxiixlci72jiw/Fly_Bird.apk/file",
   },
   {
     name: "TechVeda",
