@@ -66,7 +66,7 @@ const personalProjects = [
 // upcoming projects
 const upcomingProjects = [
   {
-    name: "VNUI",
+    name: "VNUI (Twitter clone)",
     description:
       "A twitter clone. Working on this project to get more clarity about how large scale software is being built.",
     duration: "2024",
