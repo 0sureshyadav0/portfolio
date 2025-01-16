@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../assets/style.css" />
     <link rel="stylesheet" href="../responsive/responsive.css" />
     <link rel="stylesheet" href="../assets/components/button.css" />
-
+    <link rel="stylesheet" href="./components/custom_alert.css.css" />
     <!-- icons -->
 
     <link
@@ -113,6 +113,7 @@
                 " Always be eager to learn "
               </center>
             </div>
+
             <br />
             <br />
             <div id="buttons" data-aos="fade-up">
@@ -205,6 +206,7 @@
           </div>
         </div>
         <br /><br />
+
         <hr width="100%" />
         <footer>
           <div id="footerContainer" data-aos="zoom-in">
@@ -231,6 +233,7 @@
             </div>
           </div>
         </footer>
+
         <!-- add contents above  -->
       </div>
     </div>
@@ -256,7 +259,7 @@
     <script>
       AOS.init();
     </script>
-
+    <!-- form submission  -->
     <script>
       async function handleFormSubmit(event) {
         event.preventDefault(); // Prevent the default form submission
@@ -272,6 +275,7 @@
 
           if (response.ok) {
             alert("Form submitted successfully!");
+
             form.reset(); // Reset the form fields
           } else {
             alert("There was an error submitting the form.");
@@ -282,5 +286,6 @@
         }
       }
     </script>
+    <script src="./components/custom_alert.js"></script>
   </body>
 </html>
