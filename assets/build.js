@@ -13,7 +13,7 @@ const buildPersonalProjects = (personalProjects) => {
         <h3 class="card-title">${name}</h3>
         <p class="card-description">${description}</p>
         <div class="card-button">
-          <a href='./assets/apps/${name}.apk' download='Fly Bird.apk'>Download</a>
+          <a href='./assets/apps/${name}.apk' download='${name}.apk'>Download</a>
  <a href="../projestDescription/personlaProjectDesc.html?product=${
    i + 1
  }">Read More</a>;
