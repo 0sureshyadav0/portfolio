@@ -84,21 +84,22 @@
       const urlParams = new URLSearchParams(window.location.search);
       const productIndex = urlParams.get("product") - 1;
       async function fetchReadMe() {
-        for (let i = 0; i < personalProjects.length; i++) {
-          if (i == productIndex) {
-            let read = document.getElementById("projectsDesc");
-            let readMoreContent = "";
-            let projectReadMeUrl = personalProjects[i]["readMoreUrl"];
-            try {
-              const response = await fetch(projectReadMeUrl);
-              if (!response.ok) throw new Error("Failed to fetch README");
-              readMoreContent = await response.text();
-              read.innerHTML += marked.parse(readMoreContent);
-            } catch (error) {
-              console.error(error);
-              alert("Failed to load README");
-            }
-          }
+        // for (let i = 0; i < personalProjects.length; i++) {
+        //   if (i == productIndex) {
+
+        //   }
+        // }
+        let read = document.getElementById("projectsDesc");
+        let readMoreContent = "";
+        let projectReadMeUrl = personalProjects[productIndex]["readMoreUrl"];
+        try {
+          const response = await fetch(projectReadMeUrl);
+          if (!response.ok) throw new Error("Failed to fetch README");
+          readMoreContent = await response.text();
+          read.innerHTML += marked.parse(readMoreContent);
+        } catch (error) {
+          console.error(error);
+          alert("Failed to load README");
         }
       }
       fetchReadMe();
