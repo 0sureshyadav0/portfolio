@@ -265,7 +265,9 @@
 
           <p id="popupSubTopic"></p>
           <br />
-          <button class="close-btn" onclick="closePopup()">Close</button>
+          <button class="close-btn" id="close-btn" onclick="closePopup()">
+            Close
+          </button>
         </div>
 
         <hr width="100%" />
@@ -366,8 +368,10 @@
         document.getElementById("popupTopic").innerText = topic;
         document.getElementById("popupSubTopic").innerText = subtopic;
 
-        document.getElementById("popup-overlay").style.display = "block";
-        document.getElementById("popup-box").style.display = "block";
+        document.getElementById("popup-overlay").style =
+          "display:block;color:black;";
+        document.getElementById("popup-box").style =
+          "display:block;color:black;";
       }
 
       // Function to close the popup
