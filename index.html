@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../assets/style.css" />
     <link rel="stylesheet" href="../responsive/responsive.css" />
     <link rel="stylesheet" href="../assets/components/button.css" />
-    <link rel="stylesheet" href="./components/custom_alert.css.css" />
+
     <!-- icons -->
 
     <link
@@ -60,6 +60,7 @@
 
       /* Popup Box */
       .popup-box {
+        display: none;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -69,7 +70,6 @@
         border-radius: 8px;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         z-index: 1000;
-        display: none;
       }
 
       /* Close Button */
@@ -81,8 +81,7 @@
         cursor: pointer;
         font-size: 16px;
         border-radius: 5px;
-        position: absolute;
-        right: 15px;
+        width: 100%;
       }
 
       /* Additional Styling */
@@ -262,9 +261,9 @@
 
         <!-- Popup Box -->
         <div id="popup-box" class="popup-box" style="color: black">
-          <h2></h2>
+          <h2 id="popupTopic"></h2>
 
-          <p></p>
+          <p id="popupSubTopic"></p>
           <br />
           <button class="close-btn" onclick="closePopup()">Close</button>
         </div>
@@ -307,7 +306,8 @@
     <script>
       let timeoutId = setTimeout(() => {
         openPopup(
-          "Hey, it seems like you're enjoying here. Please, feel free to contact and give your feedback."
+          "Hey, there.",
+          "It seems like you're enjoying here. Please, feel free to contact and give your feedback."
         );
       }, 100000);
       // clearTimeout(timeoutId);
@@ -339,29 +339,33 @@
 
           if (response.ok) {
             // alert("Form submitted successfully!");
-            openPopup("Success", "Form has been submitted successfully.");
+
+            openPopup("Success", "Form has been submitted successfully");
 
             form.reset(); // Reset the form fields
           } else {
-            alert("There was an error submitting the form.");
+            openPopup("Error", "There was an error submitting the form.");
           }
         } catch (error) {
-          alert("An error occurred. Please try again.");
+          openPopup(
+            "Error",
+            "There was an error submitting the form: " + error
+          );
+
           console.error("Error:", error);
         }
         sendButton.innerHTML = "Send";
         sendButton.style = "background-color:#007bff;";
       }
     </script>
-    <script src="./components/custom_alert.js"></script>
 
     <!-- Custom popup script -->
     <script>
       // Function to open the popup
       function openPopup(topic, subtopic) {
-        var popupBox = document.getElementById("popup-box");
-        popupBox.getElementsByTagName("h2").innerHTML = topic;
-        popupBox.getElementsByTagName("p").innerHTML = subtopic;
+        document.getElementById("popupTopic").innerText = topic;
+        document.getElementById("popupSubTopic").innerText = subtopic;
+
         document.getElementById("popup-overlay").style.display = "block";
         document.getElementById("popup-box").style.display = "block";
       }
@@ -371,7 +375,6 @@
         document.getElementById("popup-overlay").style.display = "none";
         document.getElementById("popup-box").style.display = "none";
       }
-
       // Close the popup if the overlay (outside the box) is clicked
       document
         .getElementById("popup-overlay")
