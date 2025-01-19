@@ -262,9 +262,9 @@
 
         <!-- Popup Box -->
         <div id="popup-box" class="popup-box" style="color: black">
-          <h2>Success</h2>
+          <h2></h2>
 
-          <p>Form has been submitted successfully.</p>
+          <p></p>
           <br />
           <button class="close-btn" onclick="closePopup()">Close</button>
         </div>
@@ -306,7 +306,7 @@
 
     <script>
       let timeoutId = setTimeout(() => {
-        alert(
+        openPopup(
           "Hey, it seems like you're enjoying here. Please, feel free to contact and give your feedback."
         );
       }, 100000);
@@ -339,7 +339,7 @@
 
           if (response.ok) {
             // alert("Form submitted successfully!");
-            openPopup();
+            openPopup("Success", "Form has been submitted successfully.");
 
             form.reset(); // Reset the form fields
           } else {
@@ -358,7 +358,10 @@
     <!-- Custom popup script -->
     <script>
       // Function to open the popup
-      function openPopup() {
+      function openPopup(topic, subtopic) {
+        var popupBox = document.getElementById("popup-box");
+        popupBox.getElementsByTagName("h2").innerHTML = topic;
+        popupBox.getElementsByTagName("p").innerHTML = subtopic;
         document.getElementById("popup-overlay").style.display = "block";
         document.getElementById("popup-box").style.display = "block";
       }
