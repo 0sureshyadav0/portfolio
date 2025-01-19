@@ -69,6 +69,9 @@
 
     /* height: 10%; */
   }
+  #popup-box {
+    width: 70%;
+  }
   hr {
     border: 1px solid var(--navBar-bg);
   }
