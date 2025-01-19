@@ -125,6 +125,7 @@ nav ul li:hover {
 #hero-main {
   margin: auto;
   width: 90%;
+  height: 100vh;
   display: flex;
   gap: 5%;
 }
