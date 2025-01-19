@@ -263,7 +263,9 @@
     <script>
       async function handleFormSubmit(event) {
         event.preventDefault(); // Prevent the default form submission
-
+        var isLoading = true;
+        var sendButton = document.getElementById("sendButton");
+        sendButton.innerHTML = "Sending ...";
         const form = event.target;
         const formData = new FormData(form);
 
@@ -274,6 +276,7 @@
           });
 
           if (response.ok) {
+            sendButton.innerHTML = "Send";
             alert("Form submitted successfully!");
 
             form.reset(); // Reset the form fields
