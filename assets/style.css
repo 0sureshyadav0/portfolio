@@ -122,12 +122,25 @@ nav ul li:hover {
   justify-content: center;
   width: 100%;
 }
+
 #hero-main {
   margin: auto;
-  width: 90%;
+  width: 95%;
   height: 100vh;
   display: flex;
   gap: 5%;
+}
+
+#heroContainer::before {
+  content: "";
+  position: absolute;
+  background-image: url("https://plus.unsplash.com/premium_photo-1673643405538-de0f82933fcb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJhbHxlbnwwfHwwfHx8MA%3D%3D");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.3;
 }
 /* nav-bar contact  */
 #contact {
