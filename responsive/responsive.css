@@ -33,7 +33,9 @@
   /* #hero > section {
     display: flex;
   } */
-
+  #heroContainer::before {
+    height: 105vh;
+  }
   #hero-main {
     flex-direction: column;
     justify-content: center;
