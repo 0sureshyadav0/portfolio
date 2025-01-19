@@ -99,7 +99,7 @@
           read.innerHTML += marked.parse(readMoreContent);
         } catch (error) {
           console.error(error);
-          alert("Failed to load README");
+          alert("Failed to load README: " + error);
         }
       }
       fetchReadMe();
