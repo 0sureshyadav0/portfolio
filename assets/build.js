@@ -38,7 +38,7 @@ const buildUpcomingProjects = (upcomingProjects) => {
       upcomingProjects[i];
 
     upcomingHtml += `
-    <div class="card">
+    <div class="card" data-aos="fade-up">
       <img src='${icon}' alt="Project Thumbnail" style='object-fit:contain;background-color:#007bff;padding:20px 0px;'/>
       <div class="card-content">
         <h3 class="card-title">${name}</h3>
