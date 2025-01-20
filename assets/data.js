@@ -57,7 +57,7 @@ const personalProjects = [
     icon: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
-      "https://www.mediafire.com/file/2xhxri7ig5su0f1/TechVeda.apk/file",
+      "https://www.mediafire.com/file/my839h7tz9cxzx8/TechVeda.apk/file",
     readMoreUrl:
       "https://raw.githubusercontent.com/0sureshyadav0/techVeda/master/README.md",
   },
