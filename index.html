@@ -234,9 +234,11 @@
 
           <p id="popupSubTopic"></p>
           <br />
-          <button class="close-btn" id="close-btn" onclick="closePopup()">
-            Close
-          </button>
+          <button
+            class="close-btn"
+            id="close-btn"
+            onclick="closePopup()"
+          ></button>
         </div>
 
         <hr width="100%" />
@@ -278,7 +280,8 @@
       let timeoutId = setTimeout(() => {
         openPopup(
           "Hey, there.",
-          "It seems like you're enjoying here. Please, feel free to contact and give your feedback."
+          "It seems like you're enjoying here. Please, feel free to contact and give your feedback.",
+          "OK"
         );
       }, 100000);
       // clearTimeout(timeoutId);
@@ -311,7 +314,11 @@
           if (response.ok) {
             // alert("Form submitted successfully!");
 
-            openPopup("Success", "Form has been submitted successfully");
+            openPopup(
+              "Success",
+              "Form has been submitted successfully",
+              "Close"
+            );
 
             form.reset(); // Reset the form fields
           } else {
@@ -333,10 +340,10 @@
     <!-- Custom popup script -->
     <script>
       // Function to open the popup
-      function openPopup(topic, subtopic) {
+      function openPopup(topic, subtopic, btn) {
         document.getElementById("popupTopic").innerText = topic;
         document.getElementById("popupSubTopic").innerText = subtopic;
-
+        document.getElementById("close-btn").innerText = btn;
         document.getElementById("popup-overlay").style =
           "display:block;color:black;";
         document.getElementById("popup-box").style =
