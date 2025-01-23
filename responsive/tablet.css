@@ -52,7 +52,8 @@
   #hero > section {
     display: flex;
   }
-  /* #hero-image img {
-    height: 20%;
-  } */
+  #hero-image img {
+    height: 60%;
+    width: 60%;
+  }
 }

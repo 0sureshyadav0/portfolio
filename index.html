@@ -151,6 +151,7 @@
           </div>
 
           <lottie-player
+            id="parrot"
             src="./assets/image/Parrot(1).json"
             background="transparent"
             speed="1"
@@ -367,5 +368,23 @@
         });
     </script>
     <script src="./assets/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Apply animation to the .box element
+      gsap.to("#parrot", {
+        scrollTrigger: {
+          trigger: "#parrot", // Element to watch
+          start: "top 0%", // Start animation when the box is 80% from the top of the viewport
+          end: "bottom 10%", // End animation when the box is 20% from the top of the viewport
+          scrub: true, // Smoothly scrubs the animation
+        },
+        scale: 1,
+      });
+    </script>
+    <style></style>
   </body>
 </html>
