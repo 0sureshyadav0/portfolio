@@ -43,7 +43,7 @@
   }
   lottie-player {
     position: absolute;
-    top: 0px;
+    top: -350px;
     right: -50px;
     width: 50%;
     height: 20%;
