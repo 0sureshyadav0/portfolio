@@ -165,8 +165,56 @@
   } */
 }
 
-/* for laptops */
+/* for laptops  and desktop mode on phone*/
 @media only screen and (min-width: 786px) and (max-width: 992px) {
+  #company {
+    width: 130% !important;
+  }
+  #sidebar {
+    height: 128vh;
+  }
+  #hero {
+    margin-left: 20%;
+  }
+  #hero-main {
+    margin-left: 10%;
+    height: 50vh;
+  }
+  #hero-image img {
+    /* width: 30%; */
+    height: 50%;
+  }
+  lottie-player {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+  }
+  hr {
+    width: 130%;
+  }
+  #projects {
+    width: 130%;
+
+    display: flex;
+    flex-direction: row;
+  }
+
+  #upcomingProjects {
+    width: 130%;
+  }
+  .card-button {
+    /* width: 100%; */
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+  }
+  #contact-form-container {
+    width: 130%;
+  }
+  footer {
+    width: 135%;
+  }
 }
 
 /* for large screen */
