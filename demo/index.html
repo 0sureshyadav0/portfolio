@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScrollTrigger Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+      }
+
+      .container {
+        /* background: linear-gradient(to bottom, #f8f9fa, #007bff); */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 10%;
+        margin-bottom: 10%;
+      }
+
+      .box {
+        width: 20%;
+        height: 60vh;
+        background: #ffc107;
+        display: flex;
+        position: sticky;
+        top: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <script>
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Apply animation to the .box element
+      document.querySelectorAll(".box").forEach((card) => {
+        gsap.to(card, {
+          scrollTrigger: {
+            trigger: card, // Element to watch
+            start: "top 20%", // Start animation when the box is 80% from the top of the viewport
+            end: "bottom 20%", // End animation when the box is 20% from the top of the viewport
+            scrub: true, // Smoothly scrubs the animation
+            markers: true, // Show start and end markers (for debugging)
+          },
+          scale: 0.2, // Double the size
+          opacity: 0, // Fully visible
+        });
+      });
+    </script>
+  </body>
+</html>

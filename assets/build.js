@@ -23,12 +23,8 @@ const buildPersonalProjects = (personalProjects) => {
     </div>
   `;
   }
-
   projects.innerHTML = html;
 };
-function getIndex(i) {
-  console.log(i);
-}
 
 const buildUpcomingProjects = (upcomingProjects) => {
   let domupcomingProjects = document.getElementById("upcomingProjects");
