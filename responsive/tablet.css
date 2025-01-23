@@ -1,0 +1,58 @@
+/* for tablets */
+@media only screen and (min-width: 480px) and (max-width: 992px) {
+  #hero > #company {
+    display: none;
+  }
+
+  #menu {
+    display: none;
+  }
+  #sidebar {
+    width: 17%;
+    height: 114vh;
+    position: fixed;
+  }
+  #hero {
+    position: relative;
+    /* margin: 5%; */
+    padding-left: 6%;
+    padding-top: 20%;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+  }
+  #buttons {
+    display: flex;
+    width: 100%;
+  }
+
+  #hero-contents {
+    width: 100%;
+  }
+
+  #hero-main {
+    /* background-color: yellow; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    gap: 0;
+
+    height: 150vh;
+  }
+  lottie-player {
+    position: absolute;
+    top: 0px;
+    right: -50px;
+    width: 50%;
+    height: 20%;
+  }
+
+  #hero > section {
+    display: flex;
+  }
+  /* #hero-image img {
+    height: 20%;
+  } */
+}
