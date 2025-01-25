@@ -371,7 +371,13 @@ aside {
     max-width: 400px;
   }
 }
-
+#packages {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 #projects {
   display: flex;
   flex-wrap: wrap;

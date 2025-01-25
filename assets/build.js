@@ -51,3 +51,28 @@ const buildUpcomingProjects = (upcomingProjects) => {
   }
   domupcomingProjects.innerHTML = upcomingHtml;
 };
+
+const buildPackages = (packages) => {
+  let packagesContainer = document.getElementById("packages");
+  let Html = "";
+  for (let i = 0; i < packages.length; i++) {
+    let { name, description, icon, readMore, downloadUrl } = packages[i];
+
+    Html += `
+    <div class="card" data-aos="fade-up">
+      <img src='${icon}' alt="Project Thumbnail" style='object-fit:contain;background-color:#007bff;'/>
+      <div class="card-content">
+        <h3 class="card-title">${name}</h3>
+        <p class="card-description">${description}</p>
+        <div class="card-button">
+  <a href="../projestDescription/packagesDesc.html?product=${
+    i + 1
+  }">Read More</a>;
+
+        </div>
+      </div>
+    </div>
+  `;
+  }
+  packagesContainer.innerHTML = Html;
+};

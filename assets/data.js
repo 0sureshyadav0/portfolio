@@ -76,3 +76,20 @@ const upcomingProjects = [
     downloadUrl: "#",
   },
 ];
+
+// packages
+
+const packages = [
+  {
+    name: "GlassNavBar",
+    description:
+      "A customizable navigation bar for Flutter apps with a frosted glass effect. The navigation bar allows you to set custom icons, labels and colors for both selected and unselected states. It uses the BackdropFilter widget to create the glass effect with a blur.",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+    icon: "https://github.com/0sureshyadav0/glass_nav_bar/blob/master/navBar.jpg?raw=true",
+    downloadUrl: "#",
+    readMoreUrl:
+      "https://raw.githubusercontent.com/0sureshyadav0/glass_nav_bar/master/README.md",
+  },
+];
