@@ -292,7 +292,9 @@
           "OK"
         );
       }, 100000);
-      // clearTimeout(timeoutId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     </script>
 
     <!-- animate on scroll  -->
@@ -355,6 +357,7 @@
           "display:block;color:black;";
         document.getElementById("popup-box").style =
           "display:block;color:black;";
+        return true;
       }
 
       // Function to close the popup
