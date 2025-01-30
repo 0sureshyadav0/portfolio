@@ -183,13 +183,14 @@ lottie-player {
   align-items: center;
 } */
 #hero-image {
-  margin-top: 15%;
+  margin-top: 0%;
   /* border: 2px solid var(--navBar-bg); */
   border-radius: 20px;
+  /* background-color: red; */
 
   /* padding-top: 15%; */
-  height: 60%;
-  /* width: 50%; */
+  height: 100%;
+  width: 50%;
 }
 #hero-image img {
   height: 100%;
