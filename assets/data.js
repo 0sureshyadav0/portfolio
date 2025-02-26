@@ -1,5 +1,18 @@
 const personalProjects = [
   {
+    name: "QueueStatus",
+    description:
+      "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_.png?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/66ecukieqxh8x8r/QueueStatus.apk/file",
+    readMoreUrl:
+      // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
+      "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/QueueStatusREADME.md",
+  },
+  {
     name: "Sangeet",
     description:
       "A music app that allows users to listen available songs on their device.",
