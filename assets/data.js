@@ -1,6 +1,6 @@
 const personalProjects = [
   {
-    name: "QueueStatus",
+    name: "PaaloX",
     description:
       "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
     duration: "2024",
