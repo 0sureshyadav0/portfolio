@@ -3,7 +3,7 @@ const personalProjects = [
     name: "PaaloX",
     description:
       "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
-    duration: "2024",
+    duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_.png?raw=true",
     downloadUrl:
@@ -11,6 +11,20 @@ const personalProjects = [
     readMoreUrl:
       // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
       "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/QueueStatusREADME.md",
+  },
+  {
+    name: "मेरो सिनेमा",
+    description:
+      // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
+      "मेरो सिनेमा is a movie streaming app that allows users to browse, search, and watch Nepali movies.",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/bdefkoo0bgml6gg/QueueStatus.apk/file",
+    readMoreUrl:
+      // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
+      "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/MEROCINEMA.md",
   },
   {
     name: "Sangeet",
