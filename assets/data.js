@@ -65,7 +65,7 @@ const personalProjects = [
   {
     name: "Fly Bird",
     description:
-      "A email generator app which uses AI to generate a random email based on user's subject.",
+      "An email generator app which uses AI to generate a random email based on user's subject.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_2.png?raw=true",
