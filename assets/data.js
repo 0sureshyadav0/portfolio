@@ -1,18 +1,5 @@
 const personalProjects = [
   {
-    name: "PaaloX",
-    description:
-      "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
-    duration: "2025",
-    tech: ["Flutter", "Dart"],
-    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_.png?raw=true",
-    downloadUrl:
-      "https://www.mediafire.com/file/bdefkoo0bgml6gg/QueueStatus.apk/file",
-    readMoreUrl:
-      // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
-      "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/QueueStatusREADME.md",
-  },
-  {
     name: "मेरो सिनेमा",
     description:
       // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
@@ -26,6 +13,20 @@ const personalProjects = [
       // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
       "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/MEROCINEMA.md",
   },
+  {
+    name: "PaaloX",
+    description:
+      "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_.png?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/bdefkoo0bgml6gg/QueueStatus.apk/file",
+    readMoreUrl:
+      // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
+      "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/QueueStatusREADME.md",
+  },
+
   {
     name: "Sangeet",
     description:
@@ -67,7 +68,7 @@ const personalProjects = [
       "A email generator app which uses AI to generate a random email based on user's subject.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
-    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon_2.png?raw=true",
 
     // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     downloadUrl:
