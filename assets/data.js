@@ -1,5 +1,19 @@
 const personalProjects = [
   {
+    name: "NxGen",
+    description:
+      // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
+      "NxGen is an advanced chatbot app built using Gemini-2.0-Flash-Image technology.",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/nxgen.jpeg?raw=true",
+    downloadUrl:
+      "https://www.mediafire.com/file/bdefkoo0bgml6gg/QueueStatus.apk/file",
+    readMoreUrl:
+      // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
+      "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/MEROCINEM.md",
+  },
+  {
     name: "मेरो सिनेमा",
     description:
       // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
