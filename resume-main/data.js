@@ -214,9 +214,9 @@ const personal = [
 
 const experiences = [
   {
-    position: "",
-    company: "",
-    duration: "",
+    position: "Basic Level Teacher",
+    company: "Gorkha Model Sec. School, Lamahi-Dang",
+    duration: "2023-2025",
     tech: [],
     achievements: [],
   },
@@ -299,6 +299,86 @@ const companyProjects = [
 ];
 const personalProjects = [
   {
+    name: "NxGen",
+    description: "A chatbot app",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
+    refs: [
+      {
+        // icon: "fa fa-link",
+        link: "fa fa-link",
+        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        tooltip: "Check it out",
+        url: "https://www.mediafire.com/file/ayd6iqvwxjh1trj/NxGen.apk/file",
+      },
+    ],
+  },
+  {
+    name: "मेरो सिनेमा",
+    description: "A movie streaming app",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
+    refs: [
+      {
+        // icon: "fa fa-link",
+        link: "fa fa-link",
+        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        tooltip: "Check it out",
+        url: "https://www.mediafire.com/file/pyb43rrg10fud92/%25E0%25A4%25AE%25E0%25A5%2587%25E0%25A4%25B0%25E0%25A5%258B_%25E0%25A4%25B8%25E0%25A4%25BF%25E0%25A4%25A8%25E0%25A5%2587%25E0%25A4%25AE%25E0%25A4%25BE.apk/file",
+      },
+    ],
+  },
+  {
+    name: "PaaloX",
+    description: "A queue status app",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
+    refs: [
+      {
+        // icon: "fa fa-link",
+        link: "fa fa-link",
+        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        tooltip: "Check it out",
+        url: "https://www.mediafire.com/file/fbbleajgmwczyb2/PaaloX.apk/file",
+      },
+    ],
+  },
+  {
+    name: "Fly Bird",
+    duration: "2025",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
+    ion: "An AI email generator\napp based on subject",
+    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
+    description: "A email generator app",
+    refs: [
+      {
+        link: "fa fa-link",
+        tooltip: "Check it out",
+        url: "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
+      },
+    ],
+  },
+  {
+    name: "Mausam",
+    duration: "2024",
+    tech: ["Flutter", "Dart"],
+    icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
+    description: "A weather app",
+    refs: [
+      {
+        link: "fa fa-link",
+        icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
+        tooltip: "Check it out",
+        url: "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
+      },
+    ],
+  },
+
+  {
     name: "Sangeet",
     description: "A music app",
     duration: "2024",
@@ -325,37 +405,6 @@ const personalProjects = [
         link: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/h6yxm234dgdu8ev/Todo.apk/file",
-      },
-    ],
-  },
-  {
-    name: "Mausam",
-    duration: "2024",
-    tech: ["Flutter", "Dart"],
-    icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
-    description: "A weather app",
-    refs: [
-      {
-        link: "fa fa-link",
-        icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
-        tooltip: "Check it out",
-        url: "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
-      },
-    ],
-  },
-  {
-    name: "Fly Bird",
-    duration: "2025",
-    tech: ["Flutter", "Dart"],
-    icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
-    ion: "An AI email generator\napp based on subject",
-    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
-    description: "A email generator app",
-    refs: [
-      {
-        link: "fa fa-link",
-        tooltip: "Check it out",
-        url: "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
       },
     ],
   },
