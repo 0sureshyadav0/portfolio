@@ -298,7 +298,7 @@ const buildEducation = (education) => {
       "" +
       "<span class='pull-right'>" +
       percentage +
-      "%</span></td>" +
+      "</span></td>" +
       "</tr>" +
       "<tr>" +
       "<td colspan='2' class='grey'>" +
