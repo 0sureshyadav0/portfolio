@@ -106,23 +106,7 @@ const skills = [
     tech: ["HTML", "CSS", "JavaScript"],
     lib: ["jQuery", "Bootstrap", "UIKit"],
   },
-  // {
-  //   icon: "fab fa-js",
-  //   title: "JavaScript Frameworks",
-  //   scale: 5,
-  //   tech: [],
-  //   lib: [
-  //     "Vue.js",
-  //     "Angular",
-  //     "AngularJS",
-  //     "Meteor",
-  //     "Svelte",
-  //     "jQuery",
-  //     "Express.js",
-  //     "Next.js",
-  //     "Gatsby",
-  //   ],
-  // },
+
   {
     icon: "fab fa-react",
     title: "ReactJS",
@@ -264,37 +248,6 @@ const education = [
   },
 ];
 
-// const personalProjects = [
-//   {
-//     // (कृषि संस्था)
-//     name: "Agricultural Organization ",
-//     description:
-//       "This product belongs to private agriculture organization which manages records of its members including their income.",
-//     duration: "2022",
-//     tech: ["Flutter", "Dart"],
-//     refs: [
-//       {
-//         icon: "fa fa-link",
-//         tooltip: "Check it out",
-//         url: "#",
-//       },
-//     ],
-//   },
-//   {
-//     name: "Bazaar",
-//     description: "Upcoming project",
-//     duration: "2023",
-//     tech: ["Flutter", "Dart"],
-//     refs: [
-//       {
-//         icon: "fa fa-link",
-//         tooltip: "Check it out",
-//         url: "#",
-//       },
-//     ],
-//   },
-// ];
-
 const companyProjects = [
   {
     name: "Appazon",
@@ -317,12 +270,9 @@ const personalProjects = [
     description: "A chatbot app",
     duration: "2025",
     tech: ["Flutter", "Dart"],
-    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
     refs: [
       {
-        // icon: "fa fa-link",
-        link: "fa fa-link",
-        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/ayd6iqvwxjh1trj/NxGen.apk/file",
       },
@@ -333,12 +283,9 @@ const personalProjects = [
     description: "A movie streaming app",
     duration: "2025",
     tech: ["Flutter", "Dart"],
-    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
     refs: [
       {
-        // icon: "fa fa-link",
-        link: "fa fa-link",
-        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/pyb43rrg10fud92/%25E0%25A4%25AE%25E0%25A5%2587%25E0%25A4%25B0%25E0%25A5%258B_%25E0%25A4%25B8%25E0%25A4%25BF%25E0%25A4%25A8%25E0%25A5%2587%25E0%25A4%25AE%25E0%25A4%25BE.apk/file",
       },
@@ -349,12 +296,9 @@ const personalProjects = [
     description: "A queue status app",
     duration: "2025",
     tech: ["Flutter", "Dart"],
-    // icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
     refs: [
       {
-        // icon: "fa fa-link",
-        link: "fa fa-link",
-        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/fbbleajgmwczyb2/PaaloX.apk/file",
       },
@@ -366,11 +310,10 @@ const personalProjects = [
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
     ion: "An AI email generator\napp based on subject",
-    // 'url': 'https://github.com/0sureshyadav0/mausam/tree/master',
     description: "A email generator app",
     refs: [
       {
-        link: "fa fa-link",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/jsdyuwvl08rppbb/Fly_Bird.apk/file",
       },
@@ -384,8 +327,7 @@ const personalProjects = [
     description: "A weather app",
     refs: [
       {
-        link: "fa fa-link",
-        icon: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/baikeqv9988nw30/Mausam.apk/file",
       },
@@ -400,9 +342,7 @@ const personalProjects = [
     icon: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
     refs: [
       {
-        // icon: "fa fa-link",
-        link: "fa fa-link",
-        // icon: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
+        icon: "fa fa-link",
         tooltip: "Check it out",
         url: "https://www.mediafire.com/file/dobsb1afa1dm0ui/Sangeet.apk/file",
       },
