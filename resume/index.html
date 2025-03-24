@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Resume &raquo; RajYadav</title>
+
+    <meta name="viewport" content="width=device-width"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+            integrity="sha512-fzff82+8pzHnwA1mQ0dzz9/E0B+ZRizq08yZfya66INZBz86qKTCt9MLU0NCNIgaMJCgeyhujhasnFUsYMsi0Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="splash flex"></div>
+<div class="container">
+    <!--    <div class="circle-bg"></div>-->
+    <section class="body">
+        <section class="screen40">
+            <div class="header pv-10">
+                <div class="on-mobile">
+                    <section class="right-header p-10"></section>
+                    <hr class="light"/>
+                </div>
+                <section class="left-header"></section>
+            </div>
+            <div>
+                <div class="clip-bg block-section">
+                    <div class="container-inner">
+                        <div class="skill-set"></div>
+                    </div>
+                </div>
+                <div class="with-bg">
+                    <div class="block-section">
+                        <div class="container-inner">
+                            <div class="languages"></div>
+                        </div>
+                    </div>
+                    <div class="block-section">
+                        <div class="container-inner">
+                            <div class="interests"></div>
+                        </div>
+                    </div>
+                    <div class="block-section">
+                        <div class="container-inner">
+                            <div class="personal"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="on-laptop">
+                        <div class="last"></div>
+                        <section class="footer">
+                            <div class="container-inner"></div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="screen60">
+            <div class="on-laptop">
+                <section style="margin-bottom: -15px" class="right-header p-10"></section>
+            </div>
+            <div class="block-section mt-25">
+                <div class="container-inner">
+                    <div class="experience"></div>
+                </div>
+            </div>
+            <div class="block-section break extra-margin">
+                <div class="container-inner">
+                    <div class="education"></div>
+                </div>
+            </div>
+            <div class="block-section">
+                <div class="container-inner">
+                    <div class="personal-projects"></div>
+                </div>
+            </div>
+
+            <div class="block-section">
+                <div class="container-inner">
+                    <div class="company-projects"></div>
+                </div>
+            </div>
+            <div class="on-mobile">
+                <div class="last"></div>
+                <section class="footer">
+                    <div class="container-inner"></div>
+                </section>
+            </div>
+            <svg height="0" width="0">
+                <defs>
+                    <clipPath clipPathUnits="objectBoundingBox" id="sideClip">
+                        <path d="M0,0 C0.5,0.08 0.98,-0.05 1,0.08 L1,1 L0,1z"/>
+                    </clipPath>
+                </defs>
+            </svg>
+            <svg width="0" height="0">
+                <defs>
+                    <clipPath clipPathUnits="objectBoundingBox" id="avatarClip">
+                        <path d="M0.10524,0.5139C0.09972,0.50729,0.09972,0.49653,0.10524,0.48992L0.29032,0.16535C0.29584,0.15874,0.30664,0.14806,0.31993,0.14806L0.68878,0.14806C0.70207,0.14806,0.71287,0.15874,0.71839,0.16535L0.90347,0.48992C0.90899,0.49653,0.90899,0.50729,0.90347,0.5139L0.71839,0.83847C0.71287,0.84508,0.70207,0.85576,0.68878,0.85576L0.31993,0.85576C0.30664,0.85576,0.29584,0.84508,0.29032,0.83847L0.10524,0.5139z"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </section>
+        <div class="clear"></div>
+    </section>
+</div>
+<div class="fab-icons">
+    <button onclick="window.print()"><i class="fa fa-print"></i></button>
+    <button onclick="toggleTheme();"><i class="fa fa-moon"></i></button>
+</div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script>
+    buildSplash(userDetails);
+    buildTopHeader(userDetails);
+    buildBottomHeader(userDetails);
+    buildSkills(skills);
+    buildLanguages(languages);
+    buildExperiences(experiences);
+    buildEducation(education);
+    buildInterests(interests);
+    buildPersonal(personal);
+    buildProjects(personalProjects);
+    buildProjects(companyProjects, true);
+    buildFooter(userDetails);
+</script>
+
+<script>
+    const _watchSize = () => {
+        if (window.innerWidth >= 874) {
+            let h = document.body.clientHeight;
+            document.querySelector(".screen40").style.height = h + "px";
+        } else {
+            document.querySelector(".screen40").style.height = "auto";
+        }
+    };
+
+    window.onload = () => {
+        let splash = document.querySelector(".splash");
+        setTimeout(() => {
+            splash.classList.add("animate");
+            _watchSize();
+            setTimeout(() => {
+                splash.style.display = "none";
+            }, 500)
+        }, 1000);
+    };
+
+    window.addEventListener("resize", _watchSize);
+
+</script>
+
+</body>
+</html>
