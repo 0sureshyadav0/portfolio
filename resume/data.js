@@ -2,7 +2,7 @@ const userDetails = {
   name: "Suresh Yadav",
   designation: "Full Stack Developer",
   description:
-    "Computer Science undergraduate with 2+ years of experience in Web Development, Flutter, Dart & C  as well as in Android and iOS development. I can provide you with application & web development using Flutter framework. As I am mostly a self-learner, I can easily adapt to new things and always ready to take on a challenge. <br> Click <a href='https://sureshyadav.info.np/' >here</a> for more info",
+    "Computer Science student with 2+ years of experience in Web Development, Flutter, Dart & C  as well as in Android and iOS development. I can provide you with application & web development using Flutter framework. As I am mostly a self-learner, I can easily adapt to new things and always ready to take on a challenge. <br> Click <a href='https://sureshyadav.info.np/' >here</a> for more info",
   picture: {
     src: "suresh.jpg",
     link: "https://github.com/0sureshyadav0",
