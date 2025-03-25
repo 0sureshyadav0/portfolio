@@ -3,7 +3,7 @@ const personalProjects = [
     name: "NxGen",
     description:
       // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
-      "NxGen is an advanced chatbot app built using Gemini-2.0-Flash-Image technology.",
+      "NxGen is an advanced chatbot app built using Gemini-1.5-flash.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/nxgen.jpeg?raw=true",
