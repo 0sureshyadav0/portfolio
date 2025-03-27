@@ -21,6 +21,10 @@
   .card {
     width: 40%;
   }
+  #hero-image > img {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 /* for large screen */
@@ -30,5 +34,9 @@
   }
   #hero {
     position: relative;
+  }
+  #hero-image > img {
+    height: 100%;
+    width: 100%;
   }
 }
