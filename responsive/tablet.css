@@ -7,6 +7,17 @@
   #menu {
     display: none;
   }
+  #company {
+    margin: 0px;
+    display: flex;
+    gap: 0px;
+    justify-content: start;
+    align-items: center;
+  }
+  #hero #company_name {
+    width: 50%;
+    height: 90%;
+  }
   #sidebar {
     width: 17%;
     height: 114vh;
