@@ -5,6 +5,17 @@
     margin: 0px;
     display: none;
   }
+  #company {
+    margin: 0px;
+    display: flex;
+    gap: 0px;
+    justify-content: start;
+    align-items: center;
+  }
+  #hero #company_name {
+    width: 50%;
+    height: 90%;
+  }
   #contact {
     padding: 20px 100px;
     width: 100%;
