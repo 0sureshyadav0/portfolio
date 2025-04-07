@@ -8,7 +8,7 @@ const personalProjects = [
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/nxgen.jpeg?raw=true",
     downloadUrl:
-      "https://www.mediafire.com/file/bdefkoo0bgml6gg/QueueStatus.apk/file",
+      "https://www.mediafire.com/file/d6n65gc4opajk5u/NxGen.apk/file",
     readMoreUrl:
       // "https://raw.githubusercontent.com/0sureshyadav0/sangeet_0.0.1/master/README.md",
       "https://raw.githubusercontent.com/0sureshyadav0/asstets/main/MEROCINEM.md",
