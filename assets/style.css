@@ -130,12 +130,14 @@ nav ul li:hover {
   display: flex;
   gap: 5%;
 }
+
 lottie-player {
   transform: rotateY(180deg);
   position: absolute;
-  top: 36%;
+  /* top: 33%; */
   height: 50%;
 }
+
 #heroContainer::before {
   content: "";
   position: absolute;
