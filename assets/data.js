@@ -3,7 +3,7 @@ const personalProjects = [
     name: "NxGen",
     description:
       // "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
-      "NxGen is an basic chatbot app.",
+      "NxGen is a basic chatbot app.",
     duration: "2025",
     tech: ["Flutter", "Dart"],
     icon: "https://github.com/0sureshyadav0/asstets/blob/main/nxgen.jpeg?raw=true",
