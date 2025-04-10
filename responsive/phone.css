@@ -128,4 +128,9 @@
     width: 100%;
     height: 1vh;
   }
+  #music {
+    position: absolute;
+    left: 13%;
+    z-index: 10000000000;
+  }
 }
