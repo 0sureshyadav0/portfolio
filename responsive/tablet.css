@@ -27,7 +27,7 @@
     position: relative;
     /* margin: 5%; */
     padding-left: 6%;
-    padding-top: 20%;
+    padding-top: 5%;
     justify-content: center;
     align-items: center;
     width: 70%;
@@ -54,8 +54,8 @@
   }
   lottie-player {
     position: absolute;
-    top: -350px;
-    right: -50px;
+    top: -16%;
+    right: -13%;
     width: 50%;
     height: 20%;
   }
