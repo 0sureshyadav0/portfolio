@@ -9,6 +9,7 @@
   #hero {
     position: relative;
     margin-top: 10%;
+    height: 90%;
   }
 
   lottie-player {
