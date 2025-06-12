@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BitVerse - Code the Future</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./components/popup.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive/tablet.css" />
+    <link rel="stylesheet" href="responsive/laptop.css" />
+    <link rel="stylesheet" href="responsive/large_screen.css" />
+  </head>
+  <body>
+    <!-- <div id="greeting">
+      <p style="font-family: 'Dancing Script'; font-size: 22px">Hi, there</p>
+      <p style="font-size: 32px; font-family: 'Playfair'; font-weight: bold">
+        Welcome to
+      </p>
+    </div> -->
+    <br /><br /><br /><br /><br /><br />
+
+    <header>
+      <main>
+        <div id="company-logo" style="margin-bottom: 1rem">
+          <img src="./assets/images/Bit.png" alt="BitVerse Logo" />
+        </div>
+        <br />
+        <button
+          class="cta-button"
+          onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+        >
+          Enroll Now
+        </button>
+      </main>
+    </header>
+
+    <div class="marquee">
+      <div class="marquee-text">
+        <span>C Programming &nbsp; - &nbsp;&nbsp;&nbsp;</span>
+        <span>Python &nbsp; - &nbsp;&nbsp;&nbsp;</span>
+        <span>Web Development &nbsp; - &nbsp;&nbsp;&nbsp;</span>
+        <span>App Development &nbsp;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#intro">Intro</a>
+      <a href="#why">Why?</a>
+      <a href="#courses">Courses</a>
+      <a href="#mentors">Mentor</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="forLaptop">
+      <section class="section" id="intro">
+        <h2>Introduction</h2>
+        <p>
+          BitVerse is a next-generation digital learning platform dedicated to
+          empowering students with the most essential skills of the 21<sup
+            >st</sup
+          >
+          century ---- <span style="color: yellow">coding</span>. <br /><br />
+          At BitVerse, we believe that every student has the potential to
+          create, not just consume technology. Our mission is to bridge the gap
+          between curiosity and innovation by providing a hands-on,
+          beginner-friendly, and career-focused approach to programming.
+          <br /><br />
+          Whether you're starting from zero or aiming to become a tech expert,
+          BitVerse offers a structured learning journey---from fundamentals to
+          advanced technologies like web development, app building, artificial
+          intelligence, and cybersecurity. <br /><br />
+          We don't just teach code. We build confidence. We don't just train
+          programmers. We shape creators of the digital future.
+        </p>
+      </section>
+
+      <section class="section" id="why">
+        <h2>Why BitVerse?</h2>
+        <ul>
+          <li>
+            <strong>Beginner-Friendly:</strong> Our courses are designed for
+            absolute beginners, ensuring you grasp the fundamentals with ease.
+          </li>
+          <li>
+            <strong>Hands-On Learning:</strong> Engage in real-world projects
+            that enhance your coding skills and build a strong portfolio.
+          </li>
+          <li>
+            <strong>Personalized Mentorship:</strong> Get one-on-one guidance
+            from experienced mentors who are passionate about teaching.
+          </li>
+          <li>
+            <strong>Flexible Learning:</strong> Enjoy the convenience of online
+            classes combined with the structure of physical sessions.
+          </li>
+          <li>
+            <strong>Career-Oriented Skills:</strong> Learn the skills that
+            matter most in today's tech industry, from web development to app
+            building and AI.
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="section" id="courses">
+      <h2>Featured Courses</h2>
+      <div class="carousel"></div>
+    </section>
+
+    <!-- Popup UI -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+    <div id="popup-box" class="popup-box" style="color: black">
+      <h2 id="popupTopic"></h2>
+      <p id="popupSubTopic"></p>
+      <br />
+      <button class="close-btn" id="close-btn" onclick="closePopup()"></button>
+    </div>
+
+    <div class="forLaptop">
+      <section class="section" id="mentors">
+        <h2>Meet Your Mentor</h2>
+        <div class="mentor-card">
+          <center>
+            <img
+              src="./assets/images/hero_circle.png"
+              alt="Suresh Yadav"
+              style="
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 3px solid var(--accent);
+              "
+            />
+            <h3>Suresh Yadav</h3>
+            <p>
+              <span style="color: yellow">Full Stack Developer</span> with 5+
+              years of experience in web and app development.
+            </p>
+          </center>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2>Contact or Enroll</h2>
+        <p>Fill out the form below or reach us directly via email or phone.</p>
+        <div id="contact-form-container">
+          <form id="email-form" onsubmit="handleFormSubmit(event)">
+            <input
+              type="hidden"
+              name="access_key"
+              value="5a876c1a-48e7-46eb-8bb6-bf93773fc7b1"
+            />
+            <div id="form-toggle">
+              <label
+                ><input
+                  type="radio"
+                  name="option"
+                  value="contact"
+                  checked
+                  onchange="toggleFormType()"
+                />
+                Contact</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="option"
+                  value="enrollment"
+                  onchange="toggleFormType()"
+                />
+                Enrollment</label
+              >
+            </div>
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              required
+            />
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Subject"
+              required
+            />
+            <div id="extra-fields" style="display: none">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Phone Number"
+              />
+              <br />
+              <select name="course" id="course">
+                <option value="">Select a Course</option>
+                <option value="C Programming">C Programming</option>
+                <option value="Python">Python</option>
+                <option value="Web Development">Web Development</option>
+                <option value="App Development">App Development</option>
+              </select>
+
+              <select name="device">
+                <option value="">Device Availability?</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Mobile">Mobile</option>
+              </select>
+
+              <select name="internet">
+                <option value="">Do you have Internet?</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Your message"
+              required
+            ></textarea>
+
+            <button id="sendButton" type="submit" class="cta-button">
+              Send Message
+            </button>
+          </form>
+        </div>
+        <br /><br />
+        <div id="emailOrPhone">
+          <p>
+            <a href="mailto:tellbitverse@gmail.com"
+              >📧 tellbitverse@gmail.com</a
+            >
+            |
+          </p>
+
+          <p>📱<a href="https://wa.me/9779763878278">+977-9763878278</a> |</p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 BitVerse. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleFormType() {
+        const selected = document.querySelector(
+          'input[name="option"]:checked'
+        ).value;
+        const extraFields = document.getElementById("extra-fields");
+        extraFields.style.display = selected === "enrollment" ? "flex" : "none";
+        extraFields.style.flexDirection = "column";
+      }
+
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+        const sendButton = document.getElementById("sendButton");
+        sendButton.innerHTML = "Sending ...";
+        sendButton.style = "background-color: rgb(233, 233, 7); color:black;";
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            openPopup(
+              "Congratulations",
+              "Form has been submitted successfully",
+              "Close"
+            );
+            form.reset();
+            toggleFormType();
+          } else {
+            openPopup("Error", "There was an error submitting the form.");
+          }
+        } catch (error) {
+          openPopup("Error", "Submission failed: " + error.message);
+        }
+
+        sendButton.innerHTML = "Send";
+        sendButton.style = "background-color:#007bff; color:white;";
+      }
+
+      function openPopup(topic, subtopic, btn) {
+        document.getElementById("popupTopic").innerText = topic;
+        document.getElementById("popupSubTopic").innerText = subtopic;
+        document.getElementById("close-btn").innerText = btn;
+        document.getElementById("popup-overlay").style.display = "block";
+        document.getElementById("popup-box").style.display = "block";
+      }
+
+      function closePopup() {
+        document.getElementById("popup-overlay").style.display = "none";
+        document.getElementById("popup-box").style.display = "none";
+      }
+
+      document
+        .getElementById("popup-overlay")
+        .addEventListener("click", function (event) {
+          if (event.target === this) closePopup();
+        });
+    </script>
+
+    <script src="./courses.js"></script>
+    <script>
+      const carousel = document.querySelector(".carousel");
+      courses.forEach((course) => {
+        const card = document.createElement("div");
+        card.className = "course-card";
+        card.innerHTML = `
+          <h3>${course.title}</h3>
+          <p>${course.description}</p>
+          <p>Duration: ${course.duration}</p>
+          <div id="price">
+            <p style="font-size: 1rem; color: var(--primary)">Price: <strike><span class="strike-custom">Rs. ${course.originalPrice}</span></strike></p>
+            <p style="font-size: 25px; color: yellow">Rs. ${course.discountedPrice} <span style="font-size: 15px; color: white">(${course.batchNote})</span></p>
+            <p style="color: var(--primary); margin-left: 90px"><a href="courseDescription.html?title=${course.title}">See All Pricing Plans</a></p>
+          </div>
+          <button class="cta-button" onclick="joinCourse('${course.title}')" style="width:100%;">Enroll Now</button>
+        `;
+        carousel.appendChild(card);
+      });
+
+      function joinCourse(courseTitle) {
+        document
+          .getElementById("contact")
+          .scrollIntoView({ behavior: "smooth" });
+
+        document.querySelector(
+          'input[name="option"][value="enrollment"]'
+        ).checked = true;
+        toggleFormType();
+
+        document.getElementById("course").value = courseTitle;
+
+        // Highlight form
+        const form = document.getElementById("email-form");
+        form.style.boxShadow = "0 0 10px white";
+        setTimeout(() => (form.style.boxShadow = ""), 2000);
+      }
+    </script>
+  </body>
+</html>

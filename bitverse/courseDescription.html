@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Course Description</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        color: rgb(189, 188, 188);
+      }
+      .course-container {
+        max-width: 800px;
+        margin: auto;
+      }
+      .package {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+      }
+      .original-price {
+        text-decoration: line-through;
+        color: red;
+      }
+      .discounted-price {
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="course-container" id="course-details">
+      <h1>Loading course...</h1>
+    </div>
+    <script src="./courses.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const courseTitle = decodeURIComponent(params.get("title"));
+      const course = courses.find((c) => c.title === courseTitle);
+
+      const container = document.getElementById("course-details");
+
+      if (course) {
+        let html = `
+        ${
+          course.image
+            ? `<img src="${course.image}" alt="${course.title}" style="width:100%;border-radius:20px;">`
+            : ""
+        }
+        <h1>${course.title}</h1>
+        <p><strong>Description:</strong> ${course.description}</p>
+        <p><strong>Duration:</strong> ${course.duration}</p>
+        <p>
+          <strong>Price:</strong> 
+          <span class="original-price">Rs. ${course.originalPrice}</span> → 
+          <span class="discounted-price">Rs. ${course.discountedPrice}</span>
+        </p>
+        <p><strong>Note:</strong> ${course.batchNote}</p>
+        <br/><br/>
+        <h2>Available Packages</h2><br/>
+      `;
+
+        // Loop over allpackages
+        course.allpackages?.forEach((pkg) => {
+          html += `
+          <div class="package">
+            <h3>${pkg.packageName}</h3>
+            <p><strong>Content:</strong> ${pkg.content}</p>
+            <p><strong>Mode:</strong> ${pkg.mode}</p>
+            <p><strong>Duration:</strong> ${pkg.duration}</p>
+            <p><strong>Price:</strong> ${pkg.price}</p>
+            ${pkg.bonus ? `<p><strong>Bonus:</strong> ${pkg.bonus}</p>` : ""}
+          </div><br/>
+        `;
+        });
+
+        container.innerHTML = html + "<br/><br/>";
+      } else {
+        container.innerHTML = `<h1>Course not found</h1>`;
+      }
+    </script>
+  </body>
+</html>

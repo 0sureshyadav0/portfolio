@@ -1,0 +1,41 @@
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* CSS rules for large desktops */
+
+  #company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+  }
+  #company-logo > img {
+    width: 50%;
+    height: 80vh;
+  }
+  .forLaptop {
+    display: flex;
+    align-items: flex-start;
+  }
+  .section {
+    padding: 1rem 3.5rem;
+  }
+  #why {
+    height: 65vh;
+  }
+  #intro {
+    width: 70%;
+    align-items: flex-start;
+  }
+  #mentors {
+    height: 100vh;
+  }
+  /* #contact-form-container > #extra-fields {
+    display: flex;
+    flex-direction: column;
+  } */
+
+  #emailOrPhone {
+    display: flex;
+    flex-direction: row;
+  }
+}

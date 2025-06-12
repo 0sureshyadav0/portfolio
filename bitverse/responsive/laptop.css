@@ -1,0 +1,7 @@
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  body {
+    background-color: yellow;
+  }
+  /* CSS rules for small desktops */
+}
