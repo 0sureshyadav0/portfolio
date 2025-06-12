@@ -217,7 +217,10 @@ textarea:focus {
   display: flex;
   flex-direction: column;
 }
-
+#emailORPhone a {
+  text-decoration: none;
+  color: white;
+}
 .package {
   background-color: var(--dark);
 }
