@@ -19,6 +19,9 @@
       href="./assets/images/logo.png"
       type="image/x-icon"
     />
+
+    <!-- Animate on Scroll  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
   <body>
     <!-- <div id="greeting">
@@ -59,7 +62,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="forLaptop">
-      <section class="section" id="intro">
+      <section class="section" id="intro" data-aos="fade-up">
         <h2>Introduction</h2>
         <p>
           BitVerse is a next-generation digital learning platform dedicated to
@@ -81,7 +84,7 @@
         </p>
       </section>
 
-      <section class="section" id="why">
+      <section class="section" id="why" data-aos="fade-up">
         <h2>Why BitVerse?</h2>
         <ul>
           <li>
@@ -109,7 +112,7 @@
       </section>
     </div>
 
-    <section class="section" id="courses">
+    <section class="section" id="courses" data-aos="fade-up">
       <h2>Featured Courses</h2>
       <div class="carousel"></div>
     </section>
@@ -124,7 +127,7 @@
     </div>
 
     <div class="forLaptop">
-      <section class="section" id="mentors">
+      <section class="section" id="mentors" data-aos="fade-up">
         <h2>Meet Your Mentor</h2>
         <div class="mentor-card">
           <center>
@@ -147,7 +150,7 @@
         </div>
       </section>
 
-      <section class="section" id="contact">
+      <section class="section" id="contact" data-aos="fade-up">
         <h2>Contact or Enroll</h2>
         <p>Fill out the form below or reach us directly via email or phone.</p>
         <div id="contact-form-container">
@@ -242,7 +245,7 @@
           </form>
         </div>
         <br /><br />
-        <div id="emailOrPhone">
+        <div id="emailOrPhone" data-aos="fade-up">
           <p>
             <a href="mailto:tellbitverse@gmail.com"
               >📧 tellbitverse@gmail.com</a
@@ -360,6 +363,12 @@
         form.style.boxShadow = "0 0 10px white";
         setTimeout(() => (form.style.boxShadow = ""), 2000);
       }
+    </script>
+
+    <!-- Animate on Scroll  -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
     </script>
   </body>
 </html>
