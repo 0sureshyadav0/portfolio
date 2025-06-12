@@ -45,7 +45,7 @@ const courses = [
     originalPrice: "5,000",
     discountedPrice: "4,499",
     batchNote: "For 1<sup>st</sup> batch",
-    image: "./assets/images/python.png",
+    image: "./assets/images/python.jpg",
     allpackages: [
       {
         packageName: "Basics",
@@ -83,7 +83,7 @@ const courses = [
     originalPrice: "7,000",
     discountedPrice: "4,499",
     batchNote: "For 1<sup>st</sup> batch",
-    image: "./assets/images/webdev.png",
+    image: "./assets/images/web_development.jpeg",
     allpackages: [
       {
         packageName: "Basics only HTML",
@@ -119,7 +119,7 @@ const courses = [
     originalPrice: "18,000",
     discountedPrice: "14,999",
     batchNote: "For 1<sup>st</sup> batch",
-    image: "./assets/images/flutter.png",
+    image: "./assets/images/app_development.jpg",
     allpackages: [
       {
         packageName: "Basics only programming",
