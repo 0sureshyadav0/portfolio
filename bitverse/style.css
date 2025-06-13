@@ -123,6 +123,10 @@ nav a:hover {
 .cta-button:hover {
   background: #0056b3;
 }
+
+.bullets {
+  color: rgb(3, 190, 128);
+}
 .course-card {
   background-color: #1a1a1a;
   padding: 1.5rem;
