@@ -2,7 +2,7 @@
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   /* CSS rules for small tablets */
 
-  #company-logo {
+  /* #company-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,22 +32,22 @@
   }
   #mentors {
     height: 100vh;
-  }
+  } */
   /* #contact-form-container > #extra-fields {
     display: flex;
     flex-direction: column;
   } */
 
-  #emailOrPhone {
+  /* #emailOrPhone {
     display: flex;
     flex-direction: row;
-  }
+  } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   /* CSS rules for tablets */
-  #company-logo {
+  /* #company-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,10 +81,10 @@
   /* #contact-form-container > #extra-fields {
     display: flex;
     flex-direction: column;
-  } */
+  } 
 
   #emailOrPhone {
     display: flex;
     flex-direction: row;
-  }
+  } */
 }

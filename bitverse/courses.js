@@ -123,7 +123,7 @@ const courses = [
     allpackages: [
       {
         packageName: "Basics only programming",
-        content: "Basics of dart, OOPs concept",
+        content: "Basics of Dart language, OOP concept",
         mode: "Recorded or Live",
         duration: "1 month (3-4 hr/week)",
         price: "Rs. 8,000 - Rs. 12,000",
@@ -133,7 +133,7 @@ const courses = [
         content:
           "Dart Basics, Flutter UI components like Scaffold, Row, Column, Center, Container etc",
         mode: "Recorded or Live",
-        duration: "1.5-2 month ",
+        duration: "1.5-2 months ",
         bonus: "PDF notes",
         price: "Rs. 12,000 - Rs. 16,000",
       },

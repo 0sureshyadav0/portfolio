@@ -297,23 +297,6 @@ textarea:focus {
   }
 }
 
-#phoneContact {
-  background-color: white;
-  width: 55px;
-  height: 55px;
-  position: fixed;
-  bottom: 85px;
-  right: 15px;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  border-radius: 100px;
-}
-
-#phoneContact img {
-  height: 55px;
-}
-
 #whatsAppContact {
   background-color: white;
   width: 55px;
@@ -328,5 +311,22 @@ textarea:focus {
 }
 
 #whatsAppContact img {
+  height: 55px;
+}
+
+#phoneContact {
+  background-color: white;
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  bottom: 85px;
+  right: 15px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  border-radius: 100px;
+}
+
+#phoneContact img {
   height: 55px;
 }
