@@ -25,22 +25,22 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- <div id="greeting">
-      <p style="font-family: 'Dancing Script'; font-size: 22px">Hi, there</p>
-      <p style="font-size: 32px; font-family: 'Playfair'; font-weight: bold">
-        Welcome to
-      </p>
-    </div> -->
+    <canvas id="matrix-canvas"></canvas>
+
     <br /><br /><br /><br /><br /><br />
     <!-- onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" -->
 
     <header>
       <main>
-        <div id="company-logo" style="margin-bottom: 1rem">
+        <div
+          id="company-logo"
+          style="margin-bottom: 1rem; position: relative; z-index: 10"
+        >
           <img
             src="./assets/images/Bit.png"
             alt="BitVerse Logo"
             data-aos="zoom-in"
+            style="position: relative; z-index: 10"
           />
         </div>
         <br />
@@ -471,5 +471,48 @@
 
       type();
     </script>
+
+    <!-- matrix canvas  -->
+    <!-- <script>
+      const canvas = document.getElementById("matrix-canvas");
+      const ctx = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas(); // Set initial size
+      window.addEventListener("resize", resizeCanvas); // Responsive
+
+      const binary = "01";
+      const fontSize = 16;
+      const columns = canvas.width / fontSize;
+      const drops = Array.from({ length: columns }).fill(1);
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00ff00";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = binary[Math.floor(Math.random() * binary.length)];
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+
+          ctx.fillText(text, x, y);
+
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+
+          drops[i]++;
+        }
+      }
+
+      setInterval(draw, 35);
+    </script> -->
   </body>
 </html>

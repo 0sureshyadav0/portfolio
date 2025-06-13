@@ -330,3 +330,21 @@ textarea:focus {
 #phoneContact img {
   height: 55px;
 }
+
+/* matrix canvas  */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100; /* Behind all other content */
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+}
+
+header,
+nav,
+main {
+  position: relative;
+  z-index: 10;
+}
