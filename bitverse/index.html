@@ -146,8 +146,17 @@
                 border: 3px solid var(--accent);
               "
             />
-            <h3>Suresh Yadav</h3>
-            <div class="typing-container" id="typing-text" style="height: 45px">
+
+            <p
+              style="
+                font-size: 1.6rem;
+                font-weight: bold;
+                color: rgb(3, 190, 128);
+              "
+            >
+              Suresh Yadav
+            </p>
+            <div class="typing-container" id="typing-text">
               <span id="text"></span><span class="cursor"></span>
             </div>
             <p>
@@ -411,6 +420,7 @@
       const erasingSpeed = 50;
       const delayBetweenWords = 1000;
       const typingText = document.getElementById("typing-text");
+      // const typingText = document.getElementById("text");
 
       function type() {
         const currentWord = words[wordIndex];
