@@ -45,7 +45,7 @@ const courses = [
     originalPrice: "5,000",
     discountedPrice: "4,499",
     batchNote: "For 1<sup>st</sup> batch",
-    image: "./assets/images/python.jpg",
+    image: "./assets/images/python.png",
     allpackages: [
       {
         packageName: "Basics",

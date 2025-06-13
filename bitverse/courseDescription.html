@@ -2,35 +2,40 @@
 <html>
   <head>
     <title>Course Description</title>
+    <link rel="stylesheet" href="style.css" />
+
     <style>
       body {
         font-family: Arial, sans-serif;
-        margin: 20px;
+        margin: 10px;
         color: rgb(189, 188, 188);
       }
       .course-container {
-        max-width: 800px;
+        max-width: 900px;
         margin: auto;
+      }
+      h3 {
+        color: rgb(30, 164, 168);
       }
       .package {
         border: 1px solid #ddd;
-        padding: 10px;
+        padding: 30px;
         margin-top: 10px;
-        border-radius: 6px;
-        background-color: #f9f9f9;
+        border-radius: 8px;
+        /* background-color: #f9f9f9; */
       }
       .original-price {
         text-decoration: line-through;
-        color: red;
+        color: rgb(180, 3, 3);
       }
       .discounted-price {
-        color: green;
+        color: rgb(177, 177, 2);
         font-weight: bold;
       }
     </style>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <br /><br /><br />
     <div class="course-container" id="course-details">
       <h1>Loading course...</h1>
     </div>
@@ -49,7 +54,8 @@
             ? `<img src="${course.image}" alt="${course.title}" style="width:100%;border-radius:20px;">`
             : ""
         }
-        <h1>${course.title}</h1>
+            
+        <h1>${course.title}</h1><br/>
         <p><strong>Description:</strong> ${course.description}</p>
         <p><strong>Duration:</strong> ${course.duration}</p>
         <p>
@@ -67,11 +73,13 @@
           html += `
           <div class="package">
             <h3>${pkg.packageName}</h3>
+            <hr width="100%"><br/>
             <p><strong>Content:</strong> ${pkg.content}</p>
             <p><strong>Mode:</strong> ${pkg.mode}</p>
             <p><strong>Duration:</strong> ${pkg.duration}</p>
             <p><strong>Price:</strong> ${pkg.price}</p>
             ${pkg.bonus ? `<p><strong>Bonus:</strong> ${pkg.bonus}</p>` : ""}
+            <br/>
           </div><br/>
         `;
         });

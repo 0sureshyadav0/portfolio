@@ -337,15 +337,20 @@
         const card = document.createElement("div");
         card.className = "course-card";
         card.innerHTML = `
-          <h3>${course.title}</h3>
-          <p>${course.description}</p>
-          <p>Duration: ${course.duration}</p>
-          <div id="price">
-            <p style="font-size: 1rem; color: var(--primary)">Price: <strike><span class="strike-custom">Rs. ${course.originalPrice}</span></strike></p>
-            <p style="font-size: 25px; color: yellow">Rs. ${course.discountedPrice} <span style="font-size: 15px; color: white">(${course.batchNote})</span></p>
-            <p style="color: var(--primary); margin-left: 90px"><a href="courseDescription.html?title=${course.title}">See All Pricing Plans</a></p>
+          <div>
+            <img src="${course.image}" height="30%" width="100%"/>
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <p>Duration: ${course.duration}</p>
+              <div id="price">
+                  <p style="font-size: 1rem; color: var(--primary)">Price: <strike><span class="strike-custom">Rs. ${course.originalPrice}</span></strike></p>
+                  <p style="font-size: 25px; color: yellow">Rs. ${course.discountedPrice} <span style="font-size: 15px; color: white">(${course.batchNote})</span></p>
+              </div>
           </div>
-          <button class="cta-button" onclick="joinCourse('${course.title}')" style="width:100%;">Enroll Now</button>
+          <div>
+              <p style="color: var(--primary); margin-left: 90px"><a href="courseDescription.html?title=${course.title}" >See All Pricing Plans</a></p>
+              <button class="cta-button" onclick="joinCourse('${course.title}')" style="width:100%;">Enroll Now</button>
+          </div>
         `;
         carousel.appendChild(card);
       });
@@ -364,7 +369,7 @@
 
         // Highlight form
         const form = document.getElementById("email-form");
-        form.style.boxShadow = "0 0 10px white";
+        form.style.boxShadow = "0 0 8px yellow";
         setTimeout(() => (form.style.boxShadow = ""), 2000);
       }
     </script>

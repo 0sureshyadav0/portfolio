@@ -9,9 +9,10 @@
     margin-left: 6rem;
   }
   #company-logo > img {
-    width: 50%;
-    height: 80vh;
+    width: 35%;
+    height: 55vh;
   }
+
   .forLaptop {
     display: flex;
     align-items: flex-start;
