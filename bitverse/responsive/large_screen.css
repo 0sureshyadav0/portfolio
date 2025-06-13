@@ -13,6 +13,9 @@
     height: 55vh;
   }
 
+  #popup-box {
+    width: 25%;
+  }
   .forLaptop {
     display: flex;
     align-items: flex-start;

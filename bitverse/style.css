@@ -262,3 +262,31 @@ textarea:focus {
 .course-card img {
   border-radius: 5px;
 }
+
+/* Typing Effect  */
+.typing-container {
+  font-size: 1.8rem;
+  white-space: pre-line;
+}
+
+.cursor {
+  display: inline-block;
+  background-color: #00bfff;
+  width: 2px;
+  animation: blink 1s infinite;
+  height: 1.2em;
+  vertical-align: bottom;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
