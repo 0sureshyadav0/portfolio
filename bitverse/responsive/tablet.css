@@ -2,23 +2,89 @@
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   /* CSS rules for small tablets */
 
-  body {
-    background-color: red;
+  #company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
   }
-  /* for laptop  */
+  #company-logo > img {
+    width: 35%;
+    height: 55vh;
+  }
+
+  #popup-box {
+    width: 25%;
+  }
   .forLaptop {
     display: flex;
+    align-items: flex-start;
+  }
+  .section {
+    padding: 1rem 3.5rem;
+  }
+  #why {
+    height: 65vh;
+  }
+  #intro {
+    width: 70%;
+    align-items: flex-start;
+  }
+  #mentors {
+    height: 100vh;
+  }
+  /* #contact-form-container > #extra-fields {
+    display: flex;
+    flex-direction: column;
+  } */
+
+  #emailOrPhone {
+    display: flex;
+    flex-direction: row;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   /* CSS rules for tablets */
-  body {
-    background-color: green;
+  #company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
   }
-  /* for laptop  */
+  #company-logo > img {
+    width: 35%;
+    height: 55vh;
+  }
+
+  #popup-box {
+    width: 25%;
+  }
   .forLaptop {
     display: flex;
+    align-items: flex-start;
+  }
+  .section {
+    padding: 1rem 3.5rem;
+  }
+  #why {
+    height: 65vh;
+  }
+  #intro {
+    width: 70%;
+    align-items: flex-start;
+  }
+  #mentors {
+    height: 100vh;
+  }
+  /* #contact-form-container > #extra-fields {
+    display: flex;
+    flex-direction: column;
+  } */
+
+  #emailOrPhone {
+    display: flex;
+    flex-direction: row;
   }
 }
