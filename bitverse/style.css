@@ -292,3 +292,37 @@ textarea:focus {
     opacity: 0;
   }
 }
+
+#phoneContact {
+  background-color: white;
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  bottom: 85px;
+  right: 15px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  border-radius: 100px;
+}
+
+#phoneContact img {
+  height: 55px;
+}
+
+#whatsAppContact {
+  background-color: white;
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  border-radius: 100px;
+}
+
+#whatsAppContact img {
+  height: 55px;
+}
