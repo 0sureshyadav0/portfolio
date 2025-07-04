@@ -58,7 +58,7 @@ function showTypewriterReply(reply) {
   botContainer.style.alignItems = "flex-start";
   botContainer.style.gap = "10px";
   botContainer.classList.add("message", "bot");
-
+  botContainer.style.marginLeft = "-25px"; // Add margin for spacing
   // Create and append image
   const img = document.createElement("img");
   img.src = "./assets/images/circle_logo.png";
