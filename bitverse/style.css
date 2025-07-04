@@ -297,46 +297,13 @@ textarea:focus {
   }
 }
 
-#facebookContact {
-  background-color: white;
-  width: 55px;
-  height: 55px;
-  position: fixed;
-  bottom: 150px;
-  right: 15px;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  border-radius: 100px;
-}
-
-#facebookContact img {
-  height: 55px;
-}
-
-#whatsAppContact {
-  background-color: white;
-  width: 55px;
-  height: 55px;
-  position: fixed;
-  bottom: 20px;
-  right: 15px;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  border-radius: 100px;
-}
-
-#whatsAppContact img {
-  height: 55px;
-}
-
+#facebookContact,
+#whatsAppContact,
 #phoneContact {
   background-color: white;
   width: 55px;
   height: 55px;
   position: fixed;
-  bottom: 85px;
   right: 15px;
   justify-content: center;
   align-items: center;
@@ -344,8 +311,20 @@ textarea:focus {
   border-radius: 100px;
 }
 
-#phoneContact img {
+#phoneContact img,
+#facebookContact img,
+#whatsAppContact img {
   height: 55px;
+}
+
+#facebookContact {
+  bottom: 225px;
+}
+#phoneContact {
+  bottom: 160px;
+}
+#whatsAppContact {
+  bottom: 97px;
 }
 
 /* matrix canvas  */
@@ -358,3 +337,13 @@ textarea:focus {
   height: 100vh;
   background: transparent;
 } */
+
+#socialContact {
+  /* display: flex; */
+  /* bottom: 100px; */
+  display: block;
+  background-color: red;
+  width: 100px;
+  height: 200px;
+  z-index: 10000000000000000;
+}

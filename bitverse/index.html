@@ -23,6 +23,9 @@
 
     <!-- Animate on Scroll  -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Chatbot  -->
+    <link rel="stylesheet" href="./chatbot/chatbot_style.css" />
   </head>
   <body>
     <canvas id="matrix-canvas"></canvas>
@@ -282,28 +285,63 @@
         </div>
       </section>
     </div>
-    <div id="facebookContact" style="text-align: center">
-      <a
-        href="https://facebook.com/bitversenp"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src="./assets/images/facebook.png" alt="Facebook" />
-      </a>
-    </div>
-    <div id="phoneContact">
-      <center>
-        <a href="tel:+9779763878278">
-          <img src="./assets/images/phone.png" alt="Phone" />
+    <div id="socialContact">
+      <div id="facebookContact" style="text-align: center">
+        <a
+          href="https://facebook.com/bitversenp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="./assets/images/facebook.png" alt="Facebook" />
         </a>
-      </center>
+      </div>
+      <div id="phoneContact">
+        <center>
+          <a href="tel:+9779763878278">
+            <img src="./assets/images/phone.png" alt="Phone" />
+          </a>
+        </center>
+      </div>
+      <div id="whatsAppContact">
+        <center>
+          <a href="https://wa.me/9779763878278">
+            <img src="./assets/images/whatsapp.png" alt="Whatsapp" />
+          </a>
+        </center>
+      </div>
     </div>
-    <div id="whatsAppContact">
-      <center>
-        <a href="https://wa.me/9779763878278">
-          <img src="./assets/images/whatsapp.png" alt="Whatsapp" />
-        </a>
-      </center>
+    <!-- Floating chat button -->
+    <div id="chatToggleBtn" title="Open Chat" aria-label="Toggle chat">
+      <span id="chatToggleIcon">💬</span>
+    </div>
+
+    <!-- Floating chat window -->
+    <div
+      id="chatWindow"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="chatHeader"
+    >
+      <div id="chatHeader" style="align-items: center; display: flex; gap: 8px">
+        <img
+          src="./assets/images/circle_logo.png"
+          alt=""
+          srcset=""
+          height="40px"
+          width="40px"
+        />
+        BitVerse's FAQ Chatbot
+      </div>
+      <div class="chat-container" id="chatBox"></div>
+      <div class="input-container">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Ask a question..."
+          autocomplete="off"
+        />
+        <button class="sendBtn" id="sendBtn">Send</button>
+      </div>
     </div>
     <footer>
       <p>&copy; 2025 BitVerse. All rights reserved.</p>
@@ -527,5 +565,9 @@
 
       setInterval(draw, 35);
     </script> -->
+
+    <!-- Chatbot  -->
+    <script src="./chatbot/chatbot_script.js"></script>
+    <script src="./chatbot/bitverse_faqs_updated.js"></script>
   </body>
 </html>
