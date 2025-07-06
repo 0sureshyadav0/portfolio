@@ -2449,6 +2449,74 @@ const faqChatData = [
     answer:
       'You can contact BitVerse via email at <a href="mailto:tellbitverse@gmail.com">tellbitverse@gmail.com</a> or call <a href="tel:+9779763878278">+977-9763878278</a>.',
   },
+  {
+    question: "How are you?",
+    answer:
+      "I’m doing great, thanks for asking! How can I assist you with BitVerse today?",
+  },
+  {
+    question: "Hello",
+    answer:
+      "Hello! Welcome to BitVerse. How can I help you learn coding today?",
+  },
+  {
+    question: "Hi",
+    answer:
+      "Hello! Welcome to BitVerse. How can I help you learn coding today?",
+  },
+  {
+    question: "Hey",
+    answer:
+      "Hello! Welcome to BitVerse. How can I help you learn coding today?",
+  },
+  {
+    question: "I have a question",
+    answer: "Sure! Please go ahead and ask your question. I’m here to help.",
+  },
+  {
+    question: "What can you do?",
+    answer:
+      "I can help you with information about BitVerse courses, enrollment, schedules, mentors, and more. Just ask!",
+  },
+
+  {
+    question: "Tell me a joke",
+    answer:
+      "Why do programmers prefer dark mode? Because light attracts bugs! 😄",
+  },
+  {
+    question: "Thank you",
+    answer: "You’re welcome! If you have any more questions, feel free to ask.",
+  },
+  {
+    question: "Bye",
+    answer: "Goodbye! Hope to see you again soon at BitVerse.",
+  },
+  {
+    question: "Goodbye",
+    answer: "Goodbye! Hope to see you again soon at BitVerse.",
+  },
+  {
+    question: "Can you help me?",
+    answer: "Absolutely! What would you like to know about BitVerse or coding?",
+  },
+  {
+    question: "Who created you?",
+    answer:
+      "I’m BitVerse’s friendly chatbot, created to assist you with all your learning needs.",
+  },
+  {
+    question: "Who developed BitVerse?",
+    answer: "BitVerse was created and developed by Suresh Yadav.",
+  },
+  {
+    question: "Who owns BitVerse?",
+    answer: "BitVerse is owned by Suresh Yadav.",
+  },
+  {
+    question: "Who built BitVerse?",
+    answer: "BitVerse was built by Suresh Yadav.",
+  },
 ];
 
 const context = faqChatData
