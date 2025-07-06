@@ -168,7 +168,9 @@ Instructions:
       showTypewriterReply("❌ No valid response received.");
     }
   } catch (error) {
-    showTypewriterReply("❌ Error: " + error.message);
+    showTypewriterReply(
+      "⚠️ Oops! Something went wrong while contacting Gemini. Please try again later."
+    );
   } finally {
     isWaitingResponse = false;
     sendBtn.disabled = false;
