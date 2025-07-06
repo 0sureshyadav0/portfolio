@@ -163,7 +163,9 @@ Instructions:
     if (lastBotMsg) chatBox.removeChild(lastBotMsg);
 
     if (reply) {
-      showTypewriterReply(reply);
+      reply.include("Gemini")
+        ? showTypewriterReply("Something went wrong. Please try again.")
+        : showTypewriterReply(reply);
     } else {
       showTypewriterReply("❌ No valid response received.");
     }
