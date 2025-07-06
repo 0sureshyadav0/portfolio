@@ -28,6 +28,51 @@ const faqChatData = [
     answer: "Goodbye! 👋 Have a great day!",
   },
   {
+    question: "Who is the mentor or owner of BitVerse?",
+    answer:
+      "The mentor of BitVerse is Suresh Yadav, a Full Stack Developer with over 5 years of experience in web and app development.",
+  },
+  {
+    question: "What is Suresh Yadav's experience?",
+    answer:
+      "Suresh Yadav has 5+ years of experience as a Full Stack Developer, specializing in web and mobile app development.",
+  },
+  {
+    question: "Does Suresh Yadav teach at BitVerse?",
+    answer:
+      "Yes, Suresh Yadav personally mentors students, providing one-on-one guidance throughout the courses.",
+  },
+  {
+    question: "How can I contact the mentor or owner of BitVerse?",
+    answer:
+      "You can reach out via email at <a href='mailto:tellbitverse@gmail.com'>tellbitverse@gmail.com</a> or call <a href='tel:+977-9763878278'>+977-9763878278</a>.",
+  },
+  {
+    question: "What makes BitVerse unique?",
+    answer:
+      "BitVerse offers beginner-friendly, hands-on coding courses with personalized mentorship and career-focused skills in web, app development, AI, and cybersecurity.",
+  },
+  {
+    question: "What courses does BitVerse offer?",
+    answer:
+      "BitVerse offers courses in C Programming, Python, Web Development, and Flutter App Development.",
+  },
+  {
+    question: "Are classes online or physical?",
+    answer:
+      "BitVerse provides flexible online classes, with physical classes depending on location and course.",
+  },
+  {
+    question: "How do I enroll in a BitVerse course?",
+    answer:
+      "Enroll by filling the form on the website or contact us directly via email or phone.",
+  },
+  {
+    question: "What are the course durations and fees?",
+    answer:
+      "Courses range from 1 month (C Programming) to 2-3 months (Flutter App Development). Prices vary from Rs. 4,000 to Rs. 18,000 with discounts for early batches.",
+  },
+  {
     question: "What is BitVerse?",
     answer:
       "BitVerse is a tech education platform offering coding courses and workshops tailored for beginners to intermediate learners.",
@@ -2387,6 +2432,74 @@ const faqChatData = [
   {
     question: "How can I enroll or contact BitVerse?",
     answer:
-      "You can fill out the enrollment/contact form on our website or reach us via email at tellbitverse@gmail.com or phone/WhatsApp at +977-9763878278.",
+      "You can fill out the enrollment/contact form on our website or reach us via email at <a href='mailto:tellbitverse@gmail.com'>tellbitverse@gmail.com</a> or phone/WhatsApp at <a href='tel:+977-9763878278'>+977-9763878278</a>.",
+  },
+  {
+    question: "What is the BitVerse email?",
+    answer:
+      'You can email BitVerse at 📧 <a href="mailto:tellbitverse@gmail.com">tellbitverse@gmail.com</a>.',
+  },
+  {
+    question: "What is the BitVerse phone number?",
+    answer:
+      'You can call BitVerse at 📱 <a href="tel:+9779763878278">+977-9763878278</a>.',
+  },
+  {
+    question: "How can I contact BitVerse?",
+    answer:
+      'You can contact BitVerse via email at <a href="mailto:tellbitverse@gmail.com">tellbitverse@gmail.com</a> or call <a href="tel:+9779763878278">+977-9763878278</a>.',
   },
 ];
+
+const context = faqChatData
+  .map((faq, i) => `${i + 1}. Q: ${faq.question}\n   A: ${faq.answer}`)
+  .join("\n\n");
+
+async function fetchGeminiReply(userInput) {
+  const prompt = `
+You are an FAQ assistant for BitVerse.
+
+Only use the following FAQ data to answer user questions:
+
+${context}
+
+User asked: "${userInput}"
+
+If the user's question is outside the scope of the FAQs, reply with:
+"I don’t have knowledge about that. Try asking something else."
+  `;
+
+  try {
+    const response = await fetch("/api/gemini", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+
+    const data = await response.json();
+    return (
+      data.reply ||
+      "I don’t have knowledge about that. Try asking something else."
+    );
+  } catch (error) {
+    console.error("Gemini fetch error:", error);
+    return "Something went wrong while contacting Gemini.";
+  }
+}
+
+// Override handleUserInput for dynamic response
+async function handleUserInput() {
+  const input = userInput.value.trim();
+  if (input === "") return;
+
+  appendMessage("user", input);
+  userInput.value = "";
+
+  const reply = await fetchGeminiReply(input);
+  showTypewriterReply(reply);
+}
+
+sendBtn.addEventListener("click", handleUserInput);
+userInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleUserInput();
+});
