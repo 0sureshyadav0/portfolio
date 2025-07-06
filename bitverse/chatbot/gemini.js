@@ -163,7 +163,7 @@ Instructions:
     if (lastBotMsg) chatBox.removeChild(lastBotMsg);
 
     if (reply) {
-      reply.include("Gemini")
+      reply.includes("Gemini")
         ? showTypewriterReply("Something went wrong. Please try again.")
         : showTypewriterReply(reply);
     } else {
