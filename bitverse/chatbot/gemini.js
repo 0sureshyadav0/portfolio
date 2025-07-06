@@ -169,7 +169,7 @@ Instructions:
     }
   } catch (error) {
     showTypewriterReply(
-      "⚠️ Oops! Something went wrong while contacting Gemini. Please try again later."
+      "⚠️ Oops! Something went wrong. Please try again later."
     );
   } finally {
     isWaitingResponse = false;
