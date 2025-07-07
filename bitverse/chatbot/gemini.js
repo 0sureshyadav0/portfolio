@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "AIzaSyAhnZ9oCOlvsw-Dn8AaoFPFWO6H1POWN4U";
+const GEMINI_API_KEY = "AIzaSyDpnMhn4ZJTHDsrKaqIjtgbQ-IBjSWBnjA";
 
 const chatToggleBtn = document.getElementById("chatToggleBtn");
 const chatToggleIcon = document.getElementById("chatToggleIcon");
