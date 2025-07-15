@@ -2,7 +2,10 @@
   #chatWindow {
     width: 350px;
   }
-  #company-logo {
+  .hero-content {
+    width: 85%;
+  }
+  /* #company-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,5 +15,5 @@
     width: 35%;
     height: 55vh;
     display: block;
-  }
+  } */
 }
