@@ -31,29 +31,19 @@
     <link rel="stylesheet" href="./responsive/phone.css" />
   </head>
   <body>
-    <canvas id="matrix-canvas"></canvas>
-
     <!-- onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" -->
 
-    <header>
-      <main>
-        <div
-          id="company-logo"
-          style="margin-bottom: 1rem; position: relative; z-index: 10"
-        >
-          <img
-            src="./assets/images/bit.png"
-            alt="BitVerse Logo"
-            data-aos="zoom-in"
-            style="position: relative; z-index: 10"
-          />
+    <div id="hero-section">
+      <canvas id="matrix-canvas"></canvas>
+
+      <div class="hero-content">
+        <div id="company-logo" data-aos="zoom-in">
+          <img src="./assets/images/best_one.png" alt="BitVerse Logo" />
         </div>
         <br />
-        <button class="cta-button" onclick="joinCourse('${course.title}')">
-          Enroll Now
-        </button>
-      </main>
-    </header>
+        <button class="cta-button">Enroll Now</button>
+      </div>
+    </div>
 
     <div class="marquee">
       <div class="marquee-text">
@@ -527,7 +517,7 @@
     </script>
 
     <!-- matrix canvas  -->
-    <!-- <script>
+    <script>
       const canvas = document.getElementById("matrix-canvas");
       const ctx = canvas.getContext("2d");
 
@@ -567,7 +557,7 @@
       }
 
       setInterval(draw, 35);
-    </script> -->
+    </script>
 
     <!-- Chatbot  -->
     <!-- <script src="./chatbot/chatbot_script.js"></script> -->

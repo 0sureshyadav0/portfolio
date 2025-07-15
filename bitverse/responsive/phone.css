@@ -2,4 +2,15 @@
   #chatWindow {
     width: 350px;
   }
+  #company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+  }
+  #company-logo > img {
+    width: 35%;
+    height: 55vh;
+    display: block;
+  }
 }

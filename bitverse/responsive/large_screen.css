@@ -11,6 +11,7 @@
   #company-logo > img {
     width: 35%;
     height: 55vh;
+    display: block;
   }
 
   #popup-box {
