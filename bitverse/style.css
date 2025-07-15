@@ -366,6 +366,7 @@ textarea:focus {
   z-index: 1;
   text-align: center;
   justify-content: center;
+  width: 95%;
 }
 
 #company-logo img {
@@ -376,4 +377,5 @@ textarea:focus {
   height: auto;
   /* margin: auto; */
   max-height: 60vh;
+  /* width: 100%; */
 }
