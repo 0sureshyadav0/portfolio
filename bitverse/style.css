@@ -370,12 +370,6 @@ textarea:focus {
 }
 
 #company-logo img {
-  /* width: 85vw; */
-  /* background-color: red; */
-  /* position: absolute; */
-  /* right: 400px; */
   height: auto;
-  /* margin: auto; */
   max-height: 60vh;
-  /* width: 100%; */
 }

@@ -10,10 +10,17 @@
     align-items: center;
     margin-left: 6rem;
   }
-  #company-logo > img {
-    width: 35%;
-    height: 55vh;
-    display: block;
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    justify-content: center;
+    width: 95%;
+  }
+
+  #company-logo img {
+    height: auto;
+    max-height: 60vh;
   }
 
   #popup-box {
@@ -32,6 +39,9 @@
   #intro {
     width: 70%;
     align-items: flex-start;
+  }
+  #student-list {
+    flex-direction: row;
   }
   #mentors {
     height: 100vh;

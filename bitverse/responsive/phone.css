@@ -5,6 +5,32 @@
   .hero-content {
     width: 85%;
   }
+
+  /* #company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+  }
+  #company-logo > img {
+    width: 35%;
+    height: 55vh;
+    display: block;
+  } */
+}
+
+@media only screen and (min-width: 481px) and (max-width: 575px) {
+  #chatWindow {
+    width: 350px;
+  }
+
+  #company-logo img {
+    height: auto;
+    background-color: red;
+
+    max-height: 60vh;
+  }
+
   /* #company-logo {
     display: flex;
     justify-content: center;

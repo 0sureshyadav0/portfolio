@@ -8,16 +8,17 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter&display=swap"
       rel="stylesheet"
     />
+    <!-- Student's profile  -->
+    <link rel="stylesheet" href="./students_profile/first_batch/style.css" />
 
     <link rel="stylesheet" href="./components/popup.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="responsive/tablet.css" />
-    <link rel="stylesheet" href="responsive/laptop.css" />
-    <link rel="stylesheet" href="responsive/large_screen.css" />
+    <link rel="stylesheet" href="./responsive/tablet.css" />
+    <link rel="stylesheet" href="./responsive/laptop.css" />
+    <link rel="stylesheet" href="./responsive/large_screen.css" />
     <link
       rel="shortcut icon"
       href="./assets/images/circle_logo.png"
-      c
       type="image/x-icon"
     />
 
@@ -119,6 +120,11 @@
     <section class="section" id="courses" data-aos="fade-up">
       <h2>Featured Courses</h2>
       <div class="carousel"></div>
+    </section>
+
+    <section class="section" id="students" data-aos="fade-up">
+      <h2>Our First Batch (Got Maximum Discount)</h2>
+      <div id="student-list" class="student-container"></div>
     </section>
 
     <!-- Popup UI -->
@@ -565,5 +571,10 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script src="./chatbot/gemini.js"></script>
+
+    <!-- Student's profile  -->
+
+    <script src="./students_profile/first_batch/data.js"></script>
+    <script src="./students_profile/first_batch/script.js"></script>
   </body>
 </html>
