@@ -32,11 +32,4 @@ const students = [
     reason:
       "Learning Flutter at BitVerse is exciting and relevant to my future projects.",
   },
-  {
-    name: "Kushal Bhandari",
-    image: "./students_profile/first_batch/images/kushal.png",
-    stream: "Science",
-    interest: "Game Development",
-    reason: "BitVerse has the vibe of a real community — not just a class.",
-  },
 ];
