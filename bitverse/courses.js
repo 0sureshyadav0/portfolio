@@ -5,8 +5,8 @@ const courses = [
       "Clear understanding of C programming fundamentals which includes variables, data types, control structures, functions, and arrays.",
     duration: "1 month (3-4 hr/week)",
     originalPrice: "4,000",
-    discountedPrice: "1,499",
-    batchNote: "For 1<sup>st</sup> batch",
+    discountedPrice: "2,500",
+    batchNote: "For 2<sup>nd</sup> batch",
     image: "./assets/images/c.png",
 
     allpackages: [
@@ -43,8 +43,8 @@ const courses = [
       "Learn Python from scratch with real-world examples and live coding sessions. It includes variables, data types, operators, conditions, loops, functions, Basic list/dictionary use.",
     duration: "1 month (12-16 hours total)",
     originalPrice: "5,000",
-    discountedPrice: "4,499",
-    batchNote: "For 1<sup>st</sup> batch",
+    discountedPrice: "3,999",
+    batchNote: "For 2<sup>nd</sup> batch",
     image: "./assets/images/python.png",
     allpackages: [
       {
@@ -81,8 +81,8 @@ const courses = [
       "Learn to develop websites. It includes HTML, CSS, Basic JavaScript,(DOM, events, forms)",
     duration: "1-1.5 months (15-20 hours total)",
     originalPrice: "7,000",
-    discountedPrice: "4,499",
-    batchNote: "For 1<sup>st</sup> batch",
+    discountedPrice: "5,999",
+    batchNote: "For 2<sup>nd</sup> batch",
     image: "./assets/images/web_development.jpeg",
     allpackages: [
       {
@@ -117,8 +117,8 @@ const courses = [
       "Build beautiful cross-platform mobile apps using Flutter and Dart. Learn widgets, state management, and Firebase integration to create powerful Android and iOS apps.",
     duration: "2-3 months (30-40 hours total)",
     originalPrice: "18,000",
-    discountedPrice: "14,999",
-    batchNote: "For 1<sup>st</sup> batch",
+    discountedPrice: "15,999",
+    batchNote: "For 2<sup>nd</sup> batch",
     image: "./assets/images/app_development.jpg",
     allpackages: [
       {
