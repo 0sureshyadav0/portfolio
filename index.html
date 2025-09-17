@@ -686,11 +686,11 @@
                     ▶ PLAY MUSIC
                 </button>
                 
-                <!-- Audio Element -->
-                <audio loop preload="metadata" id="simpleAudio" style="width: 100%; height: 40px;">
-                    <source src="./assets/music/सुरेशको जीवनको कथा.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+                    <!-- Audio Element -->
+                    <audio loop preload="auto" autoplay id="simpleAudio" style="width: 100%; height: 40px;">
+                        <source src="./assets/music/सुरेशको जीवनको कथा.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 
                 <!-- Debug info -->
                 <div id="audioDebug" style="font-size: 8px; color: var(--text-muted); margin-top: 4px; font-family: var(--font-mono);">
@@ -766,72 +766,102 @@
             }, 4000);
         }
 
-        // Audio debugging and setup
-        document.addEventListener('DOMContentLoaded', function() {
-            const audio = document.getElementById('simpleAudio');
-            const debugDiv = document.getElementById('audioDebug');
-            const playBtn = document.getElementById('playBtn');
-            
-            if (audio && debugDiv && playBtn) {
-                // Update debug info
-                function updateDebug(status) {
-                    debugDiv.textContent = `Audio Status: ${status}`;
-                }
+            // Audio debugging and setup with autoplay
+            document.addEventListener('DOMContentLoaded', function() {
+                const audio = document.getElementById('simpleAudio');
+                const debugDiv = document.getElementById('audioDebug');
+                const playBtn = document.getElementById('playBtn');
                 
-                // Update play button text
-                function updatePlayButton(isPlaying) {
-                    playBtn.textContent = isPlaying ? '⏸ PAUSE MUSIC' : '▶ PLAY MUSIC';
-                }
-                
-                // Audio event listeners
-                audio.addEventListener('loadstart', () => updateDebug('Loading...'));
-                audio.addEventListener('loadedmetadata', () => {
-                    updateDebug('Ready to play');
-                    updatePlayButton(false);
-                });
-                audio.addEventListener('canplay', () => updateDebug('Can play'));
-                audio.addEventListener('play', () => {
-                    updateDebug('Playing');
-                    updatePlayButton(true);
-                });
-                audio.addEventListener('pause', () => {
-                    updateDebug('Paused');
-                    updatePlayButton(false);
-                });
-                audio.addEventListener('error', (e) => {
-                    updateDebug(`Error: ${e.message || 'Unknown error'}`);
-                    console.error('Audio error:', e);
-                });
-                
-                // Play button click handler
-                playBtn.addEventListener('click', async function() {
-                    try {
-                        if (audio.paused) {
+                if (audio && debugDiv && playBtn) {
+                    let userInteracted = false;
+                    
+                    // Update debug info
+                    function updateDebug(status) {
+                        debugDiv.textContent = `Audio Status: ${status}`;
+                    }
+                    
+                    // Update play button text
+                    function updatePlayButton(isPlaying) {
+                        playBtn.textContent = isPlaying ? '⏸ PAUSE MUSIC' : '▶ PLAY MUSIC';
+                    }
+                    
+                    // Try autoplay
+                    async function tryAutoplay() {
+                        try {
                             await audio.play();
-                            updateDebug('Playing');
+                            updateDebug('Autoplay: Playing');
                             updatePlayButton(true);
-                        } else {
-                            audio.pause();
-                            updateDebug('Paused');
+                            return true;
+                        } catch (error) {
+                            updateDebug('Autoplay blocked - click to play');
                             updatePlayButton(false);
+                            return false;
                         }
-                    } catch (error) {
-                        updateDebug(`Error: ${error.message}`);
-                        console.error('Play error:', error);
                     }
-                });
-                
-                // Try to load the audio
-                audio.load();
-                
-                // Add click handler to enable audio (for autoplay policy)
-                document.addEventListener('click', function() {
-                    if (audio.paused && audio.readyState >= 2) {
-                        updateDebug('Click detected - audio enabled');
+                    
+                    // Audio event listeners
+                    audio.addEventListener('loadstart', () => updateDebug('Loading...'));
+                    audio.addEventListener('loadedmetadata', () => {
+                        updateDebug('Ready to play');
+                        // Try autoplay when metadata is loaded
+                        setTimeout(tryAutoplay, 100);
+                    });
+                    audio.addEventListener('canplay', () => {
+                        updateDebug('Can play');
+                        if (!userInteracted) {
+                            tryAutoplay();
+                        }
+                    });
+                    audio.addEventListener('play', () => {
+                        updateDebug('Playing');
+                        updatePlayButton(true);
+                    });
+                    audio.addEventListener('pause', () => {
+                        updateDebug('Paused');
+                        updatePlayButton(false);
+                    });
+                    audio.addEventListener('error', (e) => {
+                        updateDebug(`Error: ${e.message || 'Unknown error'}`);
+                        console.error('Audio error:', e);
+                    });
+                    
+                    // Play button click handler
+                    playBtn.addEventListener('click', async function() {
+                        userInteracted = true;
+                        try {
+                            if (audio.paused) {
+                                await audio.play();
+                                updateDebug('Playing');
+                                updatePlayButton(true);
+                            } else {
+                                audio.pause();
+                                updateDebug('Paused');
+                                updatePlayButton(false);
+                            }
+                        } catch (error) {
+                            updateDebug(`Error: ${error.message}`);
+                            console.error('Play error:', error);
+                        }
+                    });
+                    
+                    // Enable audio on any user interaction
+                    function enableAudio() {
+                        userInteracted = true;
+                        if (audio.paused && audio.readyState >= 2) {
+                            updateDebug('User interaction detected - audio enabled');
+                            tryAutoplay();
+                        }
                     }
-                }, { once: true });
-            }
-        });
+                    
+                    // Add interaction listeners
+                    document.addEventListener('click', enableAudio, { once: true });
+                    document.addEventListener('keydown', enableAudio, { once: true });
+                    document.addEventListener('touchstart', enableAudio, { once: true });
+                    
+                    // Load the audio
+                    audio.load();
+                }
+            });
     </script>
   </body>
 </html>
