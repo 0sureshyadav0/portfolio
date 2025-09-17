@@ -893,26 +893,28 @@ h1, h2, h3, h4, h5, h6 {
 .package-card:hover,
 .upcoming-card:hover {
   transform: translateY(-3px);
-  border-color: var(--secondary);
-  box-shadow: var(--shadow-glow-cyan);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .card-image {
   width: 100%;
   height: 120px;
-  background: var(--gradient-matrix);
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--primary);
 }
 
 .card-image img {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: none;
+  background: transparent;
 }
 
 .card-content {
@@ -1175,6 +1177,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 10px;
+}
+
+/* Play Button Hover */
+#playBtn:hover {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  opacity: 0.8;
+  transform: translateY(-1px);
 }
 
 /* Custom Music Controls */
@@ -1441,6 +1451,7 @@ h1, h2, h3, h4, h5, h6 {
     right: var(--space-sm);
     max-width: 240px;
     min-width: 180px;
+    margin: var(--space-sm);
   }
 
   .music-player .terminal-window {
@@ -1539,6 +1550,70 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 60px;
     font-size: 0.75rem;
     padding: var(--space-xs) var(--space-sm);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .hacker-btn {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+  }
+
+  .music-player {
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    left: auto;
+    max-width: 200px;
+    min-width: 160px;
+    margin: 0;
+  }
+
+  .music-player .terminal-window {
+    margin: 0;
+    height: auto;
+  }
+
+  .music-player .terminal-header {
+    height: 24px;
+    padding: 0 var(--space-xs);
+  }
+
+  .music-player .terminal-title {
+    font-size: 9px;
+  }
+
+  .music-player .terminal-content {
+    padding: var(--space-xs);
+  }
+
+  .music-player audio {
+    height: 32px;
+  }
+
+  #playBtn {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  #audioDebug {
+    font-size: 7px !important;
+    margin-top: 2px !important;
+  }
+
+  .card-image {
+    height: 100px;
+  }
+
+  .card-image img {
+    width: 40px;
+    height: 40px;
   }
 }
 
