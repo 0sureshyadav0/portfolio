@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Suresh Yadav">
@@ -20,7 +20,7 @@
     
     <!-- Lottie Animation -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    
+
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -45,13 +45,21 @@
     <meta property="og:description" content="Computer Science student with 3+ years of experience in Flutter development">
     <meta property="og:type" content="website">
     <meta property="og:image" content="./assets/image/icon.png">
-</head>
-<body>
+  </head>
+  <body>
     <!-- Terminal Cursor -->
     <div class="terminal-cursor"></div>
     
     <!-- Matrix Background -->
     <div class="matrix-bg"></div>
+    
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
+    
+    <!-- Advanced Visual Effects -->
+    <div class="quantum-particles"></div>
+    <div class="neural-network"></div>
+    <div class="cyber-grid"></div>
     
     <!-- Terminal Header -->
     <header class="terminal-header">
@@ -206,6 +214,48 @@
                     <span class="command typing">./start_portfolio.sh</span>
                 </div>
                 
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">echo "Welcome to the Matrix..."</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">Welcome to the Matrix...</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">neural_network --status=active</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">Neural Network: ONLINE</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Quantum Particles: STABLE</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Cyber Grid: SYNCHRONIZED</span>
+                    </div>
+              </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">ai_mode --enable=smart_interactions</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">AI Mode: ACTIVATED</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Smart Animations: ENABLED</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Spatial Audio: READY</span>
+              </div>
+                </div>
+                
                 <div class="hero-actions" data-aos="fade-up" data-aos-delay="800">
                     <a href="./resume/index.html" class="hacker-btn primary">
                         <span class="btn-icon">></span>
@@ -217,8 +267,8 @@
                     </a>
                 </div>
             </div>
-        </div>
-        
+          </div>
+
         <!-- Hacker Visual -->
         <div class="hacker-visual" data-aos="fade-left">
             <div class="code-matrix">
@@ -246,13 +296,13 @@
             </div>
             
             <div class="parrot-container">
-                <lottie-player
-                    id="parrot"
-                    src="./assets/image/Parrot(1).json"
-                    background="transparent"
-                    speed="1"
-                    loop
-                    autoplay
+          <lottie-player
+            id="parrot"
+            src="./assets/image/Parrot(1).json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
                 ></lottie-player>
             </div>
         </div>
@@ -268,8 +318,8 @@
                     <span class="btn-maximize"></span>
                 </div>
                 <div class="terminal-title">suresh@yadav:~$ ls -la projects/</div>
-            </div>
-            
+        </div>
+
             <div class="terminal-content">
                 <div class="section-header" data-aos="fade-up">
                     <div class="terminal-line">
@@ -347,7 +397,7 @@
                         <div id="upcomingProjects" class="upcoming-grid"></div>
                     </div>
                 </div>
-            </div>
+          </div>
         </div>
     </section>
 
@@ -485,7 +535,7 @@
                 </div>
                 <div class="terminal-title">suresh@yadav:~$ contact --help</div>
             </div>
-            
+
             <div class="terminal-content">
                 <div class="contact-content">
                     <div class="contact-info" data-aos="fade-right">
@@ -605,8 +655,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+          </div>
+        </footer>
 
     <!-- Music Player -->
     <div class="music-player">
@@ -620,11 +670,34 @@
                 <div class="terminal-title">suresh@yadav:~$ music</div>
             </div>
             <div class="terminal-content">
-                <audio controls loop>
+                <!-- Manual Play Button -->
+                <button id="playBtn" style="
+                    background: var(--primary); 
+                    color: var(--bg-primary); 
+                    border: 1px solid var(--primary); 
+                    border-radius: 4px; 
+                    padding: 8px 16px; 
+                    font-family: var(--font-mono); 
+                    font-size: 12px; 
+                    cursor: pointer; 
+                    margin-bottom: 8px;
+                    width: 100%;
+                ">
+                    ▶ PLAY MUSIC
+                </button>
+                
+                <!-- Audio Element -->
+                <audio loop preload="metadata" id="simpleAudio" style="width: 100%; height: 40px;">
                     <source src="./assets/music/सुरेशको जीवनको कथा.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
                 </audio>
+                
+                <!-- Debug info -->
+                <div id="audioDebug" style="font-size: 8px; color: var(--text-muted); margin-top: 4px; font-family: var(--font-mono);">
+                    Audio Status: Loading...
+                </div>
             </div>
-        </div>
+      </div>
     </div>
 
     <!-- Notification Toast -->
@@ -644,12 +717,12 @@
         });
 
         // Build content
-        buildPersonalProjects(personalProjects);
-        buildUpcomingProjects(upcomingProjects);
-        buildPackages(packages);
+      buildPersonalProjects(personalProjects);
+      buildUpcomingProjects(upcomingProjects);
+      buildPackages(packages);
 
         // Form submission handler
-        async function handleFormSubmit(event) {
+      async function handleFormSubmit(event) {
             event.preventDefault();
             const sendButton = document.getElementById('sendButton');
             const originalText = sendButton.innerHTML;
@@ -657,22 +730,22 @@
             sendButton.innerHTML = '<span class="btn-icon">></span><span class="btn-text">sending...</span>';
             sendButton.disabled = true;
 
-            const form = event.target;
-            const formData = new FormData(form);
+        const form = event.target;
+        const formData = new FormData(form);
 
-            try {
+        try {
                 const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    body: formData,
-                });
+            body: formData,
+          });
 
-                if (response.ok) {
+          if (response.ok) {
                     showToast('Message sent successfully!', 'success');
                     form.reset();
-                } else {
+          } else {
                     throw new Error('Failed to send message');
-                }
-            } catch (error) {
+          }
+        } catch (error) {
                 console.error('Error:', error);
                 showToast('Failed to send message. Please try again.', 'error');
             } finally {
@@ -692,6 +765,73 @@
                 toast.style.display = 'none';
             }, 4000);
         }
+
+        // Audio debugging and setup
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('simpleAudio');
+            const debugDiv = document.getElementById('audioDebug');
+            const playBtn = document.getElementById('playBtn');
+            
+            if (audio && debugDiv && playBtn) {
+                // Update debug info
+                function updateDebug(status) {
+                    debugDiv.textContent = `Audio Status: ${status}`;
+                }
+                
+                // Update play button text
+                function updatePlayButton(isPlaying) {
+                    playBtn.textContent = isPlaying ? '⏸ PAUSE MUSIC' : '▶ PLAY MUSIC';
+                }
+                
+                // Audio event listeners
+                audio.addEventListener('loadstart', () => updateDebug('Loading...'));
+                audio.addEventListener('loadedmetadata', () => {
+                    updateDebug('Ready to play');
+                    updatePlayButton(false);
+                });
+                audio.addEventListener('canplay', () => updateDebug('Can play'));
+                audio.addEventListener('play', () => {
+                    updateDebug('Playing');
+                    updatePlayButton(true);
+                });
+                audio.addEventListener('pause', () => {
+                    updateDebug('Paused');
+                    updatePlayButton(false);
+                });
+                audio.addEventListener('error', (e) => {
+                    updateDebug(`Error: ${e.message || 'Unknown error'}`);
+                    console.error('Audio error:', e);
+                });
+                
+                // Play button click handler
+                playBtn.addEventListener('click', async function() {
+                    try {
+                        if (audio.paused) {
+                            await audio.play();
+                            updateDebug('Playing');
+                            updatePlayButton(true);
+                        } else {
+                            audio.pause();
+                            updateDebug('Paused');
+                            updatePlayButton(false);
+                        }
+                    } catch (error) {
+                        updateDebug(`Error: ${error.message}`);
+                        console.error('Play error:', error);
+                    }
+                });
+                
+                // Try to load the audio
+                audio.load();
+                
+                // Add click handler to enable audio (for autoplay policy)
+                document.addEventListener('click', function() {
+                    if (audio.paused && audio.readyState >= 2) {
+                        updateDebug('Click detected - audio enabled');
+                    }
+                }, { once: true });
+            }
+        });
     </script>
-</body>
+  </body>
 </html>
