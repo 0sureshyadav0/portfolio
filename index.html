@@ -98,6 +98,10 @@
                     <span class="link-prefix">~/</span>
                     <span class="link-text">contact</span>
                 </a>
+                <a href="./srs-form/" class="nav-link">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">srs_form</span>
+                </a>
             </div>
             
             <div class="nav-toggle" id="nav-toggle">
@@ -791,7 +795,7 @@
                             await audio.play();
                             updateDebug('Autoplay: Playing');
                             updatePlayButton(true);
-                            return true;
+        return true;
                         } catch (error) {
                             updateDebug('Autoplay blocked - click to play');
                             updatePlayButton(false);
@@ -861,7 +865,7 @@
                     // Load the audio
                     audio.load();
                 }
-            });
+      });
     </script>
   </body>
 </html>

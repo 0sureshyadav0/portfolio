@@ -841,13 +841,22 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--space-2xl);
 }
 
-.projects-grid,
-.packages-grid,
-.upcoming-grid {
+.projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-lg);
   margin-top: var(--space-lg);
+}
+
+.packages-grid,
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Project Cards - Terminal Style */
@@ -1392,6 +1401,23 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: var(--space-xl);
     display: flex;
     justify-content: center;
+  }
+}
+
+/* Desktop/Laptop specific styling */
+@media (min-width: 769px) {
+  .packages-grid,
+  .upcoming-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .packages-grid,
+  .upcoming-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
   }
 }
 
