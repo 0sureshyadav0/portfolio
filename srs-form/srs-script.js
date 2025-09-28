@@ -278,10 +278,10 @@ class SRSForm {
         } catch (error) {
             console.error('Form submission error:', error);
             
-            // If it's a CORS error on localhost, try native form submission
-            if (error.message.includes('CORS') && window.location.hostname === '127.0.0.1') {
-                console.log('CORS error detected on localhost, trying native form submission...');
-                this.showToast('Using fallback submission method for localhost...', 'info');
+            // If it's a CORS error, try native form submission
+            if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                console.log('CORS/fetch error detected, trying native form submission...');
+                this.showToast('Using fallback submission method...', 'info');
                 
                 // Create a temporary form for native submission
                 const tempForm = document.createElement('form');
@@ -302,7 +302,7 @@ class SRSForm {
                 tempForm.submit();
                 document.body.removeChild(tempForm);
                 
-                this.showToast('Form submitted via fallback method! Check your email.', 'success');
+                this.showToast('Form submitted successfully! Check your email.', 'success');
                 return;
             }
             
