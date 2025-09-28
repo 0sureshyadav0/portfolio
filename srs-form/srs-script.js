@@ -992,14 +992,19 @@ Form completed in: ${this.getFormCompletionTime()} steps
         try {
             // Get form data
             const formData = new FormData(this.form);
+            console.log('Raw form data entries:', Array.from(formData.entries()));
+            
             const data = this.formatFormDataForGeneration(formData);
-
-            console.log('Form data prepared for preview:', data);
+            console.log('Formatted data for preview:', data);
+            console.log('Data keys:', Object.keys(data));
+            console.log('Main features:', data.main_features);
+            console.log('Sub features:', data.sub_features);
 
             // Always use localStorage method for reliability
             const dataKey = 'srs_preview_data_' + Date.now();
             localStorage.setItem(dataKey, JSON.stringify(data));
             console.log('Data stored in localStorage with key:', dataKey);
+            console.log('localStorage data length:', JSON.stringify(data).length);
 
             // Redirect to preview page with localStorage key
             const previewUrl = `srs-preview.html?key=${dataKey}`;

@@ -535,32 +535,54 @@
                 try {
                     console.log('=== LOADING FORM DATA ===');
                     console.log('Current URL:', window.location.href);
+                    console.log('URL search params:', window.location.search);
                     
                     const urlParams = new URLSearchParams(window.location.search);
                     const dataKey = urlParams.get('key');
-                    
                     console.log('Data key from URL:', dataKey);
                     
-                    if (dataKey) {
-                        const storedData = localStorage.getItem(dataKey);
-                        console.log('Stored data from localStorage:', storedData);
-                        
-                        if (storedData) {
-                            this.formData = JSON.parse(storedData);
-                            console.log('Form data loaded successfully:', this.formData);
-                            localStorage.removeItem(dataKey); // Clean up
-                            this.generateDocuments();
-                        } else {
-                            throw new Error('No data found in localStorage with key: ' + dataKey);
-                        }
-                    } else {
-                        console.log('No data key found, showing test button');
-                        this.showTestButton();
+                    if (!dataKey) {
+                        console.error('No data key found in URL');
+                        this.showError('No data key found in URL. Please go back to the form and try again.');
+                        this.testSection.style.display = 'block';
+                        return;
                     }
+                    
+                    console.log('Looking for data in localStorage with key:', dataKey);
+                    const storedData = localStorage.getItem(dataKey);
+                    console.log('Stored data found:', !!storedData);
+                    console.log('Stored data length:', storedData ? storedData.length : 0);
+                    
+                    if (!storedData) {
+                        console.error('No data found in localStorage with key:', dataKey);
+                        this.showError(`No data found in localStorage with key: ${dataKey}`);
+                        this.testSection.style.display = 'block';
+                        return;
+                    }
+                    
+                    console.log('Parsing stored data...');
+                    this.formData = JSON.parse(storedData);
+                    console.log('Parsed form data:', this.formData);
+                    console.log('Form data keys:', Object.keys(this.formData));
+                    console.log('Main features:', this.formData.main_features);
+                    console.log('Sub features:', this.formData.sub_features);
+                    
+                    // Validate that we have the essential data
+                    if (!this.formData.projectName && !this.formData.clientName) {
+                        console.error('Invalid form data - missing essential fields');
+                        this.showError('Invalid form data. Please go back to the form and try again.');
+                        this.testSection.style.display = 'block';
+                        return;
+                    }
+                    
+                    console.log('Form data loaded successfully, generating documents...');
+                    localStorage.removeItem(dataKey); // Clean up
+                    this.generateDocuments();
+                    
                 } catch (error) {
                     console.error('Error loading form data:', error);
                     this.showError(`Failed to load form data: ${error.message}`);
-                    this.showTestButton();
+                    this.testSection.style.display = 'block';
                 }
             }
 
@@ -632,91 +654,156 @@
             }
 
             createSRSContent(data) {
-                let content = '';
+                console.log('Creating SRS content with data:', data);
                 
-                // Document Header
-                content += '<div class="highlight-box">';
-                content += '<h1>SOFTWARE REQUIREMENTS SPECIFICATION</h1>';
-                content += '<p><strong>Project Name:</strong> ' + (data.projectName || 'Not specified') + '</p>';
-                content += '<p><strong>Client:</strong> ' + (data.clientName || 'Not specified') + '</p>';
-                content += '<p><strong>Document Version:</strong> 1.0 - ' + new Date().toLocaleDateString() + '</p>';
-                content += '<p><strong>Prepared By:</strong> Suresh Yadav (Flutter Developer)</p>';
-                content += '</div>';
+                // Create a simple, clean HTML structure
+                const content = `
+                    <div class="srs-document">
+                        <div class="document-header">
+                            <h1>SOFTWARE REQUIREMENTS SPECIFICATION</h1>
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <strong>Project Name:</strong> ${data.projectName || 'Not specified'}
+                                </div>
+                                <div class="info-item">
+                                    <strong>Client:</strong> ${data.clientName || 'Not specified'}
+                                </div>
+                                <div class="info-item">
+                                    <strong>Document Version:</strong> 1.0 - ${new Date().toLocaleDateString()}
+                                </div>
+                                <div class="info-item">
+                                    <strong>Prepared By:</strong> Suresh Yadav (Flutter Developer)
+                                </div>
+                            </div>
+                        </div>
 
-                // 1. Introduction
-                content += '<h2>1. Introduction</h2>';
-                content += '<h3>1.1 Purpose</h3>';
-                content += '<p>This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the development of <strong>' + (data.projectName || 'the application') + '</strong>.</p>';
-                content += '<p>The application is designed as a ' + (data.projectType || 'mobile application') + ' to ' + (data.projectDescription || 'meet specific business requirements') + '.</p>';
+                        <div class="document-body">
+                            <h2>1. Introduction</h2>
+                            
+                            <h3>1.1 Purpose</h3>
+                            <p>This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the development of <strong>${data.projectName || 'the application'}</strong>.</p>
+                            <p>The application is designed as a ${data.projectType || 'mobile application'} to ${data.projectDescription || 'meet specific business requirements'}.</p>
+                            
+                            <h3>1.2 Scope</h3>
+                            <p>This SRS covers the complete development lifecycle of <strong>${data.projectName || 'the application'}</strong>, including:</p>
+                            <ul>
+                                <li>Functional requirements and specifications</li>
+                                <li>User interface and user experience requirements</li>
+                                <li>Performance and security requirements</li>
+                                <li>Integration and deployment requirements</li>
+                            </ul>
+
+                            <h2>2. Overall Description</h2>
+                            
+                            <h3>2.1 Product Perspective</h3>
+                            <p><strong>${data.projectName || 'The application'}</strong> is a ${data.projectType || 'standalone mobile application'} designed to serve ${data.targetAudience || 'end users'} in the ${data.primaryMarkets || 'target market'}.</p>
+
+                            <h3>2.2 Product Functions</h3>
+                            <p>The application shall provide the following core functionality:</p>
+                            <ul>
+                                ${this.generateFeatureList(data)}
+                            </ul>
+
+                            <h2>3. Specific Requirements</h2>
+                            
+                            <h3>3.1 Functional Requirements</h3>
+                            <p>The following functional requirements define what the system shall do:</p>
+                            ${this.generateFunctionalRequirements(data)}
+
+                            <h3>3.2 Non-Functional Requirements</h3>
+                            
+                            <h4>3.2.1 Performance Requirements</h4>
+                            <ul>
+                                <li>Application startup time: Less than 3 seconds</li>
+                                <li>Screen transition time: Less than 1 second</li>
+                                <li>Data loading time: Less than 2 seconds for standard operations</li>
+                                <li>Response time: Less than 500ms for user interactions</li>
+                            </ul>
+
+                            <h4>3.2.2 Security Requirements</h4>
+                            <ul>
+                                <li>All data transmission must use HTTPS/TLS encryption</li>
+                                <li>Secure user authentication with password hashing</li>
+                                <li>Role-based access control for different user types</li>
+                                <li>Sensitive data must be encrypted at rest</li>
+                            </ul>
+
+                            <h2>4. Appendices</h2>
+                            
+                            <h3>4.1 Glossary</h3>
+                            <ul>
+                                <li><strong>SRS:</strong> Software Requirements Specification</li>
+                                <li><strong>API:</strong> Application Programming Interface</li>
+                                <li><strong>UI/UX:</strong> User Interface/User Experience</li>
+                                <li><strong>Flutter:</strong> Google's UI toolkit for building natively compiled applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
                 
-                content += '<h3>1.2 Scope</h3>';
-                content += '<p>This SRS covers the complete development lifecycle of <strong>' + (data.projectName || 'the application') + '</strong>, including:</p>';
-                content += '<ul>';
-                content += '<li>Functional requirements and specifications</li>';
-                content += '<li>User interface and user experience requirements</li>';
-                content += '<li>Performance and security requirements</li>';
-                content += '<li>Integration and deployment requirements</li>';
-                content += '</ul>';
-
-                // 2. Overall Description
-                content += '<h2>2. Overall Description</h2>';
-                content += '<h3>2.1 Product Perspective</h3>';
-                content += '<p><strong>' + (data.projectName || 'The application') + '</strong> is a ' + (data.projectType || 'standalone mobile application') + ' designed to serve ' + (data.targetAudience || 'end users') + ' in the ' + (data.primaryMarkets || 'target market') + '.</p>';
-
-                content += '<h3>2.2 Product Functions</h3>';
-                content += '<p>The application shall provide the following core functionality:</p>';
-                content += '<ul>';
-                if (data.main_features && data.main_features.length > 0) {
-                    data.main_features.forEach(feature => {
-                        content += '<li><strong>' + this.getFeatureDisplayName(feature) + ':</strong> ' + this.getFeatureDescription(feature) + '</li>';
-                    });
-                } else {
-                    content += '<li>Core application functionality to be determined during detailed planning phase</li>';
-                }
-                content += '</ul>';
-
-                // 3. Specific Requirements
-                content += '<h2>3. Specific Requirements</h2>';
-                content += '<h3>3.1 Functional Requirements</h3>';
-                content += '<p>The following functional requirements define what the system shall do:</p>';
-                
-                if (data.main_features && data.main_features.length > 0) {
-                    data.main_features.forEach((feature, index) => {
-                        content += '<div class="highlight-box">';
-                        content += '<p><strong>FR-' + (index + 1) + ': ' + this.getFeatureDisplayName(feature) + '</strong></p>';
-                        content += '<p>The system shall provide functionality to ' + this.getFeatureDescription(feature) + '. This includes all necessary user interface components, data validation, and error handling mechanisms.</p>';
-                        content += '</div>';
-                    });
-                }
-
-                content += '<h3>3.2 Non-Functional Requirements</h3>';
-                content += '<h4>3.2.1 Performance Requirements</h4>';
-                content += '<ul>';
-                content += '<li>Application startup time: Less than 3 seconds</li>';
-                content += '<li>Screen transition time: Less than 1 second</li>';
-                content += '<li>Data loading time: Less than 2 seconds for standard operations</li>';
-                content += '<li>Response time: Less than 500ms for user interactions</li>';
-                content += '</ul>';
-
-                content += '<h4>3.2.2 Security Requirements</h4>';
-                content += '<ul>';
-                content += '<li>All data transmission must use HTTPS/TLS encryption</li>';
-                content += '<li>Secure user authentication with password hashing</li>';
-                content += '<li>Role-based access control for different user types</li>';
-                content += '<li>Sensitive data must be encrypted at rest</li>';
-                content += '</ul>';
-
-                // 4. Appendices
-                content += '<h2>4. Appendices</h2>';
-                content += '<h3>4.1 Glossary</h3>';
-                content += '<ul>';
-                content += '<li><strong>SRS:</strong> Software Requirements Specification</li>';
-                content += '<li><strong>API:</strong> Application Programming Interface</li>';
-                content += '<li><strong>UI/UX:</strong> User Interface/User Experience</li>';
-                content += '<li><strong>Flutter:</strong> Google\'s UI toolkit for building natively compiled applications</li>';
-                content += '</ul>';
-
+                console.log('SRS content generated, length:', content.length);
                 return content;
+            }
+
+            generateFeatureList(data) {
+                if (!data.main_features || data.main_features.length === 0) {
+                    return '<li>Core application functionality to be determined during detailed planning phase</li>';
+                }
+                
+                return data.main_features.map(feature => {
+                    return `<li><strong>${this.getFeatureDisplayName(feature)}:</strong> ${this.getFeatureDescription(feature)}</li>`;
+                }).join('');
+            }
+
+            generateFunctionalRequirements(data) {
+                if (!data.main_features || data.main_features.length === 0) {
+                    return '<p>Functional requirements to be detailed during the design phase.</p>';
+                }
+                
+                return data.main_features.map((feature, index) => {
+                    return `
+                        <div class="requirement-item">
+                            <h4>FR-${index + 1}: ${this.getFeatureDisplayName(feature)}</h4>
+                            <p>The system shall provide functionality to ${this.getFeatureDescription(feature)}. This includes all necessary user interface components, data validation, and error handling mechanisms.</p>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            getFeatureDisplayName(feature) {
+                const featureMap = {
+                    'authentication': 'User Authentication & Login',
+                    'user_management': 'User Profile Management',
+                    'search_filter': 'Search & Filter System',
+                    'payment_system': 'Payment & E-commerce',
+                    'notifications': 'Push Notifications',
+                    'messaging': 'In-App Messaging & Chat',
+                    'location_services': 'Location & GPS Services',
+                    'media_handling': 'Media & Content Handling',
+                    'social_integration': 'Social Media Integration',
+                    'analytics': 'Analytics & Reporting',
+                    'offline_mode': 'Offline Functionality',
+                    'admin_panel': 'Admin Panel & Dashboard'
+                };
+                return featureMap[feature] || feature;
+            }
+
+            getFeatureDescription(feature) {
+                const descriptionMap = {
+                    'authentication': 'authenticate and manage user accounts',
+                    'user_management': 'manage user profiles and preferences',
+                    'search_filter': 'search and filter content effectively',
+                    'payment_system': 'process payments and manage transactions',
+                    'notifications': 'receive push notifications',
+                    'messaging': 'communicate with other users',
+                    'location_services': 'access location-based features',
+                    'media_handling': 'upload and manage media files',
+                    'social_integration': 'integrate with social media platforms',
+                    'analytics': 'view usage analytics and reports',
+                    'offline_mode': 'use core features without internet',
+                    'admin_panel': 'access administrative functions'
+                };
+                return descriptionMap[feature] || 'use this feature';
             }
 
             createContractContent(data) {

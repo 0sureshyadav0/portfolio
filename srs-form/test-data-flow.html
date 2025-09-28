@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test SRS Data Flow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #00ff00;
+        }
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .info { color: #00aaff; }
+    </style>
+</head>
+<body>
+    <h1>🧪 SRS Data Flow Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Store Sample Data</h2>
+        <button onclick="storeSampleData()">Store Sample Data in localStorage</button>
+        <div id="storeResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Load Data</h2>
+        <button onclick="loadStoredData()">Load Data from localStorage</button>
+        <div id="loadResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: Generate SRS Content</h2>
+        <button onclick="generateSRSTest()">Generate SRS Document</button>
+        <div id="srsResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 4: Clear All Data</h2>
+        <button onclick="clearAllData()">Clear localStorage</button>
+        <div id="clearResult"></div>
+    </div>
+
+    <script>
+        function storeSampleData() {
+            const sampleData = {
+                projectName: 'Test Mobile App',
+                clientName: 'Test Client',
+                clientEmail: 'test@example.com',
+                projectType: 'Mobile Application',
+                projectDescription: 'A test mobile application for demonstration purposes',
+                targetAudience: 'General users',
+                primaryMarkets: 'Global',
+                platforms: ['Android', 'iOS'],
+                main_features: ['authentication', 'user_management', 'search_filter', 'notifications'],
+                sub_features: ['email_password', 'social_google', 'profile_creation', 'keyword_search', 'push_notifications'],
+                projectTimeline: '3-6 months',
+                budgetRange: '$5000-$10000',
+                developmentPhase: 'Full Development',
+                additionalNotes: 'This is test data for demonstration'
+            };
+            
+            const dataKey = 'srs_preview_data_' + Date.now();
+            localStorage.setItem(dataKey, JSON.stringify(sampleData));
+            
+            document.getElementById('storeResult').innerHTML = `
+                <p class="success">✅ Sample data stored successfully!</p>
+                <p class="info">Key: ${dataKey}</p>
+                <p class="info">Data size: ${JSON.stringify(sampleData).length} characters</p>
+                <pre>${JSON.stringify(sampleData, null, 2)}</pre>
+            `;
+        }
+        
+        function loadStoredData() {
+            const keys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('srs_preview_data_')) {
+                    keys.push(key);
+                }
+            }
+            
+            if (keys.length === 0) {
+                document.getElementById('loadResult').innerHTML = `
+                    <p class="error">❌ No SRS data found in localStorage</p>
+                `;
+                return;
+            }
+            
+            const latestKey = keys[keys.length - 1];
+            const storedData = localStorage.getItem(latestKey);
+            
+            try {
+                const parsedData = JSON.parse(storedData);
+                document.getElementById('loadResult').innerHTML = `
+                    <p class="success">✅ Data loaded successfully!</p>
+                    <p class="info">Key: ${latestKey}</p>
+                    <p class="info">Main features: ${parsedData.main_features ? parsedData.main_features.join(', ') : 'None'}</p>
+                    <p class="info">Sub features: ${parsedData.sub_features ? parsedData.sub_features.join(', ') : 'None'}</p>
+                    <pre>${JSON.stringify(parsedData, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('loadResult').innerHTML = `
+                    <p class="error">❌ Error parsing data: ${error.message}</p>
+                `;
+            }
+        }
+        
+        function generateSRSTest() {
+            const keys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('srs_preview_data_')) {
+                    keys.push(key);
+                }
+            }
+            
+            if (keys.length === 0) {
+                document.getElementById('srsResult').innerHTML = `
+                    <p class="error">❌ No data available for SRS generation</p>
+                `;
+                return;
+            }
+            
+            const latestKey = keys[keys.length - 1];
+            const storedData = localStorage.getItem(latestKey);
+            
+            try {
+                const data = JSON.parse(storedData);
+                
+                // Generate simple SRS content
+                let srsContent = '<h1>Software Requirements Specification</h1>';
+                srsContent += '<h2>1. Introduction</h2>';
+                srsContent += '<h3>1.1 Project Title</h3>';
+                srsContent += `<p><strong>${data.projectName || 'Not specified'}</strong></p>`;
+                srsContent += '<h3>1.2 Purpose</h3>';
+                srsContent += `<p>This document specifies the requirements for the development of <strong>${data.projectName || 'the application'}</strong>, a ${data.projectType || 'mobile application'} designed to ${data.projectDescription || 'meet specific business needs'}.</p>`;
+                
+                srsContent += '<h2>2. Functional Requirements</h2>';
+                srsContent += '<ul>';
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach(feature => {
+                        srsContent += `<li><strong>${getFeatureDisplayName(feature)}</strong></li>`;
+                    });
+                } else {
+                    srsContent += '<li>Features to be determined during detailed planning</li>';
+                }
+                srsContent += '</ul>';
+                
+                document.getElementById('srsResult').innerHTML = `
+                    <p class="success">✅ SRS document generated successfully!</p>
+                    <p class="info">Content length: ${srsContent.length} characters</p>
+                    <div style="background: #000; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                        ${srsContent}
+                    </div>
+                `;
+                
+            } catch (error) {
+                document.getElementById('srsResult').innerHTML = `
+                    <p class="error">❌ Error generating SRS: ${error.message}</p>
+                `;
+            }
+        }
+        
+        function getFeatureDisplayName(feature) {
+            const featureMap = {
+                'authentication': 'User Authentication & Login',
+                'user_management': 'User Profile Management',
+                'search_filter': 'Search & Filter System',
+                'payment_system': 'Payment & E-commerce',
+                'notifications': 'Push Notifications',
+                'messaging': 'In-App Messaging & Chat',
+                'location_services': 'Location & GPS Services',
+                'media_handling': 'Media & Content Handling',
+                'social_integration': 'Social Media Integration',
+                'analytics': 'Analytics & Reporting',
+                'offline_mode': 'Offline Functionality',
+                'admin_panel': 'Admin Panel & Dashboard'
+            };
+            return featureMap[feature] || feature;
+        }
+        
+        function clearAllData() {
+            const keysToRemove = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('srs_preview_data_')) {
+                    keysToRemove.push(key);
+                }
+            }
+            
+            keysToRemove.forEach(key => {
+                localStorage.removeItem(key);
+            });
+            
+            document.getElementById('clearResult').innerHTML = `
+                <p class="success">✅ Cleared ${keysToRemove.length} SRS data entries from localStorage</p>
+            `;
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            console.log('Test page loaded');
+            loadStoredData();
+        });
+    </script>
+</body>
+</html>
