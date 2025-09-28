@@ -717,6 +717,10 @@ body {
   border-radius: var(--radius-md);
   padding: var(--space-xl);
   line-height: 1.8;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 200px;
 }
 
 .document-body h1 {

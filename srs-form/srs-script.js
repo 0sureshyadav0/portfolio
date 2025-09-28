@@ -8,6 +8,7 @@ class SRSForm {
         this.progressText = document.getElementById('progressText');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
+        this.previewBtn = document.getElementById('previewBtn');
         this.submitBtn = document.getElementById('submitBtn');
         this.generateSRSBtn = document.getElementById('generateSRSBtn');
         this.steps = document.querySelectorAll('.form-step');
@@ -39,6 +40,7 @@ class SRSForm {
         // Navigation buttons
         this.prevBtn.addEventListener('click', () => this.previousStep());
         this.nextBtn.addEventListener('click', () => this.nextStep());
+        this.previewBtn.addEventListener('click', () => this.previewDocuments());
         this.generateSRSBtn.addEventListener('click', () => this.generateDocuments());
         
         // Form submission
@@ -120,10 +122,12 @@ class SRSForm {
         // Next/Generate/Submit button
         if (this.currentStep === this.totalSteps) {
             this.nextBtn.style.display = 'none';
-            this.generateSRSBtn.style.display = 'flex';
+            this.previewBtn.style.display = 'flex';
+            this.generateSRSBtn.style.display = 'none';
             this.submitBtn.style.display = 'none';
         } else {
             this.nextBtn.style.display = 'flex';
+            this.previewBtn.style.display = 'none';
             this.generateSRSBtn.style.display = 'none';
             this.submitBtn.style.display = 'none';
         }
@@ -977,6 +981,281 @@ Form completed in: ${this.getFormCompletionTime()} steps
         });
     }
 
+    previewDocuments() {
+        console.log('=== PREVIEW DOCUMENTS START ===');
+        
+        if (!this.validateCurrentStep()) {
+            this.showToast('Please complete all required fields before previewing documents.', 'error');
+            return;
+        }
+
+        console.log('Generating preview documents...');
+        
+        try {
+            // Get form data
+            const formData = new FormData(this.form);
+            const data = this.formatFormDataForGeneration(formData);
+
+            console.log('Preview form data:', data);
+            console.log('SRS content element before generation:', this.srsContent);
+            console.log('Contract content element:', this.contractContent);
+            console.log('Summary content element:', this.summaryContent);
+
+            // Show documents section first
+            console.log('Showing documents section for preview...');
+            this.documentsSection.style.display = 'block';
+            this.documentsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Generate documents for preview
+            console.log('Generating actual documents...');
+            this.generateSimpleSRSDocument(data);
+            this.generateSimpleContractDocument(data);
+            this.generateSimpleSummaryDocument(data);
+
+            // Force show the first tab content
+            console.log('Forcing first tab to be active for preview...');
+            this.switchTab('srs');
+
+            // Show preview buttons
+            this.previewBtn.style.display = 'none';
+            this.generateSRSBtn.style.display = 'flex';
+            this.submitBtn.style.display = 'none';
+
+            this.showToast('Preview generated! Review your documents before final submission.', 'success');
+            console.log('=== PREVIEW DOCUMENTS END ===');
+        } catch (error) {
+            console.error('Error generating preview:', error);
+            this.showToast(`Preview error: ${error.message}`, 'error');
+            
+            // Add error content to all tabs
+            this.srsContent.innerHTML = '<h1>ERROR IN PREVIEW GENERATION</h1><p>Error: ' + error.message + '</p>';
+            this.contractContent.innerHTML = '<h1>ERROR IN CONTRACT GENERATION</h1><p>Error: ' + error.message + '</p>';
+            this.summaryContent.innerHTML = '<h1>ERROR IN SUMMARY GENERATION</h1><p>Error: ' + error.message + '</p>';
+        }
+    }
+
+    generateSimpleSRSDocument(data) {
+        console.log('=== GENERATING SIMPLE SRS DOCUMENT ===');
+        console.log('Data received:', data);
+        console.log('SRS content element:', this.srsContent);
+        
+        let content = '<h1>Software Requirements Specification</h1>';
+        content += '<h2>1. Introduction</h2>';
+        content += '<h3>1.1 Project Title</h3>';
+        content += `<p><strong>${data.projectName || 'Not specified'}</strong></p>`;
+        content += '<h3>1.2 Document Version</h3>';
+        content += `<p>Version 1.0 - ${new Date().toLocaleDateString()}</p>`;
+        content += '<h3>1.3 Purpose</h3>';
+        content += `<p>This document specifies the requirements for the development of <strong>${data.projectName || 'the application'}</strong>, a ${data.projectType || 'mobile application'} designed to ${data.projectDescription || 'meet specific business needs'}.</p>`;
+        
+        content += '<h2>2. Overall Description</h2>';
+        content += '<h3>2.1 Product Perspective</h3>';
+        content += `<p>This is a ${data.projectType || 'new application'} that will serve ${data.targetAudience || 'target users'} in the ${data.primaryMarkets || 'target market'}.</p>`;
+        
+        content += '<h3>2.2 Product Functions</h3>';
+        content += '<ul>';
+        if (data.main_features && data.main_features.length > 0) {
+            data.main_features.forEach(feature => {
+                content += `<li><strong>${this.getFeatureDisplayName(feature)}</strong></li>`;
+            });
+        } else {
+            content += '<li>Features to be determined during detailed planning</li>';
+        }
+        content += '</ul>';
+        
+        content += '<h2>3. Specific Requirements</h2>';
+        content += '<h3>3.1 Functional Requirements</h3>';
+        content += '<p>The application shall provide the following functionality:</p>';
+        content += '<ul>';
+        if (data.main_features && data.main_features.length > 0) {
+            data.main_features.forEach(feature => {
+                content += `<li><strong>${this.getFeatureDisplayName(feature)}:</strong> The system shall allow users to ${this.getFeatureDescription(feature)}</li>`;
+            });
+        }
+        content += '</ul>';
+        
+        content += '<h3>3.2 Non-Functional Requirements</h3>';
+        content += '<h4>3.2.1 Performance Requirements</h4>';
+        content += '<ul><li>App startup time: Less than 3 seconds</li><li>Screen transition: Less than 1 second</li></ul>';
+        
+        content += '<h4>3.2.2 Security Requirements</h4>';
+        content += '<ul><li>All data transmission must be encrypted</li><li>User authentication required</li></ul>';
+        
+        console.log('SRS content generated, length:', content.length);
+        
+        // Set content directly
+        this.srsContent.innerHTML = content;
+        
+        // Force visibility
+        this.srsContent.style.display = 'block';
+        this.srsContent.style.visibility = 'visible';
+        this.srsContent.style.opacity = '1';
+        
+        console.log('SRS content set successfully, final length:', this.srsContent.innerHTML.length);
+        console.log('=== SIMPLE SRS DOCUMENT GENERATION COMPLETE ===');
+    }
+
+    generateSimpleContractDocument(data) {
+        console.log('=== GENERATING SIMPLE CONTRACT DOCUMENT ===');
+        
+        let content = '<h1>PROJECT DEVELOPMENT AGREEMENT</h1>';
+        content += `<p><strong>THIS AGREEMENT</strong> is made on ${new Date().toLocaleDateString()}, between:</p>`;
+        content += '<p><strong>Developer:</strong> Suresh Yadav (Flutter Developer)</p>';
+        content += `<p><strong>Client:</strong> ${data.clientName || 'Client Name'}</p>`;
+        
+        content += '<h2>1. Scope of Work</h2>';
+        content += `<p>Development of <strong>${data.projectName || 'the application'}</strong>, a ${data.projectType || 'mobile application'} with the following features:</p>`;
+        content += '<ul>';
+        if (data.main_features && data.main_features.length > 0) {
+            data.main_features.forEach(feature => {
+                content += `<li>${this.getFeatureDisplayName(feature)}</li>`;
+            });
+        }
+        content += '</ul>';
+        
+        content += '<h2>2. Project Phases & Deliverables</h2>';
+        content += '<ul>';
+        content += '<li><strong>Phase 1:</strong> UI/UX Design and Wireframes</li>';
+        content += '<li><strong>Phase 2:</strong> MVP Development</li>';
+        content += '<li><strong>Phase 3:</strong> Final Release and Testing</li>';
+        content += '</ul>';
+        
+        content += '<h2>3. Timeline</h2>';
+        content += `<p><strong>Estimated Duration:</strong> ${data.projectTimeline || 'To be determined'}</p>`;
+        content += '<p><strong>Start Date:</strong> Upon agreement signing</p>';
+        
+        content += '<h2>4. Payment Terms</h2>';
+        content += `<p><strong>Total Cost:</strong> ${data.budgetRange || 'To be discussed'}</p>`;
+        content += '<ul>';
+        content += '<li>30% on project initiation</li>';
+        content += '<li>40% after MVP completion</li>';
+        content += '<li>30% on final delivery</li>';
+        content += '</ul>';
+        
+        content += '<h2>5. Intellectual Property</h2>';
+        content += '<p>Client owns final code, assets, and designs after full payment. Developer may reuse open-source components.</p>';
+        
+        content += '<h2>6. Warranty & Support</h2>';
+        content += '<p>3 months bug-fixing warranty post-deployment. Optional maintenance can be discussed separately.</p>';
+        
+        console.log('Contract content generated, length:', content.length);
+        
+        // Set content directly
+        this.contractContent.innerHTML = content;
+        
+        // Force visibility
+        this.contractContent.style.display = 'block';
+        this.contractContent.style.visibility = 'visible';
+        this.contractContent.style.opacity = '1';
+        
+        console.log('Contract content set successfully, final length:', this.contractContent.innerHTML.length);
+        console.log('=== SIMPLE CONTRACT DOCUMENT GENERATION COMPLETE ===');
+    }
+
+    generateSimpleSummaryDocument(data) {
+        console.log('=== GENERATING SIMPLE SUMMARY DOCUMENT ===');
+        
+        let content = '<h1>Project Summary & Next Steps</h1>';
+        
+        content += '<h2>Project Overview</h2>';
+        content += '<div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">';
+        content += `<p><strong>Project Name:</strong> ${data.projectName || 'Not specified'}</p>`;
+        content += `<p><strong>Client:</strong> ${data.clientName || 'Not specified'}</p>`;
+        content += `<p><strong>Project Type:</strong> ${data.projectType || 'Not specified'}</p>`;
+        content += `<p><strong>Target Platforms:</strong> ${Array.isArray(data.platforms) ? data.platforms.join(', ') : data.platforms || 'Not specified'}</p>`;
+        content += '</div>';
+        
+        content += '<h2>Key Features Summary</h2>';
+        content += '<ul>';
+        if (data.main_features && data.main_features.length > 0) {
+            data.main_features.forEach(feature => {
+                content += `<li><strong>${this.getFeatureDisplayName(feature)}</strong></li>`;
+            });
+        } else {
+            content += '<li>Features to be determined during detailed planning</li>';
+        }
+        content += '</ul>';
+        
+        content += '<h2>Technical Requirements</h2>';
+        content += '<ul>';
+        content += `<li><strong>Backend:</strong> ${data.backendRequirements || 'To be determined'}</li>`;
+        content += `<li><strong>Integrations:</strong> ${Array.isArray(data.integrations) ? data.integrations.join(', ') : data.integrations || 'None specified'}</li>`;
+        content += `<li><strong>Security:</strong> ${Array.isArray(data.security) ? data.security.join(', ') : data.security || 'Standard security measures'}</li>`;
+        content += '</ul>';
+        
+        content += '<h2>Timeline & Budget</h2>';
+        content += '<ul>';
+        content += `<li><strong>Timeline:</strong> ${data.projectTimeline || 'To be determined'}</li>`;
+        content += `<li><strong>Budget Range:</strong> ${data.budgetRange || 'To be discussed'}</li>`;
+        content += `<li><strong>Development Approach:</strong> ${data.developmentPhase || 'To be determined'}</li>`;
+        content += '</ul>';
+        
+        content += '<h2>Next Steps</h2>';
+        content += '<ol>';
+        content += '<li><strong>Review Documents:</strong> Carefully review the SRS and contract</li>';
+        content += '<li><strong>Sign Contract:</strong> Sign the project agreement to proceed</li>';
+        content += '<li><strong>Initial Payment:</strong> Make the initial payment (30%)</li>';
+        content += '<li><strong>Project Kickoff:</strong> Schedule project kickoff meeting</li>';
+        content += '<li><strong>Development Begins:</strong> Start the development process</li>';
+        content += '</ol>';
+        
+        content += '<h2>Contact Information</h2>';
+        content += '<div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem;">';
+        content += '<p><strong>Developer:</strong> Suresh Yadav</p>';
+        content += '<p><strong>Email:</strong> Available through contact form</p>';
+        content += '<p><strong>Specialization:</strong> Flutter Development, Full-Stack Development</p>';
+        content += '</div>';
+        
+        console.log('Summary content generated, length:', content.length);
+        
+        // Set content directly
+        this.summaryContent.innerHTML = content;
+        
+        // Force visibility
+        this.summaryContent.style.display = 'block';
+        this.summaryContent.style.visibility = 'visible';
+        this.summaryContent.style.opacity = '1';
+        
+        console.log('Summary content set successfully, final length:', this.summaryContent.innerHTML.length);
+        console.log('=== SIMPLE SUMMARY DOCUMENT GENERATION COMPLETE ===');
+    }
+
+    getFeatureDisplayName(feature) {
+        const featureMap = {
+            'authentication': 'User Authentication & Login',
+            'user_management': 'User Profile Management',
+            'search_filter': 'Search & Filter System',
+            'payment_system': 'Payment & E-commerce',
+            'notifications': 'Push Notifications',
+            'messaging': 'In-App Messaging & Chat',
+            'location_services': 'Location & GPS Services',
+            'media_handling': 'Media & Content Handling',
+            'social_integration': 'Social Media Integration',
+            'analytics': 'Analytics & Reporting',
+            'offline_mode': 'Offline Functionality',
+            'admin_panel': 'Admin Panel & Dashboard'
+        };
+        return featureMap[feature] || feature;
+    }
+
+    getFeatureDescription(feature) {
+        const descriptionMap = {
+            'authentication': 'authenticate and manage user accounts',
+            'user_management': 'manage user profiles and preferences',
+            'search_filter': 'search and filter content effectively',
+            'payment_system': 'process payments and manage transactions',
+            'notifications': 'receive push notifications',
+            'messaging': 'communicate with other users',
+            'location_services': 'access location-based features',
+            'media_handling': 'upload and manage media files',
+            'social_integration': 'integrate with social media platforms',
+            'analytics': 'view usage analytics and reports',
+            'offline_mode': 'use core features without internet',
+            'admin_panel': 'access administrative functions'
+        };
+        return descriptionMap[feature] || 'use this feature';
+    }
+
     generateDocuments() {
         if (!this.validateCurrentStep()) {
             this.showToast('Please complete all required fields before generating documents.', 'error');
@@ -1173,9 +1452,18 @@ Form completed in: ${this.getFormCompletionTime()} steps
         // Force visibility check
         setTimeout(() => {
             console.log('SRS content after timeout:', this.srsContent.innerHTML.length);
+            console.log('SRS content element:', this.srsContent);
+            console.log('SRS content parent:', this.srsContent.parentElement);
+            
             if (this.srsContent.innerHTML.length < 100) {
                 console.error('SRS content seems too short, regenerating...');
                 this.srsContent.innerHTML = '<p>Error: Content not generated properly. Please try again.</p>';
+            } else {
+                console.log('SRS content generated successfully, length:', this.srsContent.innerHTML.length);
+                // Force display
+                this.srsContent.style.display = 'block';
+                this.srsContent.style.visibility = 'visible';
+                this.srsContent.style.opacity = '1';
             }
         }, 100);
     }
@@ -1277,6 +1565,7 @@ Form completed in: ${this.getFormCompletionTime()} steps
         `;
         
         this.contractContent.innerHTML = contractContent;
+        console.log('Contract content set successfully, length:', contractContent.length);
     }
 
     generateSummaryDocument(data) {
@@ -1328,6 +1617,7 @@ Form completed in: ${this.getFormCompletionTime()} steps
         `;
         
         this.summaryContent.innerHTML = summaryContent;
+        console.log('Summary content set successfully, length:', summaryContent.length);
     }
 
     generateFeatureList(data) {
@@ -1755,18 +2045,27 @@ Form completed in: ${this.getFormCompletionTime()} steps
             console.log('Tab button activated:', activeTabBtn);
         } else {
             console.error('Tab button not found:', tabName);
+            console.log('Available tab buttons:', document.querySelectorAll('.tab-btn'));
         }
 
         // Update tab content
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.remove('active');
+            console.log('Removing active from:', content.id);
         });
         const activeTabContent = document.getElementById(`${tabName}-tab`);
         if (activeTabContent) {
             activeTabContent.classList.add('active');
             console.log('Tab content activated:', activeTabContent);
+            console.log('Tab content innerHTML length:', activeTabContent.innerHTML.length);
+            
+            // Force visibility
+            activeTabContent.style.display = 'block';
+            activeTabContent.style.visibility = 'visible';
+            activeTabContent.style.opacity = '1';
         } else {
             console.error('Tab content not found:', `${tabName}-tab`);
+            console.log('Available tab contents:', document.querySelectorAll('.tab-content'));
         }
     }
 
