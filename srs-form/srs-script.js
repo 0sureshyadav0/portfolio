@@ -982,55 +982,37 @@ Form completed in: ${this.getFormCompletionTime()} steps
     }
 
     previewDocuments() {
-        console.log('=== PREVIEW DOCUMENTS START ===');
+        console.log('=== REDIRECTING TO SRS PREVIEW ===');
         
         if (!this.validateCurrentStep()) {
             this.showToast('Please complete all required fields before previewing documents.', 'error');
             return;
         }
 
-        console.log('Generating preview documents...');
-        
         try {
             // Get form data
             const formData = new FormData(this.form);
             const data = this.formatFormDataForGeneration(formData);
 
-            console.log('Preview form data:', data);
-            console.log('SRS content element before generation:', this.srsContent);
-            console.log('Contract content element:', this.contractContent);
-            console.log('Summary content element:', this.summaryContent);
+            console.log('Form data prepared for preview:', data);
 
-            // Show documents section first
-            console.log('Showing documents section for preview...');
-            this.documentsSection.style.display = 'block';
-            this.documentsSection.scrollIntoView({ behavior: 'smooth' });
+            // Always use localStorage method for reliability
+            const dataKey = 'srs_preview_data_' + Date.now();
+            localStorage.setItem(dataKey, JSON.stringify(data));
+            console.log('Data stored in localStorage with key:', dataKey);
+
+            // Redirect to preview page with localStorage key
+            const previewUrl = `srs-preview.html?key=${dataKey}`;
+            console.log('Redirecting to:', previewUrl);
             
-            // Generate documents for preview
-            console.log('Generating actual documents...');
-            this.generateSimpleSRSDocument(data);
-            this.generateSimpleContractDocument(data);
-            this.generateSimpleSummaryDocument(data);
-
-            // Force show the first tab content
-            console.log('Forcing first tab to be active for preview...');
-            this.switchTab('srs');
-
-            // Show preview buttons
-            this.previewBtn.style.display = 'none';
-            this.generateSRSBtn.style.display = 'flex';
-            this.submitBtn.style.display = 'none';
-
-            this.showToast('Preview generated! Review your documents before final submission.', 'success');
-            console.log('=== PREVIEW DOCUMENTS END ===');
+            this.showToast('Redirecting to SRS preview...', 'info');
+            
+            // Redirect immediately
+            window.location.href = previewUrl;
+            
         } catch (error) {
-            console.error('Error generating preview:', error);
+            console.error('Error preparing preview:', error);
             this.showToast(`Preview error: ${error.message}`, 'error');
-            
-            // Add error content to all tabs
-            this.srsContent.innerHTML = '<h1>ERROR IN PREVIEW GENERATION</h1><p>Error: ' + error.message + '</p>';
-            this.contractContent.innerHTML = '<h1>ERROR IN CONTRACT GENERATION</h1><p>Error: ' + error.message + '</p>';
-            this.summaryContent.innerHTML = '<h1>ERROR IN SUMMARY GENERATION</h1><p>Error: ' + error.message + '</p>';
         }
     }
 

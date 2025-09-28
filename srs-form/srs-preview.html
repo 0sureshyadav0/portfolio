@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SRS Preview - Professional Document</title>
+    <link rel="stylesheet" href="srs-style.css">
+    <style>
+        /* SRS Preview Page Styles */
+        .srs-preview-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        .srs-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-xl);
+            background: var(--bg-secondary);
+            border: var(--border-width) solid var(--primary);
+            border-radius: var(--radius-lg);
+        }
+
+        .srs-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .srs-subtitle {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+        }
+
+        .document-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+            border-bottom: var(--border-width) solid var(--primary);
+        }
+
+        .tab-btn {
+            padding: var(--space-md) var(--space-lg);
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn:hover {
+            color: var(--secondary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .srs-document {
+            background: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333333;
+        }
+
+        .srs-document h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .srs-document h2 {
+            color: #2980b9;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            font-weight: bold;
+            counter-increment: section;
+        }
+
+        .srs-document h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            counter-increment: subsection;
+        }
+
+        .srs-document h4 {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            counter-increment: subsubsection;
+        }
+
+        .srs-document p {
+            margin-bottom: 15px;
+            text-align: justify;
+            text-indent: 20px;
+        }
+
+        .srs-document ul, .srs-document ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .srs-document li {
+            margin-bottom: 8px;
+        }
+
+        .srs-document strong {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .document-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            border: 1px solid #bdc3c7;
+        }
+
+        .document-header h1 {
+            margin-bottom: 20px;
+            border: none;
+            padding: 0;
+        }
+
+        .document-header .project-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .document-header .info-item {
+            text-align: left;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .document-header .info-label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .document-header .info-value {
+            color: #7f8c8d;
+        }
+
+        .requirement-item {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .requirement-id {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+
+        .requirement-text {
+            color: #2c3e50;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .srs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        .srs-table th,
+        .srs-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .srs-table th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        .srs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .srs-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .toc li:before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .toc a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Numbering for sections */
+        .srs-document {
+            counter-reset: section subsection subsubsection;
+        }
+
+        .srs-document h2:before {
+            content: counter(section) ". ";
+        }
+
+        .srs-document h3:before {
+            content: counter(section) "." counter(subsection) " ";
+        }
+
+        .srs-document h4:before {
+            content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            margin-top: var(--space-xl);
+            padding: var(--space-xl);
+            background: var(--bg-secondary);
+            border: var(--border-width) solid var(--primary);
+            border-radius: var(--radius-lg);
+        }
+
+        .btn-primary {
+            padding: var(--space-md) var(--space-xl);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: var(--radius-sm);
+            color: var(--bg-primary);
+            font-family: var(--font-mono);
+            font-size: var(--font-size-base);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            padding: var(--space-md) var(--space-xl);
+            background: transparent;
+            border: var(--border-width) solid var(--primary);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .loading {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: var(--text-secondary);
+        }
+
+        .error {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: var(--danger);
+            background: rgba(255, 0, 0, 0.1);
+            border: var(--border-width) solid var(--danger);
+            border-radius: var(--radius-md);
+        }
+
+        .test-section {
+            text-align: center;
+            padding: var(--space-2xl);
+        }
+
+        /* Print Styles */
+        @media print {
+            .action-buttons, .document-tabs, .test-section {
+                display: none;
+            }
+            
+            .srs-preview-container {
+                max-width: none;
+                padding: 0;
+            }
+            
+            .srs-document {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="srs-preview-container">
+        <div class="srs-header">
+            <h1 class="srs-title">📄 SRS Document Preview</h1>
+            <p class="srs-subtitle">Review your Software Requirements Specification before submission</p>
+        </div>
+
+        <div id="loadingMessage" class="loading">
+            <h2>⏳ Generating SRS Document...</h2>
+            <p>Please wait while we create your professional SRS document.</p>
+        </div>
+
+        <div id="errorMessage" class="error" style="display: none;">
+            <h2>❌ Error Loading SRS</h2>
+            <p>There was an error generating your SRS document. Please try again.</p>
+        </div>
+
+        <div id="testSection" class="test-section" style="display: none;">
+            <button id="testBtn" class="btn-secondary">
+                <span class="btn-icon">🧪</span>
+                <span class="btn-text">Test with Sample Data</span>
+            </button>
+            <button id="refreshBtn" class="btn-secondary">
+                <span class="btn-icon">🔄</span>
+                <span class="btn-text">Force Refresh & Clear Cache</span>
+            </button>
+        </div>
+
+        <!-- Document Tabs -->
+        <div id="documentTabs" class="document-tabs" style="display: none;">
+            <button class="tab-btn active" data-tab="srs">SRS Document</button>
+            <button class="tab-btn" data-tab="contract">Project Agreement</button>
+            <button class="tab-btn" data-tab="summary">Project Summary</button>
+        </div>
+
+        <!-- Document Contents -->
+        <div id="documentContent" style="display: none;">
+            <div class="tab-content active" id="srs-tab">
+                <div id="srsDocument" class="srs-document">
+                    <!-- SRS content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="contract-tab">
+                <div id="contractDocument" class="srs-document">
+                    <!-- Contract content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="summary-tab">
+                <div id="summaryDocument" class="srs-document">
+                    <!-- Summary content will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="actionButtons" class="action-buttons" style="display: none;">
+            <button id="printBtn" class="btn-secondary">
+                <span class="btn-icon">🖨️</span>
+                <span class="btn-text">Print Document</span>
+            </button>
+            <button id="downloadBtn" class="btn-secondary">
+                <span class="btn-icon">📥</span>
+                <span class="btn-text">Download PDF</span>
+            </button>
+            <button id="submitBtn" class="btn-primary">
+                <span class="btn-icon">📧</span>
+                <span class="btn-text">Submit SRS & Get Contract</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        class SRSPreview {
+            constructor() {
+                this.formData = null;
+                this.loadingMessage = document.getElementById('loadingMessage');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.documentTabs = document.getElementById('documentTabs');
+                this.documentContent = document.getElementById('documentContent');
+                this.srsDocument = document.getElementById('srsDocument');
+                this.contractDocument = document.getElementById('contractDocument');
+                this.summaryDocument = document.getElementById('summaryDocument');
+                this.actionButtons = document.getElementById('actionButtons');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.printBtn = document.getElementById('printBtn');
+                this.downloadBtn = document.getElementById('downloadBtn');
+                this.testSection = document.getElementById('testSection');
+                this.testBtn = document.getElementById('testBtn');
+                this.refreshBtn = document.getElementById('refreshBtn');
+                
+                this.init();
+            }
+
+            init() {
+                console.log('SRS Preview initialized');
+                console.log('Current timestamp:', Date.now());
+                console.log('Page URL:', window.location.href);
+                
+                // Clear any old localStorage data
+                this.clearOldData();
+                
+                this.setupEventListeners();
+                this.loadFormData();
+            }
+
+            clearOldData() {
+                console.log('Clearing old localStorage data...');
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('srs_preview_data_')) {
+                        keysToRemove.push(key);
+                    }
+                }
+                
+                keysToRemove.forEach(key => {
+                    console.log('Removing old key:', key);
+                    localStorage.removeItem(key);
+                });
+                
+                console.log('Cleared', keysToRemove.length, 'old entries');
+            }
+
+            loadFormData() {
+                try {
+                    console.log('=== LOADING FORM DATA ===');
+                    console.log('Current URL:', window.location.href);
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const dataKey = urlParams.get('key');
+                    
+                    console.log('Data key from URL:', dataKey);
+                    
+                    if (dataKey) {
+                        const storedData = localStorage.getItem(dataKey);
+                        console.log('Stored data from localStorage:', storedData);
+                        
+                        if (storedData) {
+                            this.formData = JSON.parse(storedData);
+                            console.log('Form data loaded successfully:', this.formData);
+                            localStorage.removeItem(dataKey); // Clean up
+                            this.generateDocuments();
+                        } else {
+                            throw new Error('No data found in localStorage with key: ' + dataKey);
+                        }
+                    } else {
+                        console.log('No data key found, showing test button');
+                        this.showTestButton();
+                    }
+                } catch (error) {
+                    console.error('Error loading form data:', error);
+                    this.showError(`Failed to load form data: ${error.message}`);
+                    this.showTestButton();
+                }
+            }
+
+            setupEventListeners() {
+                this.submitBtn.addEventListener('click', () => this.submitSRS());
+                this.printBtn.addEventListener('click', () => this.printCurrentDocument());
+                this.downloadBtn.addEventListener('click', () => this.downloadCurrentDocument());
+                
+                // Tab switching
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const tab = btn.dataset.tab;
+                        this.switchTab(tab);
+                    });
+                });
+                
+                // Test button
+                if (this.testBtn) {
+                    this.testBtn.addEventListener('click', () => this.loadTestData());
+                }
+                
+                // Refresh button
+                if (this.refreshBtn) {
+                    this.refreshBtn.addEventListener('click', () => this.forceRefresh());
+                }
+            }
+
+            generateDocuments() {
+                if (!this.formData) {
+                    this.showError('No form data available');
+                    return;
+                }
+
+                try {
+                    console.log('Starting document generation...');
+                    console.log('Form data:', this.formData);
+                    console.log('SRS document element:', this.srsDocument);
+                    console.log('Contract document element:', this.contractDocument);
+                    console.log('Summary document element:', this.summaryDocument);
+                    
+                    // Generate content
+                    const srsContent = this.createSRSContent(this.formData);
+                    const contractContent = this.createContractContent(this.formData);
+                    const summaryContent = this.createSummaryContent(this.formData);
+                    
+                    console.log('SRS content length:', srsContent.length);
+                    console.log('Contract content length:', contractContent.length);
+                    console.log('Summary content length:', summaryContent.length);
+                    
+                    // Insert content into DOM
+                    this.srsDocument.innerHTML = srsContent;
+                    this.contractDocument.innerHTML = contractContent;
+                    this.summaryDocument.innerHTML = summaryContent;
+                    
+                    console.log('Content inserted into DOM');
+                    
+                    // Show the documents
+                    this.loadingMessage.style.display = 'none';
+                    this.documentTabs.style.display = 'flex';
+                    this.documentContent.style.display = 'block';
+                    this.actionButtons.style.display = 'flex';
+                    
+                    console.log('All documents generated successfully');
+                } catch (error) {
+                    console.error('Error generating documents:', error);
+                    console.error('Error details:', error.message, error.stack);
+                    this.showError('Failed to generate documents: ' + error.message);
+                }
+            }
+
+            createSRSContent(data) {
+                let content = '';
+                
+                // Document Header
+                content += '<div class="highlight-box">';
+                content += '<h1>SOFTWARE REQUIREMENTS SPECIFICATION</h1>';
+                content += '<p><strong>Project Name:</strong> ' + (data.projectName || 'Not specified') + '</p>';
+                content += '<p><strong>Client:</strong> ' + (data.clientName || 'Not specified') + '</p>';
+                content += '<p><strong>Document Version:</strong> 1.0 - ' + new Date().toLocaleDateString() + '</p>';
+                content += '<p><strong>Prepared By:</strong> Suresh Yadav (Flutter Developer)</p>';
+                content += '</div>';
+
+                // 1. Introduction
+                content += '<h2>1. Introduction</h2>';
+                content += '<h3>1.1 Purpose</h3>';
+                content += '<p>This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the development of <strong>' + (data.projectName || 'the application') + '</strong>.</p>';
+                content += '<p>The application is designed as a ' + (data.projectType || 'mobile application') + ' to ' + (data.projectDescription || 'meet specific business requirements') + '.</p>';
+                
+                content += '<h3>1.2 Scope</h3>';
+                content += '<p>This SRS covers the complete development lifecycle of <strong>' + (data.projectName || 'the application') + '</strong>, including:</p>';
+                content += '<ul>';
+                content += '<li>Functional requirements and specifications</li>';
+                content += '<li>User interface and user experience requirements</li>';
+                content += '<li>Performance and security requirements</li>';
+                content += '<li>Integration and deployment requirements</li>';
+                content += '</ul>';
+
+                // 2. Overall Description
+                content += '<h2>2. Overall Description</h2>';
+                content += '<h3>2.1 Product Perspective</h3>';
+                content += '<p><strong>' + (data.projectName || 'The application') + '</strong> is a ' + (data.projectType || 'standalone mobile application') + ' designed to serve ' + (data.targetAudience || 'end users') + ' in the ' + (data.primaryMarkets || 'target market') + '.</p>';
+
+                content += '<h3>2.2 Product Functions</h3>';
+                content += '<p>The application shall provide the following core functionality:</p>';
+                content += '<ul>';
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach(feature => {
+                        content += '<li><strong>' + this.getFeatureDisplayName(feature) + ':</strong> ' + this.getFeatureDescription(feature) + '</li>';
+                    });
+                } else {
+                    content += '<li>Core application functionality to be determined during detailed planning phase</li>';
+                }
+                content += '</ul>';
+
+                // 3. Specific Requirements
+                content += '<h2>3. Specific Requirements</h2>';
+                content += '<h3>3.1 Functional Requirements</h3>';
+                content += '<p>The following functional requirements define what the system shall do:</p>';
+                
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach((feature, index) => {
+                        content += '<div class="highlight-box">';
+                        content += '<p><strong>FR-' + (index + 1) + ': ' + this.getFeatureDisplayName(feature) + '</strong></p>';
+                        content += '<p>The system shall provide functionality to ' + this.getFeatureDescription(feature) + '. This includes all necessary user interface components, data validation, and error handling mechanisms.</p>';
+                        content += '</div>';
+                    });
+                }
+
+                content += '<h3>3.2 Non-Functional Requirements</h3>';
+                content += '<h4>3.2.1 Performance Requirements</h4>';
+                content += '<ul>';
+                content += '<li>Application startup time: Less than 3 seconds</li>';
+                content += '<li>Screen transition time: Less than 1 second</li>';
+                content += '<li>Data loading time: Less than 2 seconds for standard operations</li>';
+                content += '<li>Response time: Less than 500ms for user interactions</li>';
+                content += '</ul>';
+
+                content += '<h4>3.2.2 Security Requirements</h4>';
+                content += '<ul>';
+                content += '<li>All data transmission must use HTTPS/TLS encryption</li>';
+                content += '<li>Secure user authentication with password hashing</li>';
+                content += '<li>Role-based access control for different user types</li>';
+                content += '<li>Sensitive data must be encrypted at rest</li>';
+                content += '</ul>';
+
+                // 4. Appendices
+                content += '<h2>4. Appendices</h2>';
+                content += '<h3>4.1 Glossary</h3>';
+                content += '<ul>';
+                content += '<li><strong>SRS:</strong> Software Requirements Specification</li>';
+                content += '<li><strong>API:</strong> Application Programming Interface</li>';
+                content += '<li><strong>UI/UX:</strong> User Interface/User Experience</li>';
+                content += '<li><strong>Flutter:</strong> Google\'s UI toolkit for building natively compiled applications</li>';
+                content += '</ul>';
+
+                return content;
+            }
+
+            createContractContent(data) {
+                let content = '<h1>PROJECT DEVELOPMENT AGREEMENT</h1>';
+                
+                content += '<div class="highlight-box">';
+                content += `<p><strong>THIS AGREEMENT</strong> is made on ${new Date().toLocaleDateString()}, between:</p>`;
+                content += '<p><strong>Developer:</strong> Suresh Yadav (Flutter Developer)</p>';
+                content += `<p><strong>Client:</strong> ${data.clientName || 'Client Name'}</p>`;
+                content += '</div>';
+
+                content += '<h2>1. Scope of Work</h2>';
+                content += `<p>Development of <strong>${data.projectName || 'the application'}</strong>, a ${data.projectType || 'mobile application'} with the following features:</p>`;
+                content += '<ul>';
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach(feature => {
+                        content += `<li>${this.getFeatureDisplayName(feature)}</li>`;
+                    });
+                }
+                content += '</ul>';
+
+                content += '<h2>2. Project Phases & Deliverables</h2>';
+                content += '<ul>';
+                content += '<li><strong>Phase 1:</strong> UI/UX Design and Wireframes</li>';
+                content += '<li><strong>Phase 2:</strong> MVP Development</li>';
+                content += '<li><strong>Phase 3:</strong> Final Release and Testing</li>';
+                content += '</ul>';
+
+                content += '<h2>3. Timeline</h2>';
+                content += `<p><strong>Estimated Duration:</strong> ${data.projectTimeline || 'To be determined'}</p>`;
+                content += '<p><strong>Start Date:</strong> Upon agreement signing</p>';
+
+                content += '<h2>4. Payment Terms</h2>';
+                content += `<p><strong>Total Cost:</strong> ${data.budgetRange || 'To be discussed'}</p>`;
+                content += '<ul>';
+                content += '<li>30% on project initiation</li>';
+                content += '<li>40% after MVP completion</li>';
+                content += '<li>30% on final delivery</li>';
+                content += '</ul>';
+
+                content += '<h2>5. Intellectual Property</h2>';
+                content += '<p>Client owns final code, assets, and designs after full payment. Developer may reuse open-source components.</p>';
+
+                content += '<h2>6. Warranty & Support</h2>';
+                content += '<p>3 months bug-fixing warranty post-deployment. Optional maintenance can be discussed separately.</p>';
+
+                content += '<h2>7. Change Requests</h2>';
+                content += '<p>Minor UI changes are included. New features or scope changes will be billed separately.</p>';
+
+                content += '<h2>8. Termination</h2>';
+                content += '<p>Either party may terminate with written notice. Work completed up to that point must be paid.</p>';
+
+                content += '<h2>9. Governing Law</h2>';
+                content += '<p>This contract is governed by the laws of Nepal.</p>';
+
+                content += '<div class="highlight-box">';
+                content += '<h3>Signatures</h3>';
+                content += '<p><strong>Developer:</strong> Suresh Yadav</p>';
+                content += '<p>Date: _________________</p>';
+                content += '<p><strong>Client:</strong> _________________</p>';
+                content += '<p>Date: _________________</p>';
+                content += '</div>';
+
+                return content;
+            }
+
+            createSummaryContent(data) {
+                let content = '<h1>Project Summary & Next Steps</h1>';
+                
+                content += '<h2>Project Overview</h2>';
+                content += '<div class="highlight-box">';
+                content += `<p><strong>Project Name:</strong> ${data.projectName || 'Not specified'}</p>`;
+                content += `<p><strong>Client:</strong> ${data.clientName || 'Not specified'}</p>`;
+                content += `<p><strong>Project Type:</strong> ${data.projectType || 'Not specified'}</p>`;
+                content += `<p><strong>Target Platforms:</strong> ${Array.isArray(data.platforms) ? data.platforms.join(', ') : data.platforms || 'Not specified'}</p>`;
+                content += `<p><strong>Timeline:</strong> ${data.projectTimeline || 'To be determined'}</p>`;
+                content += `<p><strong>Budget Range:</strong> ${data.budgetRange || 'To be discussed'}</p>`;
+                content += '</div>';
+
+                content += '<h2>Key Features Summary</h2>';
+                content += '<ul>';
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach(feature => {
+                        content += `<li><strong>${this.getFeatureDisplayName(feature)}</strong></li>`;
+                    });
+                } else {
+                    content += '<li>Features to be determined during detailed planning</li>';
+                }
+                content += '</ul>';
+
+                content += '<h2>Technical Requirements</h2>';
+                content += '<ul>';
+                content += `<li><strong>Backend:</strong> ${data.backendRequirements || 'To be determined'}</li>`;
+                content += `<li><strong>Integrations:</strong> ${Array.isArray(data.integrations) ? data.integrations.join(', ') : data.integrations || 'None specified'}</li>`;
+                content += `<li><strong>Security:</strong> ${Array.isArray(data.security) ? data.security.join(', ') : data.security || 'Standard security measures'}</li>`;
+                content += '</ul>';
+
+                content += '<h2>Next Steps</h2>';
+                content += '<ol>';
+                content += '<li><strong>Review Documents:</strong> Carefully review the SRS and contract</li>';
+                content += '<li><strong>Sign Contract:</strong> Sign the project agreement to proceed</li>';
+                content += '<li><strong>Initial Payment:</strong> Make the initial payment (30%)</li>';
+                content += '<li><strong>Project Kickoff:</strong> Schedule project kickoff meeting</li>';
+                content += '<li><strong>Development Begins:</strong> Start the development process</li>';
+                content += '</ol>';
+
+                content += '<h2>Contact Information</h2>';
+                content += '<div class="highlight-box">';
+                content += '<p><strong>Developer:</strong> Suresh Yadav</p>';
+                content += '<p><strong>Email:</strong> Available through contact form</p>';
+                content += '<p><strong>Specialization:</strong> Flutter Development, Full-Stack Development</p>';
+                content += '</div>';
+
+                return content;
+            }
+
+            getFeatureDisplayName(feature) {
+                const featureMap = {
+                    'authentication': 'User Authentication & Login',
+                    'user_management': 'User Profile Management',
+                    'search_filter': 'Search & Filter System',
+                    'payment_system': 'Payment & E-commerce',
+                    'notifications': 'Push Notifications',
+                    'messaging': 'In-App Messaging & Chat',
+                    'location_services': 'Location & GPS Services',
+                    'media_handling': 'Media & Content Handling',
+                    'social_integration': 'Social Media Integration',
+                    'analytics': 'Analytics & Reporting',
+                    'offline_mode': 'Offline Functionality',
+                    'admin_panel': 'Admin Panel & Dashboard'
+                };
+                return featureMap[feature] || feature;
+            }
+
+            getFeatureDescription(feature) {
+                const descriptionMap = {
+                    'authentication': 'authenticate and manage user accounts securely',
+                    'user_management': 'manage user profiles and preferences',
+                    'search_filter': 'search and filter content effectively',
+                    'payment_system': 'process payments and manage transactions',
+                    'notifications': 'receive push notifications',
+                    'messaging': 'communicate with other users',
+                    'location_services': 'access location-based features',
+                    'media_handling': 'upload and manage media files',
+                    'social_integration': 'integrate with social media platforms',
+                    'analytics': 'view usage analytics and reports',
+                    'offline_mode': 'use core features without internet connection',
+                    'admin_panel': 'access administrative functions'
+                };
+                return descriptionMap[feature] || 'use this feature';
+            }
+
+            switchTab(tabName) {
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(`${tabName}-tab`).classList.add('active');
+            }
+
+            getCurrentDocument() {
+                const activeTab = document.querySelector('.tab-btn.active');
+                const tabName = activeTab ? activeTab.dataset.tab : 'srs';
+                
+                switch(tabName) {
+                    case 'contract':
+                        return this.contractDocument;
+                    case 'summary':
+                        return this.summaryDocument;
+                    default:
+                        return this.srsDocument;
+                }
+            }
+
+            printCurrentDocument() {
+                const currentDoc = this.getCurrentDocument();
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Document Print</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                            h1 { color: #333; border-bottom: 2px solid #333; }
+                            h2 { color: #666; border-bottom: 1px solid #666; }
+                            h3 { color: #888; }
+                            .highlight-box { background: #f5f5f5; padding: 15px; border: 1px solid #ddd; margin: 20px 0; }
+                        </style>
+                    </head>
+                    <body>
+                        ${currentDoc.innerHTML}
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+
+            downloadCurrentDocument() {
+                const currentDoc = this.getCurrentDocument();
+                const activeTab = document.querySelector('.tab-btn.active');
+                const tabName = activeTab ? activeTab.dataset.tab : 'srs';
+                
+                const blob = new Blob([`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${tabName.toUpperCase()} Document - ${this.formData.projectName || 'Project'}</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                            h1 { color: #333; border-bottom: 2px solid #333; }
+                            h2 { color: #666; border-bottom: 1px solid #666; }
+                            h3 { color: #888; }
+                            .highlight-box { background: #f5f5f5; padding: 15px; border: 1px solid #ddd; margin: 20px 0; }
+                        </style>
+                    </head>
+                    <body>
+                        ${currentDoc.innerHTML}
+                    </body>
+                    </html>
+                `], { type: 'text/html' });
+                
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${tabName.toUpperCase()}_${this.formData.projectName || 'Project'}_${new Date().toISOString().split('T')[0]}.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            submitSRS() {
+                this.submitBtn.disabled = true;
+                this.submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Submitting...</span>';
+
+                const emailContent = this.createEmailContent();
+                this.submitToWeb3Forms(emailContent);
+            }
+
+            createEmailContent() {
+                let content = `NEW SRS FORM SUBMISSION\n\n`;
+                content += `Project Details:\n`;
+                content += `- Project Name: ${this.formData.projectName || 'Not specified'}\n`;
+                content += `- Client: ${this.formData.clientName || 'Not specified'}\n`;
+                content += `- Project Type: ${this.formData.projectType || 'Not specified'}\n`;
+                content += `- Description: ${this.formData.projectDescription || 'Not specified'}\n\n`;
+                
+                content += `Target Audience: ${this.formData.targetAudience || 'Not specified'}\n`;
+                content += `Primary Markets: ${this.formData.primaryMarkets || 'Not specified'}\n`;
+                content += `Platforms: ${Array.isArray(this.formData.platforms) ? this.formData.platforms.join(', ') : this.formData.platforms || 'Not specified'}\n\n`;
+                
+                content += `Selected Features:\n`;
+                if (this.formData.main_features && this.formData.main_features.length > 0) {
+                    this.formData.main_features.forEach(feature => {
+                        content += `- ${this.getFeatureDisplayName(feature)}\n`;
+                    });
+                } else {
+                    content += `- No features selected\n`;
+                }
+                content += `\n`;
+                
+                content += `Timeline: ${this.formData.projectTimeline || 'Not specified'}\n`;
+                content += `Budget Range: ${this.formData.budgetRange || 'Not specified'}\n`;
+                content += `Development Phase: ${this.formData.developmentPhase || 'Not specified'}\n\n`;
+                
+                content += `Additional Notes: ${this.formData.additionalNotes || 'None'}\n\n`;
+                content += `---\n`;
+                content += `This SRS was generated and submitted through the online form.`;
+                
+                return content;
+            }
+
+            async submitToWeb3Forms(emailContent) {
+                try {
+                    const formData = new FormData();
+                    formData.append('access_key', '7f6edf0a-47e0-49a4-bebf-2a8be167a68b');
+                    formData.append('subject', 'New SRS Form Submission - Flutter Project');
+                    formData.append('from_name', this.formData.clientName || 'SRS Form');
+                    formData.append('message', emailContent);
+                    formData.append('redirect', 'true');
+                    formData.append('redirect_url', '../index.html?submitted=true');
+
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        this.showToast('SRS submitted successfully! I\'ll review your requirements and get back to you soon.', 'success');
+                        setTimeout(() => {
+                            window.location.href = '../index.html?submitted=true';
+                        }, 3000);
+                    } else {
+                        throw new Error('Failed to submit form');
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    
+                    // Fallback for CORS issues
+                    if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                        const tempForm = document.createElement('form');
+                        tempForm.method = 'POST';
+                        tempForm.action = 'https://api.web3forms.com/submit';
+                        tempForm.target = '_blank';
+                        
+                        for (let [key, value] of formData.entries()) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            tempForm.appendChild(input);
+                        }
+                        
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
+                        document.body.removeChild(tempForm);
+                        
+                        this.showToast('SRS submitted successfully! Check your email.', 'success');
+                    } else {
+                        this.showToast(`Submission failed: ${error.message}`, 'error');
+                    }
+                } finally {
+                    this.submitBtn.disabled = false;
+                    this.submitBtn.innerHTML = '<span class="btn-icon">📧</span><span class="btn-text">Submit SRS & Get Contract</span>';
+                }
+            }
+
+            showTestButton() {
+                this.loadingMessage.style.display = 'none';
+                this.testSection.style.display = 'block';
+            }
+
+            loadTestData() {
+                this.formData = {
+                    projectName: 'Test Mobile App',
+                    clientName: 'Test Client',
+                    clientEmail: 'test@example.com',
+                    projectType: 'Mobile Application',
+                    projectDescription: 'A test mobile application for demonstration purposes',
+                    targetAudience: 'General users',
+                    primaryMarkets: 'Global',
+                    platforms: ['Android', 'iOS'],
+                    main_features: ['authentication', 'user_management', 'search_filter', 'notifications'],
+                    projectTimeline: '3-6 months',
+                    budgetRange: '$5000-$10000',
+                    developmentPhase: 'Full Development',
+                    additionalNotes: 'This is test data for demonstration'
+                };
+                
+                this.testSection.style.display = 'none';
+                this.generateDocuments();
+            }
+
+            forceRefresh() {
+                console.log('Force refresh requested...');
+                
+                // Clear all localStorage
+                localStorage.clear();
+                console.log('localStorage cleared');
+                
+                // Clear any cached data
+                this.formData = null;
+                
+                // Force page reload with cache busting
+                const url = new URL(window.location);
+                url.searchParams.set('t', Date.now().toString());
+                window.location.href = url.toString();
+            }
+
+            showError(message) {
+                this.loadingMessage.style.display = 'none';
+                this.errorMessage.style.display = 'block';
+                this.errorMessage.querySelector('p').textContent = message;
+            }
+
+            showToast(message, type = 'info') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.className = `toast toast-${type}`;
+                toast.style.display = 'block';
+                
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 4000);
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new SRSPreview();
+        });
+    </script>
+</body>
+</html>

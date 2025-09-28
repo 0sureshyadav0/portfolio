@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRS Document Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .srs-document { background: white; border: 2px solid #333; padding: 30px; margin: 20px 0; }
+        .srs-document h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 20px; }
+        .srs-document h2 { color: #2980b9; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .highlight-box { background: #f8f9fa; border: 2px solid #dee2e6; padding: 20px; margin: 20px 0; border-radius: 6px; }
+        button { padding: 10px 20px; margin: 10px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        .error { color: red; background: #ffe6e6; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .success { color: green; background: #e6ffe6; padding: 10px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SRS Document Generation Test</h1>
+        
+        <div class="test-section">
+            <h2>Test Controls</h2>
+            <button onclick="testDocumentGeneration()">Generate Test SRS Document</button>
+            <button onclick="testWithRealData()">Test with Real Form Data</button>
+            <button onclick="clearDocument()">Clear Document</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Status</h2>
+            <div id="status">Ready to test</div>
+        </div>
+
+        <div class="test-section">
+            <h2>Generated SRS Document</h2>
+            <div id="srsDocument" class="srs-document" style="display: none;">
+                <!-- SRS content will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testDocumentGeneration() {
+            console.log('Testing document generation...');
+            document.getElementById('status').innerHTML = '<div class="success">✓ Generating test document...</div>';
+            
+            try {
+                const testData = {
+                    projectName: 'Test Mobile Application',
+                    clientName: 'Test Client Company',
+                    projectType: 'Mobile Application',
+                    projectDescription: 'A comprehensive mobile application for testing purposes',
+                    targetAudience: 'General users and testers',
+                    primaryMarkets: 'Global market',
+                    platforms: ['Android', 'iOS'],
+                    main_features: ['authentication', 'user_management', 'notifications', 'analytics'],
+                    projectTimeline: '3-6 months',
+                    budgetRange: '$10,000 - $25,000',
+                    developmentPhase: 'Full Development',
+                    additionalNotes: 'This is a test project for SRS document generation'
+                };
+                
+                const srsContent = createTestSRSContent(testData);
+                const srsDocument = document.getElementById('srsDocument');
+                
+                srsDocument.innerHTML = srsContent;
+                srsDocument.style.display = 'block';
+                
+                document.getElementById('status').innerHTML = '<div class="success">✓ SRS document generated successfully!</div>';
+                console.log('SRS document generated successfully');
+                
+            } catch (error) {
+                console.error('Error generating document:', error);
+                document.getElementById('status').innerHTML = '<div class="error">✗ Error: ' + error.message + '</div>';
+            }
+        }
+        
+        function testWithRealData() {
+            console.log('Testing with real form data...');
+            
+            // Check if there's data in localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const dataKey = urlParams.get('key');
+            
+            if (dataKey) {
+                const storedData = localStorage.getItem(dataKey);
+                if (storedData) {
+                    try {
+                        const formData = JSON.parse(storedData);
+                        console.log('Real form data found:', formData);
+                        
+                        const srsContent = createTestSRSContent(formData);
+                        const srsDocument = document.getElementById('srsDocument');
+                        
+                        srsDocument.innerHTML = srsContent;
+                        srsDocument.style.display = 'block';
+                        
+                        document.getElementById('status').innerHTML = '<div class="success">✓ Real SRS document generated successfully!</div>';
+                        
+                        // Clean up
+                        localStorage.removeItem(dataKey);
+                        
+                    } catch (error) {
+                        console.error('Error parsing real data:', error);
+                        document.getElementById('status').innerHTML = '<div class="error">✗ Error parsing data: ' + error.message + '</div>';
+                    }
+                } else {
+                    document.getElementById('status').innerHTML = '<div class="error">✗ No data found in localStorage</div>';
+                }
+            } else {
+                document.getElementById('status').innerHTML = '<div class="error">✗ No data key found in URL</div>';
+            }
+        }
+        
+        function clearDocument() {
+            document.getElementById('srsDocument').style.display = 'none';
+            document.getElementById('status').innerHTML = 'Document cleared';
+        }
+        
+        function createTestSRSContent(data) {
+            let content = '';
+            
+            // Document Header
+            content += '<div class="highlight-box">';
+            content += '<h1>SOFTWARE REQUIREMENTS SPECIFICATION</h1>';
+            content += '<p><strong>Project Name:</strong> ' + (data.projectName || 'Not specified') + '</p>';
+            content += '<p><strong>Client:</strong> ' + (data.clientName || 'Not specified') + '</p>';
+            content += '<p><strong>Document Version:</strong> 1.0 - ' + new Date().toLocaleDateString() + '</p>';
+            content += '<p><strong>Prepared By:</strong> Suresh Yadav (Flutter Developer)</p>';
+            content += '</div>';
+
+            // 1. Introduction
+            content += '<h2>1. Introduction</h2>';
+            content += '<h3>1.1 Purpose</h3>';
+            content += '<p>This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the development of <strong>' + (data.projectName || 'the application') + '</strong>.</p>';
+            content += '<p>The application is designed as a ' + (data.projectType || 'mobile application') + ' to ' + (data.projectDescription || 'meet specific business requirements') + '.</p>';
+            
+            content += '<h3>1.2 Scope</h3>';
+            content += '<p>This SRS covers the complete development lifecycle of <strong>' + (data.projectName || 'the application') + '</strong>, including:</p>';
+            content += '<ul>';
+            content += '<li>Functional requirements and specifications</li>';
+            content += '<li>User interface and user experience requirements</li>';
+            content += '<li>Performance and security requirements</li>';
+            content += '<li>Integration and deployment requirements</li>';
+            content += '</ul>';
+
+            // 2. Overall Description
+            content += '<h2>2. Overall Description</h2>';
+            content += '<h3>2.1 Product Perspective</h3>';
+            content += '<p><strong>' + (data.projectName || 'The application') + '</strong> is a ' + (data.projectType || 'standalone mobile application') + ' designed to serve ' + (data.targetAudience || 'end users') + ' in the ' + (data.primaryMarkets || 'target market') + '.</p>';
+
+            content += '<h3>2.2 Product Functions</h3>';
+            content += '<p>The application shall provide the following core functionality:</p>';
+            content += '<ul>';
+            if (data.main_features && data.main_features.length > 0) {
+                data.main_features.forEach(feature => {
+                    content += '<li><strong>' + getFeatureDisplayName(feature) + ':</strong> ' + getFeatureDescription(feature) + '</li>';
+                });
+            } else {
+                content += '<li>Core application functionality to be determined during detailed planning phase</li>';
+            }
+            content += '</ul>';
+
+            // 3. Specific Requirements
+            content += '<h2>3. Specific Requirements</h2>';
+            content += '<h3>3.1 Functional Requirements</h3>';
+            content += '<p>The following functional requirements define what the system shall do:</p>';
+            
+            if (data.main_features && data.main_features.length > 0) {
+                data.main_features.forEach((feature, index) => {
+                    content += '<div class="highlight-box">';
+                    content += '<p><strong>FR-' + (index + 1) + ': ' + getFeatureDisplayName(feature) + '</strong></p>';
+                    content += '<p>The system shall provide functionality to ' + getFeatureDescription(feature) + '. This includes all necessary user interface components, data validation, and error handling mechanisms.</p>';
+                    content += '</div>';
+                });
+            }
+
+            content += '<h3>3.2 Non-Functional Requirements</h3>';
+            content += '<h4>3.2.1 Performance Requirements</h4>';
+            content += '<ul>';
+            content += '<li>Application startup time: Less than 3 seconds</li>';
+            content += '<li>Screen transition time: Less than 1 second</li>';
+            content += '<li>Data loading time: Less than 2 seconds for standard operations</li>';
+            content += '<li>Response time: Less than 500ms for user interactions</li>';
+            content += '</ul>';
+
+            content += '<h4>3.2.2 Security Requirements</h4>';
+            content += '<ul>';
+            content += '<li>All data transmission must use HTTPS/TLS encryption</li>';
+            content += '<li>Secure user authentication with password hashing</li>';
+            content += '<li>Role-based access control for different user types</li>';
+            content += '<li>Sensitive data must be encrypted at rest</li>';
+            content += '</ul>';
+
+            // 4. Appendices
+            content += '<h2>4. Appendices</h2>';
+            content += '<h3>4.1 Glossary</h3>';
+            content += '<ul>';
+            content += '<li><strong>SRS:</strong> Software Requirements Specification</li>';
+            content += '<li><strong>API:</strong> Application Programming Interface</li>';
+            content += '<li><strong>UI/UX:</strong> User Interface/User Experience</li>';
+            content += '<li><strong>Flutter:</strong> Google\'s UI toolkit for building natively compiled applications</li>';
+            content += '</ul>';
+
+            return content;
+        }
+        
+        function getFeatureDisplayName(feature) {
+            const featureMap = {
+                'authentication': 'User Authentication & Login',
+                'user_management': 'User Profile Management',
+                'search_filter': 'Search & Filter System',
+                'payment_system': 'Payment & E-commerce',
+                'notifications': 'Push Notifications',
+                'messaging': 'In-App Messaging & Chat',
+                'location_services': 'Location & GPS Services',
+                'media_handling': 'Media & Content Handling',
+                'social_integration': 'Social Media Integration',
+                'analytics': 'Analytics & Reporting',
+                'offline_mode': 'Offline Functionality',
+                'admin_panel': 'Admin Panel & Dashboard'
+            };
+            return featureMap[feature] || feature;
+        }
+
+        function getFeatureDescription(feature) {
+            const descriptionMap = {
+                'authentication': 'authenticate and manage user accounts securely',
+                'user_management': 'manage user profiles and preferences',
+                'search_filter': 'search and filter content effectively',
+                'payment_system': 'process payments and manage transactions',
+                'notifications': 'receive push notifications',
+                'messaging': 'communicate with other users',
+                'location_services': 'access location-based features',
+                'media_handling': 'upload and manage media files',
+                'social_integration': 'integrate with social media platforms',
+                'analytics': 'view usage analytics and reports',
+                'offline_mode': 'use core features without internet connection',
+                'admin_panel': 'access administrative functions'
+            };
+            return descriptionMap[feature] || 'use this feature';
+        }
+
+        // Auto-test on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('SRS Test page loaded');
+            
+            // Check if there's data in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const dataKey = urlParams.get('key');
+            
+            if (dataKey) {
+                console.log('Data key found in URL:', dataKey);
+                document.getElementById('status').innerHTML = '<div class="success">✓ Data key detected. Click "Test with Real Form Data" to generate SRS.</div>';
+            } else {
+                document.getElementById('status').innerHTML = '<div class="success">✓ Ready to test. Click "Generate Test SRS Document" to see sample SRS.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
+
