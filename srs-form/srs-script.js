@@ -280,8 +280,7 @@ class SRSForm {
             
             // If it's a CORS error, try native form submission
             if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
-                console.log('CORS/fetch error detected, trying native form submission...');
-                this.showToast('Using fallback submission method...', 'info');
+                console.log('CORS/fetch error detected, using alternative submission method...');
                 
                 // Create a temporary form for native submission
                 const tempForm = document.createElement('form');
@@ -302,7 +301,17 @@ class SRSForm {
                 tempForm.submit();
                 document.body.removeChild(tempForm);
                 
-                this.showToast('Form submitted successfully! Check your email.', 'success');
+                // Show success message immediately
+                this.showToast('SRS form submitted successfully! I\'ll review your requirements and get back to you soon.', 'success');
+                
+                // Clear saved data
+                this.clearSavedData();
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = '../index.html?submitted=true';
+                }, 3000);
+                
                 return;
             }
             
