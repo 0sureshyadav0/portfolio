@@ -506,8 +506,8 @@
                 <span class="btn-text">Download PDF</span>
             </button>
             <button id="submitBtn" class="btn-primary">
-                <span class="btn-icon">📧</span>
-                <span class="btn-text">Submit SRS & Get Contract</span>
+                <span class="btn-icon">📤</span>
+                <span class="btn-text">Submit Complete Package</span>
             </button>
         </div>
     </div>
@@ -516,6 +516,7 @@
     <div id="toast" class="toast"></div>
 
     <script src="enhanced-gemini.js"></script>
+    <script src="complete-submission.js"></script>
     <script>
         class SRSPreview {
             constructor() {
@@ -539,6 +540,9 @@
                 
                 // Initialize enhanced Gemini service
                 this.enhancedGemini = new EnhancedGeminiService();
+                
+                // Initialize complete submission service
+                this.completeSubmission = new CompleteSubmissionService(this);
                 
                 this.init();
             }
@@ -1415,45 +1419,232 @@
                 URL.revokeObjectURL(url);
             }
 
-            submitSRS() {
+            async submitSRS() {
                 this.submitBtn.disabled = true;
-                this.submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Submitting...</span>';
+                this.submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Preparing Complete Package...</span>';
 
-                const emailContent = this.createEmailContent();
-                this.submitToWeb3Forms(emailContent);
+                try {
+                    // Use the complete submission service
+                    await this.completeSubmission.submitCompletePackage();
+                    
+                } catch (error) {
+                    console.error('Error in complete submission:', error);
+                    this.showToast('Error preparing submission. Please try again.', 'error');
+                    this.submitBtn.disabled = false;
+                    this.submitBtn.innerHTML = '<span class="btn-icon">📤</span><span class="btn-text">Submit Complete Package</span>';
+                }
             }
 
-            createEmailContent() {
-                let content = `NEW SRS FORM SUBMISSION\n\n`;
-                content += `Project Details:\n`;
-                content += `- Project Name: ${this.formData.projectName || 'Not specified'}\n`;
-                content += `- Client: ${this.formData.clientName || 'Not specified'}\n`;
-                content += `- Project Type: ${this.formData.projectType || 'Not specified'}\n`;
-                content += `- Description: ${this.formData.projectDescription || 'Not specified'}\n\n`;
+            async prepareCompleteDocumentPackage() {
+                console.log('Preparing complete document package...');
                 
-                content += `Target Audience: ${this.formData.targetAudience || 'Not specified'}\n`;
-                content += `Primary Markets: ${this.formData.primaryMarkets || 'Not specified'}\n`;
-                content += `Platforms: ${Array.isArray(this.formData.platforms) ? this.formData.platforms.join(', ') : this.formData.platforms || 'Not specified'}\n\n`;
+                // Get all document contents
+                const srsContent = this.srsDocument.innerHTML;
+                const contractContent = this.contractDocument.innerHTML;
+                const pricingContent = this.pricingDocument.innerHTML;
+                const roadmapContent = this.roadmapDocument.innerHTML;
+                const summaryContent = this.summaryDocument.innerHTML;
                 
-                content += `Selected Features:\n`;
-                if (this.formData.main_features && this.formData.main_features.length > 0) {
-                    this.formData.main_features.forEach(feature => {
-                        content += `- ${this.getFeatureDisplayName(feature)}\n`;
+                // Create comprehensive package
+                const packageData = {
+                    projectInfo: {
+                        projectName: this.formData.projectName || 'Not specified',
+                        clientName: this.formData.clientName || 'Not specified',
+                        clientEmail: this.formData.clientEmail || 'Not specified',
+                        clientPhone: this.formData.clientPhone || 'Not specified',
+                        projectType: this.formData.projectType || 'Not specified',
+                        projectDescription: this.formData.projectDescription || 'Not specified',
+                        targetAudience: this.formData.targetAudience || 'Not specified',
+                        primaryMarkets: this.formData.primaryMarkets || 'Not specified',
+                        platforms: Array.isArray(this.formData.platforms) ? this.formData.platforms.join(', ') : this.formData.platforms || 'Not specified',
+                        mainFeatures: this.formData.main_features || [],
+                        subFeatures: this.formData.sub_features || [],
+                        projectTimeline: this.formData.projectTimeline || 'Not specified',
+                        budgetRange: this.formData.budgetRange || 'Not specified',
+                        developmentPhase: this.formData.developmentPhase || 'Not specified',
+                        additionalNotes: this.formData.additionalNotes || 'None',
+                        submissionDate: new Date().toLocaleString()
+                    },
+                    documents: {
+                        srsDocument: {
+                            title: 'Software Requirements Specification',
+                            content: srsContent,
+                            wordCount: this.getWordCount(srsContent)
+                        },
+                        projectAgreement: {
+                            title: 'Project Agreement & Contract',
+                            content: contractContent,
+                            wordCount: this.getWordCount(contractContent)
+                        },
+                        pricingTimeline: {
+                            title: 'Pricing & Timeline Estimation',
+                            content: pricingContent,
+                            wordCount: this.getWordCount(pricingContent)
+                        },
+                        developerRoadmap: {
+                            title: 'Developer Roadmap & Implementation Guide',
+                            content: roadmapContent,
+                            wordCount: this.getWordCount(roadmapContent)
+                        },
+                        projectSummary: {
+                            title: 'Project Summary & Overview',
+                            content: summaryContent,
+                            wordCount: this.getWordCount(summaryContent)
+                        }
+                    },
+                    statistics: {
+                        totalDocuments: 5,
+                        totalWordCount: this.getWordCount(srsContent) + this.getWordCount(contractContent) + 
+                                      this.getWordCount(pricingContent) + this.getWordCount(roadmapContent) + 
+                                      this.getWordCount(summaryContent),
+                        featuresCount: this.formData.main_features ? this.formData.main_features.length : 0,
+                        subFeaturesCount: this.formData.sub_features ? this.formData.sub_features.length : 0
+                    }
+                };
+                
+                console.log('Complete package prepared:', packageData);
+                return packageData;
+            }
+
+            getWordCount(htmlContent) {
+                // Remove HTML tags and count words
+                const textContent = htmlContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                return textContent.split(' ').length;
+            }
+
+            async submitCompletePackage(packageData) {
+                try {
+                    // Create comprehensive email content with all documents
+                    const emailContent = this.createCompleteEmailContent(packageData);
+                    
+                    // Submit to Web3Forms
+                    await this.submitToWeb3Forms(emailContent, packageData);
+                    
+                } catch (error) {
+                    console.error('Error submitting complete package:', error);
+                    throw error;
+                }
+            }
+
+            createCompleteEmailContent(packageData) {
+                const { projectInfo, documents, statistics } = packageData;
+                
+                let content = `🎯 COMPLETE SRS PROJECT PACKAGE SUBMISSION\n`;
+                content += `==========================================\n\n`;
+                
+                // Project Overview
+                content += `📋 PROJECT OVERVIEW\n`;
+                content += `-------------------\n`;
+                content += `Project Name: ${projectInfo.projectName}\n`;
+                content += `Client: ${projectInfo.clientName}\n`;
+                content += `Email: ${projectInfo.clientEmail}\n`;
+                content += `Phone: ${projectInfo.clientPhone}\n`;
+                content += `Project Type: ${projectInfo.projectType}\n`;
+                content += `Description: ${projectInfo.projectDescription}\n`;
+                content += `Target Audience: ${projectInfo.targetAudience}\n`;
+                content += `Primary Markets: ${projectInfo.primaryMarkets}\n`;
+                content += `Platforms: ${projectInfo.platforms}\n`;
+                content += `Timeline: ${projectInfo.projectTimeline}\n`;
+                content += `Budget Range: ${projectInfo.budgetRange}\n`;
+                content += `Development Phase: ${projectInfo.developmentPhase}\n`;
+                content += `Submission Date: ${projectInfo.submissionDate}\n\n`;
+                
+                // Features Summary
+                content += `🔧 SELECTED FEATURES (${statistics.featuresCount} main features)\n`;
+                content += `----------------------------------------\n`;
+                if (projectInfo.mainFeatures && projectInfo.mainFeatures.length > 0) {
+                    projectInfo.mainFeatures.forEach(feature => {
+                        content += `• ${this.getFeatureDisplayName(feature)}\n`;
                     });
                 } else {
-                    content += `- No features selected\n`;
+                    content += `• No features selected\n`;
                 }
                 content += `\n`;
                 
-                content += `Timeline: ${this.formData.projectTimeline || 'Not specified'}\n`;
-                content += `Budget Range: ${this.formData.budgetRange || 'Not specified'}\n`;
-                content += `Development Phase: ${this.formData.developmentPhase || 'Not specified'}\n\n`;
+                // Document Statistics
+                content += `📊 DOCUMENT PACKAGE STATISTICS\n`;
+                content += `-----------------------------\n`;
+                content += `Total Documents: ${statistics.totalDocuments}\n`;
+                content += `Total Word Count: ${statistics.totalWordCount.toLocaleString()} words\n`;
+                content += `Main Features: ${statistics.featuresCount}\n`;
+                content += `Sub Features: ${statistics.subFeaturesCount}\n\n`;
                 
-                content += `Additional Notes: ${this.formData.additionalNotes || 'None'}\n\n`;
-                content += `---\n`;
-                content += `This SRS was generated and submitted through the online form.`;
+                // Document Contents
+                content += `📄 COMPLETE DOCUMENT PACKAGE\n`;
+                content += `============================\n\n`;
+                
+                // SRS Document
+                content += `1️⃣ SOFTWARE REQUIREMENTS SPECIFICATION\n`;
+                content += `----------------------------------------\n`;
+                content += `Word Count: ${documents.srsDocument.wordCount} words\n`;
+                content += `Content:\n`;
+                content += this.stripHtmlTags(documents.srsDocument.content);
+                content += `\n\n`;
+                
+                // Project Agreement
+                content += `2️⃣ PROJECT AGREEMENT & CONTRACT\n`;
+                content += `--------------------------------\n`;
+                content += `Word Count: ${documents.projectAgreement.wordCount} words\n`;
+                content += `Content:\n`;
+                content += this.stripHtmlTags(documents.projectAgreement.content);
+                content += `\n\n`;
+                
+                // Pricing & Timeline
+                content += `3️⃣ PRICING & TIMELINE ESTIMATION\n`;
+                content += `---------------------------------\n`;
+                content += `Word Count: ${documents.pricingTimeline.wordCount} words\n`;
+                content += `Content:\n`;
+                content += this.stripHtmlTags(documents.pricingTimeline.content);
+                content += `\n\n`;
+                
+                // Developer Roadmap
+                content += `4️⃣ DEVELOPER ROADMAP & IMPLEMENTATION GUIDE\n`;
+                content += `--------------------------------------------\n`;
+                content += `Word Count: ${documents.developerRoadmap.wordCount} words\n`;
+                content += `Content:\n`;
+                content += this.stripHtmlTags(documents.developerRoadmap.content);
+                content += `\n\n`;
+                
+                // Project Summary
+                content += `5️⃣ PROJECT SUMMARY & OVERVIEW\n`;
+                content += `-----------------------------\n`;
+                content += `Word Count: ${documents.projectSummary.wordCount} words\n`;
+                content += `Content:\n`;
+                content += this.stripHtmlTags(documents.projectSummary.content);
+                content += `\n\n`;
+                
+                // Footer
+                content += `==========================================\n`;
+                content += `✅ COMPLETE PACKAGE SUBMITTED SUCCESSFULLY\n`;
+                content += `This comprehensive package includes all AI-generated documents\n`;
+                content += `tailored specifically for this project requirements.\n`;
+                content += `Generated on: ${new Date().toLocaleString()}\n`;
                 
                 return content;
+            }
+
+            stripHtmlTags(htmlContent) {
+                // Convert HTML to plain text while preserving structure
+                let text = htmlContent
+                    .replace(/<h[1-6][^>]*>/g, '\n\n')
+                    .replace(/<\/h[1-6]>/g, '\n')
+                    .replace(/<p[^>]*>/g, '\n')
+                    .replace(/<\/p>/g, '\n')
+                    .replace(/<br[^>]*>/g, '\n')
+                    .replace(/<li[^>]*>/g, '\n• ')
+                    .replace(/<\/li>/g, '')
+                    .replace(/<ul[^>]*>/g, '\n')
+                    .replace(/<\/ul>/g, '\n')
+                    .replace(/<ol[^>]*>/g, '\n')
+                    .replace(/<\/ol>/g, '\n')
+                    .replace(/<div[^>]*>/g, '\n')
+                    .replace(/<\/div>/g, '\n')
+                    .replace(/<[^>]*>/g, '') // Remove remaining HTML tags
+                    .replace(/\n\s*\n\s*\n/g, '\n\n') // Clean up multiple newlines
+                    .replace(/^\s+|\s+$/g, '') // Trim
+                    .substring(0, 5000); // Limit length for email
+                
+                return text;
             }
 
             async submitToWeb3Forms(emailContent) {
