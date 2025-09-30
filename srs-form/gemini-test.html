@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API Test Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #17a2b8; }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .test-case {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .test-case h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 Gemini API Test Tool</h1>
+    <p>This tool tests whether Gemini API returns different responses for different project configurations.</p>
+    
+    <div class="test-section">
+        <h2>🧪 Test Cases</h2>
+        
+        <div class="test-case">
+            <h4>Test Case 1: Simple App (Authentication only)</h4>
+            <button onclick="testGeminiAPI('simple')">Test Simple App</button>
+            <div id="simple-result"></div>
+        </div>
+        
+        <div class="test-case">
+            <h4>Test Case 2: Complex App (Multiple features)</h4>
+            <button onclick="testGeminiAPI('complex')">Test Complex App</button>
+            <div id="complex-result"></div>
+        </div>
+        
+        <div class="test-case">
+            <h4>Test Case 3: E-commerce App (Payment + Analytics)</h4>
+            <button onclick="testGeminiAPI('ecommerce')">Test E-commerce App</button>
+            <div id="ecommerce-result"></div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>📊 Comparison Results</h2>
+        <button onclick="compareResults()">Compare All Results</button>
+        <div id="comparison-result"></div>
+    </div>
+
+    <script>
+        // Include the Gemini pricing service
+        class GeminiPricingService {
+            constructor() {
+                this.apiKey = "AIzaSyBG-2d7HZZ8vwoz-bqF3JpischbYz29jTA";
+                this.baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+            }
+
+            async callGeminiAPI(prompt) {
+                const requestBody = {
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 8192,
+                    }
+                };
+
+                try {
+                    const response = await fetch(`${this.baseUrl}?key=${this.apiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                        throw new Error('Invalid API response structure');
+                    }
+                    
+                    return data.candidates[0].content.parts[0].text;
+                } catch (error) {
+                    console.error('Network or API error:', error);
+                    throw error;
+                }
+            }
+
+            createCostEstimationPrompt(formData) {
+                const features = formData.main_features || [];
+                const subFeatures = formData.sub_features || [];
+                const projectType = formData.projectType || 'mobile_app';
+                const platforms = formData.platforms || ['android', 'ios'];
+
+                return `
+You are a Flutter development expert in Nepal. Estimate the cost for developing a ${projectType} with the following specifications:
+
+PROJECT DETAILS:
+- Project Type: ${projectType}
+- Platforms: ${platforms.join(', ')}
+- Main Features: ${features.join(', ')}
+- Sub Features: ${subFeatures.join(', ')}
+- Project Name: ${formData.projectName || 'Not specified'}
+- Project Description: ${formData.projectDescription || 'Not specified'}
+
+IMPORTANT: Base your estimation on the ACTUAL features selected. Each feature has different complexity and cost implications:
+- Authentication: Requires backend integration, security considerations, OAuth implementation (40-60 hours)
+- Payment System: Requires payment gateway integration, PCI compliance, transaction handling (50-80 hours)
+- Location Services: Requires GPS integration, maps API, location permissions (25-40 hours)
+- Messaging: Requires real-time communication, WebSocket implementation, chat UI (45-70 hours)
+- Media Handling: Requires file upload, compression, storage, image/video processing (40-65 hours)
+- Analytics: Requires tracking implementation, dashboard creation, data visualization (30-50 hours)
+- User Management: Requires profile management, role-based access, user settings (25-40 hours)
+- Search & Filter: Requires database optimization, search algorithms, filtering logic (20-35 hours)
+- Notifications: Requires push notification setup, scheduling, user preferences (15-25 hours)
+- Social Integration: Requires API integration, social login, sharing functionality (20-35 hours)
+- Offline Mode: Requires local storage, sync mechanisms, offline-first architecture (50-80 hours)
+- Admin Panel: Requires dashboard development, user management, analytics views (60-100 hours)
+
+NEPAL MARKET CONTEXT:
+- Average Flutter developer rate: $15-25/hour
+- Junior developer: $10-15/hour
+- Senior developer: $20-35/hour
+- Project manager: $12-20/hour
+- UI/UX designer: $8-15/hour
+
+Please provide a detailed cost breakdown in JSON format:
+{
+  "totalCost": {
+    "usd": number,
+    "npr": number,
+    "currency": "USD"
+  },
+  "breakdown": {
+    "development": {
+      "hours": number,
+      "rate": number,
+      "cost": number
+    },
+    "design": {
+      "hours": number,
+      "rate": number,
+      "cost": number
+    },
+    "testing": {
+      "hours": number,
+      "rate": number,
+      "cost": number
+    },
+    "projectManagement": {
+      "hours": number,
+      "rate": number,
+      "cost": number
+    }
+  },
+  "featureCosts": [
+    {
+      "feature": "string",
+      "complexity": "low|medium|high",
+      "hours": number,
+      "cost": number,
+      "description": "string"
+    }
+  ],
+  "recommendations": [
+    "string"
+  ]
+}
+
+Make sure the estimation reflects the specific features and complexity of this project.`;
+            }
+        }
+
+        const geminiService = new GeminiPricingService();
+        const testResults = {};
+
+        async function testGeminiAPI(testType) {
+            const testCases = {
+                simple: {
+                    projectName: 'Simple Login App',
+                    projectType: 'mobile_app',
+                    main_features: ['authentication'],
+                    sub_features: ['login', 'register'],
+                    platforms: ['android']
+                },
+                complex: {
+                    projectName: 'Complex Business App',
+                    projectType: 'mobile_app',
+                    main_features: ['authentication', 'user_management', 'payment_system', 'messaging', 'analytics'],
+                    sub_features: ['login', 'register', 'profile_edit', 'payment_gateway', 'chat', 'dashboard'],
+                    platforms: ['android', 'ios']
+                },
+                ecommerce: {
+                    projectName: 'E-commerce App',
+                    projectType: 'mobile_app',
+                    main_features: ['payment_system', 'analytics', 'user_management', 'search_filter'],
+                    sub_features: ['payment_gateway', 'dashboard', 'profile_edit', 'product_search'],
+                    platforms: ['android', 'ios']
+                }
+            };
+
+            const testData = testCases[testType];
+            const resultDiv = document.getElementById(`${testType}-result`);
+            
+            resultDiv.innerHTML = '<p class="info">⏳ Testing Gemini API...</p>';
+            
+            try {
+                const prompt = geminiService.createCostEstimationPrompt(testData);
+                console.log(`Testing ${testType} app with prompt:`, prompt);
+                
+                const response = await geminiService.callGeminiAPI(prompt);
+                console.log(`Gemini response for ${testType}:`, response);
+                
+                // Try to parse JSON from response
+                const jsonMatch = response.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    const parsed = JSON.parse(jsonMatch[0]);
+                    testResults[testType] = {
+                        input: testData,
+                        output: parsed,
+                        rawResponse: response
+                    };
+                    
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ Test completed!</p>
+                        <p class="info"><strong>Total Cost:</strong> $${parsed.totalCost?.usd || 'N/A'}</p>
+                        <p class="info"><strong>Development Hours:</strong> ${parsed.breakdown?.development?.hours || 'N/A'}</p>
+                        <p class="info"><strong>Features:</strong> ${testData.main_features.join(', ')}</p>
+                        <details>
+                            <summary>View Full Response</summary>
+                            <pre>${JSON.stringify(parsed, null, 2)}</pre>
+                        </details>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <p class="error">❌ No JSON found in response</p>
+                        <details>
+                            <summary>View Raw Response</summary>
+                            <pre>${response}</pre>
+                        </details>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                    <details>
+                        <summary>View Error Details</summary>
+                        <pre>${error.stack}</pre>
+                    </details>
+                `;
+            }
+        }
+
+        function compareResults() {
+            const comparisonDiv = document.getElementById('comparison-result');
+            
+            if (Object.keys(testResults).length === 0) {
+                comparisonDiv.innerHTML = '<p class="error">❌ No test results to compare. Run tests first.</p>';
+                return;
+            }
+            
+            let comparisonHTML = '<h3>📊 Cost Comparison</h3><table border="1" style="width: 100%; border-collapse: collapse;">';
+            comparisonHTML += '<tr><th>Test Case</th><th>Features</th><th>Total Cost</th><th>Dev Hours</th><th>Cost per Feature</th></tr>';
+            
+            Object.keys(testResults).forEach(testType => {
+                const result = testResults[testType];
+                const totalCost = result.output.totalCost?.usd || 0;
+                const devHours = result.output.breakdown?.development?.hours || 0;
+                const featureCount = result.input.main_features.length;
+                const costPerFeature = featureCount > 0 ? (totalCost / featureCount).toFixed(0) : 0;
+                
+                comparisonHTML += `
+                    <tr>
+                        <td>${testType}</td>
+                        <td>${result.input.main_features.join(', ')}</td>
+                        <td>$${totalCost}</td>
+                        <td>${devHours}h</td>
+                        <td>$${costPerFeature}</td>
+                    </tr>
+                `;
+            });
+            
+            comparisonHTML += '</table>';
+            
+            // Check if results are different
+            const costs = Object.values(testResults).map(r => r.output.totalCost?.usd || 0);
+            const uniqueCosts = [...new Set(costs)];
+            
+            if (uniqueCosts.length === 1) {
+                comparisonHTML += '<p class="error">⚠️ WARNING: All test cases returned the same cost! Gemini is not differentiating between projects.</p>';
+            } else {
+                comparisonHTML += '<p class="success">✅ Good: Different test cases returned different costs.</p>';
+            }
+            
+            comparisonDiv.innerHTML = comparisonHTML;
+        }
+    </script>
+</body>
+</html>

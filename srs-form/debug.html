@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRS Data Debug Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #17a2b8; }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 SRS Data Debug Tool</h1>
+    
+    <div class="debug-section">
+        <h2>📊 Current localStorage Data</h2>
+        <button onclick="checkLocalStorage()">Check localStorage</button>
+        <div id="localStorageResult"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🧪 Test Data Generation</h2>
+        <button onclick="generateTestData()">Generate Test Data</button>
+        <button onclick="testDataFlow()">Test Data Flow</button>
+        <div id="testResult"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🔗 Quick Links</h2>
+        <button onclick="window.open('index.html', '_blank')">Open SRS Form</button>
+        <button onclick="window.open('srs-preview.html', '_blank')">Open SRS Preview</button>
+    </div>
+
+    <script>
+        function checkLocalStorage() {
+            const result = document.getElementById('localStorageResult');
+            const keys = [];
+            
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('srs_preview_data_')) {
+                    keys.push(key);
+                }
+            }
+            
+            if (keys.length === 0) {
+                result.innerHTML = '<p class="error">❌ No SRS data found in localStorage</p>';
+                return;
+            }
+            
+            const latestKey = keys[keys.length - 1];
+            const storedData = localStorage.getItem(latestKey);
+            
+            try {
+                const parsedData = JSON.parse(storedData);
+                result.innerHTML = `
+                    <p class="success">✅ Data found!</p>
+                    <p class="info"><strong>Key:</strong> ${latestKey}</p>
+                    <p class="info"><strong>Main features:</strong> ${parsedData.main_features ? parsedData.main_features.join(', ') : 'None'}</p>
+                    <p class="info"><strong>Sub features:</strong> ${parsedData.sub_features ? parsedData.sub_features.join(', ') : 'None'}</p>
+                    <p class="info"><strong>Project name:</strong> ${parsedData.projectName || 'Not specified'}</p>
+                    <details>
+                        <summary>View Full Data</summary>
+                        <pre>${JSON.stringify(parsedData, null, 2)}</pre>
+                    </details>
+                `;
+            } catch (error) {
+                result.innerHTML = `<p class="error">❌ Error parsing data: ${error.message}</p>`;
+            }
+        }
+        
+        function generateTestData() {
+            const testData = {
+                clientName: 'Test Client',
+                clientEmail: 'test@example.com',
+                clientPhone: '1234567890',
+                projectName: 'Test Project',
+                projectType: 'mobile_app',
+                projectDescription: 'A test mobile application',
+                targetAudience: 'General users',
+                primaryMarkets: 'Nepal',
+                platforms: ['android', 'ios'],
+                main_features: ['authentication', 'user_management', 'payment_system'],
+                sub_features: ['login', 'register', 'profile_edit', 'payment_gateway'],
+                backendRequirements: 'REST API',
+                integrations: ['payment_gateway', 'analytics'],
+                security: ['encryption', 'authentication'],
+                projectTimeline: '3 months',
+                budgetRange: '$5000 - $10000',
+                developmentPhase: 'Full development'
+            };
+            
+            const dataKey = 'srs_preview_data_' + Date.now();
+            localStorage.setItem(dataKey, JSON.stringify(testData));
+            
+            document.getElementById('testResult').innerHTML = `
+                <p class="success">✅ Test data generated!</p>
+                <p class="info"><strong>Key:</strong> ${dataKey}</p>
+                <p class="info"><strong>Main features:</strong> ${testData.main_features.join(', ')}</p>
+                <p class="info"><strong>Sub features:</strong> ${testData.sub_features.join(', ')}</p>
+                <button onclick="window.open('srs-preview.html?key=${dataKey}', '_blank')">Test Preview with This Data</button>
+            `;
+        }
+        
+        function testDataFlow() {
+            // Simulate the form data formatting
+            const formData = new FormData();
+            formData.append('clientName', 'Test Client');
+            formData.append('projectName', 'Test Project');
+            formData.append('main_features[]', 'authentication');
+            formData.append('main_features[]', 'user_management');
+            formData.append('main_features[]', 'payment_system');
+            formData.append('sub_features[]', 'login');
+            formData.append('sub_features[]', 'register');
+            
+            const data = formatFormDataForGeneration(formData);
+            
+            document.getElementById('testResult').innerHTML = `
+                <p class="success">✅ Data flow test completed!</p>
+                <p class="info"><strong>Formatted data:</strong></p>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+        }
+        
+        function formatFormDataForGeneration(formData) {
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (key === 'access_key' || key === 'subject' || key === 'from_name' || key === 'redirect' || key === 'redirect_url') {
+                    continue;
+                }
+                
+                // Handle array fields (checkboxes with [] notation)
+                if (key.endsWith('[]')) {
+                    const arrayKey = key.slice(0, -2); // Remove '[]' from key
+                    if (!data[arrayKey]) {
+                        data[arrayKey] = [];
+                    }
+                    data[arrayKey].push(value);
+                } else if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            return data;
+        }
+        
+        // Auto-check localStorage on page load
+        window.addEventListener('load', checkLocalStorage);
+    </script>
+</body>
+</html>

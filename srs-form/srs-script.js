@@ -1328,7 +1328,14 @@ Form completed in: ${this.getFormCompletionTime()} steps
                 continue;
             }
             
-            if (data[key]) {
+            // Handle array fields (checkboxes with [] notation)
+            if (key.endsWith('[]')) {
+                const arrayKey = key.slice(0, -2); // Remove '[]' from key
+                if (!data[arrayKey]) {
+                    data[arrayKey] = [];
+                }
+                data[arrayKey].push(value);
+            } else if (data[key]) {
                 if (Array.isArray(data[key])) {
                     data[key].push(value);
                 } else {
@@ -1338,6 +1345,10 @@ Form completed in: ${this.getFormCompletionTime()} steps
                 data[key] = value;
             }
         }
+        
+        console.log('Formatted data:', data);
+        console.log('Main features array:', data.main_features);
+        console.log('Sub features array:', data.sub_features);
         
         return data;
     }

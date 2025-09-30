@@ -2,17 +2,23 @@
 class GeminiPricingService {
     constructor() {
         this.apiKey = "AIzaSyBG-2d7HZZ8vwoz-bqF3JpischbYz29jTA";
-        this.baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+        this.baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
     }
 
     async estimateProjectCost(formData) {
         try {
+            console.log('Starting cost estimation with data:', formData);
             const prompt = this.createCostEstimationPrompt(formData);
             const response = await this.callGeminiAPI(prompt);
-            return this.parseCostResponse(response);
+            const result = this.parseCostResponse(response);
+            console.log('Gemini API cost estimation result:', result);
+            return result;
         } catch (error) {
             console.error('Error estimating project cost:', error);
-            return this.getFallbackCostEstimate(formData);
+            console.log('Using fallback cost estimation');
+            const fallbackResult = this.getFallbackCostEstimate(formData);
+            console.log('Fallback cost estimation result:', fallbackResult);
+            return fallbackResult;
         }
     }
 
@@ -44,6 +50,13 @@ class GeminiPricingService {
         const projectType = formData.projectType || 'mobile_app';
         const platforms = formData.platforms || ['android', 'ios'];
         const complexity = this.assessComplexity(formData);
+
+        console.log('Creating cost estimation prompt with data:');
+        console.log('- Features:', features);
+        console.log('- Sub Features:', subFeatures);
+        console.log('- Project Type:', projectType);
+        console.log('- Platforms:', platforms);
+        console.log('- Complexity:', complexity);
 
         return `
 You are a Flutter development expert in Nepal. Estimate the cost for developing a ${projectType} with the following specifications:
@@ -107,6 +120,23 @@ Please provide a detailed cost breakdown in JSON format:
   ]
 }
 
+FEATURE-SPECIFIC CONSIDERATIONS:
+${this.getFeatureSpecificCosts(features)}
+
+IMPORTANT: Base your estimation on the ACTUAL features selected. Each feature has different complexity and cost implications:
+- Authentication: Requires backend integration, security considerations, OAuth implementation
+- Payment System: Requires payment gateway integration, PCI compliance, transaction handling
+- Location Services: Requires GPS integration, maps API, location permissions
+- Messaging: Requires real-time communication, WebSocket implementation, chat UI
+- Media Handling: Requires file upload, compression, storage, image/video processing
+- Analytics: Requires tracking implementation, dashboard creation, data visualization
+- User Management: Requires profile management, role-based access, user settings
+- Search & Filter: Requires database optimization, search algorithms, filtering logic
+- Notifications: Requires push notification setup, scheduling, user preferences
+- Social Integration: Requires API integration, social login, sharing functionality
+- Offline Mode: Requires local storage, sync mechanisms, offline-first architecture
+- Admin Panel: Requires dashboard development, user management, analytics views
+
 Consider:
 1. Feature complexity and integration requirements
 2. Platform-specific development needs
@@ -118,12 +148,41 @@ Consider:
         `;
     }
 
+    getFeatureSpecificCosts(features) {
+        const featureCosts = {
+            'authentication': 'High complexity - Backend integration, security protocols, OAuth implementation (40-60 hours)',
+            'user_management': 'Medium complexity - Profile management, role-based access, user settings (25-40 hours)',
+            'search_filter': 'Medium complexity - Database optimization, search algorithms, filtering logic (20-35 hours)',
+            'payment_system': 'High complexity - Payment gateway integration, PCI compliance, transaction handling (50-80 hours)',
+            'notifications': 'Medium complexity - Push notification setup, scheduling, user preferences (15-25 hours)',
+            'messaging': 'High complexity - Real-time communication, WebSocket implementation, chat UI (45-70 hours)',
+            'location_services': 'Medium complexity - GPS integration, maps API, location permissions (25-40 hours)',
+            'media_handling': 'High complexity - File upload, compression, storage, image/video processing (40-65 hours)',
+            'social_integration': 'Medium complexity - API integration, social login, sharing functionality (20-35 hours)',
+            'analytics': 'Medium complexity - Tracking implementation, dashboard creation, data visualization (30-50 hours)',
+            'offline_mode': 'High complexity - Local storage, sync mechanisms, offline-first architecture (50-80 hours)',
+            'admin_panel': 'High complexity - Dashboard development, user management, analytics views (60-100 hours)'
+        };
+
+        return features.map(feature => {
+            const cost = featureCosts[feature] || 'Medium complexity - Standard feature implementation (20-30 hours)';
+            return `- ${this.getFeatureDisplayName(feature)}: ${cost}`;
+        }).join('\n');
+    }
+
     createTimelineEstimationPrompt(formData) {
         const features = formData.main_features || [];
         const subFeatures = formData.sub_features || [];
         const projectType = formData.projectType || 'mobile_app';
         const platforms = formData.platforms || ['android', 'ios'];
         const complexity = this.assessComplexity(formData);
+
+        console.log('Creating timeline estimation prompt with data:');
+        console.log('- Features:', features);
+        console.log('- Sub Features:', subFeatures);
+        console.log('- Project Type:', projectType);
+        console.log('- Platforms:', platforms);
+        console.log('- Complexity:', complexity);
 
         return `
 You are a Flutter development expert in Nepal. Estimate the timeline for developing a ${projectType} with the following specifications:
@@ -308,44 +367,84 @@ Provide very specific daily schedules with exact time slots (9:00 AM - 12:00 PM 
             }
         };
 
-        const response = await fetch(`${this.baseUrl}?key=${this.apiKey}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-        });
+        try {
+            // Use backend proxy to avoid CORS issues
+            const response = await fetch('/api/gemini', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt })
+            });
 
-        if (!response.ok) {
-            throw new Error(`Gemini API error: ${response.status}`);
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('API Error Response:', errorText);
+                throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+            }
+
+            const data = await response.json();
+            
+            if (!data.text) {
+                console.error('Unexpected API response structure:', data);
+                throw new Error('Invalid API response structure');
+            }
+            
+            return data.text;
+        } catch (error) {
+            console.error('Network or API error:', error);
+            throw error;
         }
-
-        const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
     }
 
     parseCostResponse(response) {
+        console.log('Parsing Gemini cost response:');
+        console.log('Raw response:', response);
+        console.log('Response type:', typeof response);
+        console.log('Response length:', response ? response.length : 'undefined');
+        
         try {
             // Extract JSON from response
             const jsonMatch = response.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
-                return JSON.parse(jsonMatch[0]);
+                console.log('Found JSON match:', jsonMatch[0]);
+                const parsed = JSON.parse(jsonMatch[0]);
+                console.log('Parsed JSON:', parsed);
+                return parsed;
+            } else {
+                console.log('No JSON found in response, using fallback');
             }
         } catch (error) {
             console.error('Error parsing cost response:', error);
+            console.log('Response that caused error:', response);
         }
+        
+        console.log('Using fallback cost estimation');
         return this.getFallbackCostEstimate({});
     }
 
     parseTimelineResponse(response) {
+        console.log('Parsing Gemini timeline response:');
+        console.log('Raw response:', response);
+        console.log('Response type:', typeof response);
+        console.log('Response length:', response ? response.length : 'undefined');
+        
         try {
             const jsonMatch = response.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
-                return JSON.parse(jsonMatch[0]);
+                console.log('Found JSON match:', jsonMatch[0]);
+                const parsed = JSON.parse(jsonMatch[0]);
+                console.log('Parsed JSON:', parsed);
+                return parsed;
+            } else {
+                console.log('No JSON found in timeline response, using fallback');
             }
         } catch (error) {
             console.error('Error parsing timeline response:', error);
+            console.log('Response that caused error:', response);
         }
+        
+        console.log('Using fallback timeline estimation');
         return this.getFallbackTimelineEstimate({});
     }
 
@@ -399,6 +498,7 @@ Provide very specific daily schedules with exact time slots (9:00 AM - 12:00 PM 
     }
 
     getFallbackCostEstimate(formData) {
+        console.log('Using fallback cost estimation');
         const features = formData.main_features || [];
         const complexity = this.assessComplexity(formData);
         
@@ -414,6 +514,7 @@ Provide very specific daily schedules with exact time slots (9:00 AM - 12:00 PM 
         
         const rate = rates[complexity];
         
+        // Calculate feature costs
         features.forEach(feature => {
             const cost = this.getFeatureCost(feature, rate);
             featureCosts.push({
@@ -426,19 +527,39 @@ Provide very specific daily schedules with exact time slots (9:00 AM - 12:00 PM 
             baseCost += cost.cost;
         });
         
+        // If no features selected, provide minimum cost
+        if (baseCost === 0) {
+            baseCost = 800; // Minimum project cost for basic app
+        }
+        
+        // Calculate breakdown costs
+        const developmentCost = baseCost * 0.7;
+        const designCost = 240;
+        const testingCost = 225;
+        const pmCost = 150;
+        const totalCost = developmentCost + designCost + testingCost + pmCost;
+        
         return {
             totalCost: {
-                usd: baseCost,
-                npr: baseCost * 133, // Approximate USD to NPR conversion
+                usd: totalCost,
+                npr: totalCost * 133, // Approximate USD to NPR conversion
                 currency: "USD"
             },
             breakdown: {
-                development: { hours: featureCosts.reduce((sum, f) => sum + f.hours, 0), rate: rate.hourly, cost: baseCost * 0.7 },
-                design: { hours: 20, rate: 12, cost: 240 },
-                testing: { hours: 15, rate: 15, cost: 225 },
-                projectManagement: { hours: 10, rate: 15, cost: 150 }
+                development: { hours: featureCosts.reduce((sum, f) => sum + f.hours, 0) || 40, rate: rate.hourly, cost: developmentCost },
+                design: { hours: 20, rate: 12, cost: designCost },
+                testing: { hours: 15, rate: 15, cost: testingCost },
+                projectManagement: { hours: 10, rate: 15, cost: pmCost }
             },
-            featureCosts: featureCosts,
+            featureCosts: featureCosts.length > 0 ? featureCosts : [
+                {
+                    feature: "Basic App Development",
+                    complexity: complexity,
+                    hours: 40,
+                    cost: developmentCost,
+                    description: "Core application development"
+                }
+            ],
             recommendations: [
                 "Consider starting with MVP features first",
                 "Plan for 20% buffer in timeline and budget",
@@ -591,9 +712,11 @@ Provide very specific daily schedules with exact time slots (9:00 AM - 12:00 PM 
         };
         
         const featureData = featureCosts[feature] || { hours: 10, baseCost: 125 };
+        const calculatedCost = featureData.baseCost * rate.multiplier;
+        
         return {
             hours: featureData.hours,
-            cost: featureData.baseCost * rate.multiplier
+            cost: Math.max(calculatedCost, 100) // Ensure minimum cost of $100
         };
     }
 

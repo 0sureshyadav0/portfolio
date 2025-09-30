@@ -586,7 +586,11 @@
                     console.log('Parsed form data:', this.formData);
                     console.log('Form data keys:', Object.keys(this.formData));
                     console.log('Main features:', this.formData.main_features);
+                    console.log('Main features type:', typeof this.formData.main_features);
+                    console.log('Main features length:', this.formData.main_features ? this.formData.main_features.length : 'undefined');
                     console.log('Sub features:', this.formData.sub_features);
+                    console.log('Sub features type:', typeof this.formData.sub_features);
+                    console.log('Sub features length:', this.formData.sub_features ? this.formData.sub_features.length : 'undefined');
                     
                     // Validate that we have the essential data
                     if (!this.formData.projectName && !this.formData.clientName) {
@@ -771,13 +775,23 @@
             }
 
             generateFeatureList(data) {
+                console.log('generateFeatureList called with data:', data);
+                console.log('main_features:', data.main_features);
+                console.log('main_features type:', typeof data.main_features);
+                console.log('main_features length:', data.main_features ? data.main_features.length : 'undefined');
+                
                 if (!data.main_features || data.main_features.length === 0) {
+                    console.log('No main features found, returning fallback');
                     return '<li>Core application functionality to be determined during detailed planning phase</li>';
                 }
                 
-                return data.main_features.map(feature => {
+                console.log('Generating feature list for:', data.main_features);
+                const featureList = data.main_features.map(feature => {
                     return `<li><strong>${this.getFeatureDisplayName(feature)}:</strong> ${this.getFeatureDescription(feature)}</li>`;
                 }).join('');
+                
+                console.log('Generated feature list:', featureList);
+                return featureList;
             }
 
             generateFunctionalRequirements(data) {
