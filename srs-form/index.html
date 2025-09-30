@@ -125,7 +125,7 @@
                                     <div class="progress-fill" id="progressFill"></div>
                                 </div>
                                 <div class="progress-text">
-                                    <span id="progressText">Step 1 of 8</span>
+                                    <span id="progressText">Step 1 of 9</span>
                                 </div>
                             </div>
 
@@ -795,10 +795,99 @@
                                 </div>
                             </div>
 
-                            <!-- Step 8: Additional Information -->
+                            <!-- Step 8: Pricing & Estimation -->
                             <div class="form-step" data-step="8">
                                 <h2 class="step-title">
                                     <span class="step-number">08</span>
+                                    Project Estimation & Pricing
+                                </h2>
+
+                                <div class="estimation-section">
+                                    <div class="estimation-header">
+                                        <h3>AI-Powered Project Estimation</h3>
+                                        <p>Get instant cost and timeline estimates based on your selected features</p>
+                                    </div>
+
+                                    <div class="estimation-controls">
+                                        <button type="button" id="estimateBtn" class="estimate-btn">
+                                            <span class="btn-icon">🤖</span>
+                                            <span class="btn-text">Generate AI Estimation</span>
+                                        </button>
+                                        <button type="button" id="roadmapBtn" class="roadmap-btn" style="display: none;">
+                                            <span class="btn-icon">🗺️</span>
+                                            <span class="btn-text">Generate Developer Roadmap</span>
+                                        </button>
+                                    </div>
+
+                                    <div id="estimationResults" class="estimation-results" style="display: none;">
+                                        <!-- Cost Estimation -->
+                                        <div class="estimation-card cost-estimation">
+                                            <h4>💰 Cost Estimation</h4>
+                                            <div class="cost-summary">
+                                                <div class="total-cost">
+                                                    <span class="cost-label">Total Project Cost:</span>
+                                                    <span class="cost-amount" id="totalCost">$0</span>
+                                                </div>
+                                                <div class="cost-breakdown">
+                                                    <div class="breakdown-item">
+                                                        <span>Development:</span>
+                                                        <span id="devCost">$0</span>
+                                                    </div>
+                                                    <div class="breakdown-item">
+                                                        <span>Design:</span>
+                                                        <span id="designCost">$0</span>
+                                                    </div>
+                                                    <div class="breakdown-item">
+                                                        <span>Testing:</span>
+                                                        <span id="testCost">$0</span>
+                                                    </div>
+                                                    <div class="breakdown-item">
+                                                        <span>Project Management:</span>
+                                                        <span id="pmCost">$0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Timeline Estimation -->
+                                        <div class="estimation-card timeline-estimation">
+                                            <h4>⏰ Timeline Estimation</h4>
+                                            <div class="timeline-summary">
+                                                <div class="total-timeline">
+                                                    <span class="timeline-label">Total Duration:</span>
+                                                    <span class="timeline-amount" id="totalTimeline">0 weeks</span>
+                                                </div>
+                                                <div class="timeline-phases" id="timelinePhases">
+                                                    <!-- Timeline phases will be populated here -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Feature Costs -->
+                                        <div class="estimation-card feature-costs">
+                                            <h4>🔧 Feature Breakdown</h4>
+                                            <div class="feature-list" id="featureCosts">
+                                                <!-- Feature costs will be populated here -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="roadmapResults" class="roadmap-results" style="display: none;">
+                                        <div class="roadmap-header">
+                                            <h4>🗺️ Developer Roadmap</h4>
+                                            <p>Detailed development plan with daily schedules</p>
+                                        </div>
+                                        <div class="roadmap-content" id="roadmapContent">
+                                            <!-- Roadmap content will be populated here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 9: Additional Information -->
+                            <div class="form-step" data-step="9">
+                                <h2 class="step-title">
+                                    <span class="step-number">09</span>
                                     Additional Information
                                 </h2>
 
@@ -1010,6 +1099,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="gemini-pricing.js"></script>
     <script src="srs-script.js"></script>
 </body>
 </html>

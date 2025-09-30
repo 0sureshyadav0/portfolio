@@ -2,7 +2,7 @@
 class SRSForm {
     constructor() {
         this.currentStep = 1;
-        this.totalSteps = 8;
+        this.totalSteps = 9;
         this.form = document.getElementById('srsForm');
         this.progressFill = document.getElementById('progressFill');
         this.progressText = document.getElementById('progressText');
@@ -65,6 +65,9 @@ class SRSForm {
         
         // Load saved data
         this.loadSavedData();
+        
+        // Initialize estimation functionality
+        this.initializeEstimation();
     }
 
     nextStep() {
@@ -2104,6 +2107,187 @@ Form completed in: ${this.getFormCompletionTime()} steps
         `);
         printWindow.document.close();
         printWindow.print();
+    }
+
+    // Estimation functionality
+    initializeEstimation() {
+        this.geminiService = new GeminiPricingService();
+        this.estimateBtn = document.getElementById('estimateBtn');
+        this.roadmapBtn = document.getElementById('roadmapBtn');
+        this.estimationResults = document.getElementById('estimationResults');
+        this.roadmapResults = document.getElementById('roadmapResults');
+        
+        if (this.estimateBtn) {
+            this.estimateBtn.addEventListener('click', () => this.generateEstimation());
+        }
+        
+        if (this.roadmapBtn) {
+            this.roadmapBtn.addEventListener('click', () => this.generateRoadmap());
+        }
+    }
+
+    async generateEstimation() {
+        if (!this.validateCurrentStep()) {
+            this.showToast('Please complete all required fields before generating estimation.', 'error');
+            return;
+        }
+
+        try {
+            this.estimateBtn.disabled = true;
+            this.estimateBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Generating...</span>';
+
+            const formData = new FormData(this.form);
+            const data = this.formatFormDataForGeneration(formData);
+
+            console.log('Generating estimation for data:', data);
+
+            // Generate cost and timeline estimates
+            const [costEstimate, timelineEstimate] = await Promise.all([
+                this.geminiService.estimateProjectCost(data),
+                this.geminiService.estimateProjectTimeline(data)
+            ]);
+
+            console.log('Cost estimate:', costEstimate);
+            console.log('Timeline estimate:', timelineEstimate);
+
+            // Display results
+            this.displayEstimationResults(costEstimate, timelineEstimate);
+            
+            // Show roadmap button
+            this.roadmapBtn.style.display = 'flex';
+            
+            this.showToast('Estimation generated successfully!', 'success');
+
+        } catch (error) {
+            console.error('Error generating estimation:', error);
+            this.showToast(`Estimation error: ${error.message}`, 'error');
+        } finally {
+            this.estimateBtn.disabled = false;
+            this.estimateBtn.innerHTML = '<span class="btn-icon">🤖</span><span class="btn-text">Generate AI Estimation</span>';
+        }
+    }
+
+    async generateRoadmap() {
+        try {
+            this.roadmapBtn.disabled = true;
+            this.roadmapBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Generating...</span>';
+
+            const formData = new FormData(this.form);
+            const data = this.formatFormDataForGeneration(formData);
+
+            console.log('Generating roadmap for data:', data);
+
+            const roadmap = await this.geminiService.generateDeveloperRoadmap(data);
+            console.log('Roadmap:', roadmap);
+
+            this.displayRoadmapResults(roadmap);
+            this.showToast('Developer roadmap generated successfully!', 'success');
+
+        } catch (error) {
+            console.error('Error generating roadmap:', error);
+            this.showToast(`Roadmap error: ${error.message}`, 'error');
+        } finally {
+            this.roadmapBtn.disabled = false;
+            this.roadmapBtn.innerHTML = '<span class="btn-icon">🗺️</span><span class="btn-text">Generate Developer Roadmap</span>';
+        }
+    }
+
+    displayEstimationResults(costEstimate, timelineEstimate) {
+        // Display cost estimation
+        document.getElementById('totalCost').textContent = `$${costEstimate.totalCost.usd.toLocaleString()}`;
+        document.getElementById('devCost').textContent = `$${costEstimate.breakdown.development.cost.toLocaleString()}`;
+        document.getElementById('designCost').textContent = `$${costEstimate.breakdown.design.cost.toLocaleString()}`;
+        document.getElementById('testCost').textContent = `$${costEstimate.breakdown.testing.cost.toLocaleString()}`;
+        document.getElementById('pmCost').textContent = `$${costEstimate.breakdown.projectManagement.cost.toLocaleString()}`;
+
+        // Display timeline estimation
+        document.getElementById('totalTimeline').textContent = `${timelineEstimate.totalDuration.weeks} weeks`;
+        
+        const timelinePhases = document.getElementById('timelinePhases');
+        timelinePhases.innerHTML = '';
+        
+        timelineEstimate.phases.forEach(phase => {
+            const phaseDiv = document.createElement('div');
+            phaseDiv.className = 'phase-item';
+            phaseDiv.innerHTML = `
+                <h5>${phase.phase}</h5>
+                <p>${phase.description}</p>
+                <div class="phase-duration">Duration: ${phase.duration.weeks} weeks</div>
+            `;
+            timelinePhases.appendChild(phaseDiv);
+        });
+
+        // Display feature costs
+        const featureCosts = document.getElementById('featureCosts');
+        featureCosts.innerHTML = '';
+        
+        costEstimate.featureCosts.forEach(feature => {
+            const featureDiv = document.createElement('div');
+            featureDiv.className = 'feature-item';
+            featureDiv.innerHTML = `
+                <h5>${feature.feature}</h5>
+                <div class="feature-cost">$${feature.cost.toLocaleString()}</div>
+                <div class="feature-description">${feature.description}</div>
+                <span class="feature-complexity">${feature.complexity}</span>
+            `;
+            featureCosts.appendChild(featureDiv);
+        });
+
+        this.estimationResults.style.display = 'block';
+        this.estimationResults.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    displayRoadmapResults(roadmap) {
+        const roadmapContent = document.getElementById('roadmapContent');
+        roadmapContent.innerHTML = '';
+
+        roadmap.roadmap.phases.forEach(phase => {
+            const phaseDiv = document.createElement('div');
+            phaseDiv.className = 'roadmap-phase';
+            
+            let tasksHtml = '';
+            phase.tasks.forEach(task => {
+                let dailyScheduleHtml = '';
+                if (task.dailySchedule && task.dailySchedule.length > 0) {
+                    dailyScheduleHtml = `
+                        <div class="daily-schedule">
+                            <h6>Daily Schedule:</h6>
+                            ${task.dailySchedule.map(day => `
+                                <div>
+                                    <strong>Day ${day.day} (${day.date}):</strong>
+                                    ${day.timeSlots.map(slot => `
+                                        <div class="time-slot">
+                                            <span class="time">${slot.time}</span>
+                                            <span class="task">${slot.task}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                tasksHtml += `
+                    <div class="roadmap-task">
+                        <h6>${task.task}</h6>
+                        <div class="task-duration">Duration: ${task.duration.days} days (${task.duration.hours} hours)</div>
+                        <div class="task-description">${task.description}</div>
+                        ${dailyScheduleHtml}
+                    </div>
+                `;
+            });
+
+            phaseDiv.innerHTML = `
+                <h5>${phase.phase}</h5>
+                <p>${phase.description}</p>
+                <div class="roadmap-tasks">${tasksHtml}</div>
+            `;
+            
+            roadmapContent.appendChild(phaseDiv);
+        });
+
+        this.roadmapResults.style.display = 'block';
+        this.roadmapResults.scrollIntoView({ behavior: 'smooth' });
     }
 }
 

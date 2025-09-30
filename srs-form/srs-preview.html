@@ -436,6 +436,8 @@
         <div id="documentTabs" class="document-tabs" style="display: none;">
             <button class="tab-btn active" data-tab="srs">SRS Document</button>
             <button class="tab-btn" data-tab="contract">Project Agreement</button>
+            <button class="tab-btn" data-tab="pricing">Pricing & Timeline</button>
+            <button class="tab-btn" data-tab="roadmap">Developer Roadmap</button>
             <button class="tab-btn" data-tab="summary">Project Summary</button>
         </div>
 
@@ -450,6 +452,18 @@
             <div class="tab-content" id="contract-tab">
                 <div id="contractDocument" class="srs-document">
                     <!-- Contract content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="pricing-tab">
+                <div id="pricingDocument" class="srs-document">
+                    <!-- Pricing and timeline content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="roadmap-tab">
+                <div id="roadmapDocument" class="srs-document">
+                    <!-- Developer roadmap content will be generated here -->
                 </div>
             </div>
             
@@ -489,6 +503,8 @@
                 this.documentContent = document.getElementById('documentContent');
                 this.srsDocument = document.getElementById('srsDocument');
                 this.contractDocument = document.getElementById('contractDocument');
+                this.pricingDocument = document.getElementById('pricingDocument');
+                this.roadmapDocument = document.getElementById('roadmapDocument');
                 this.summaryDocument = document.getElementById('summaryDocument');
                 this.actionButtons = document.getElementById('actionButtons');
                 this.submitBtn = document.getElementById('submitBtn');
@@ -631,6 +647,8 @@
                     // Generate content
                     const srsContent = this.createSRSContent(this.formData);
                     const contractContent = this.createContractContent(this.formData);
+                    const pricingContent = this.createPricingContent(this.formData);
+                    const roadmapContent = this.createRoadmapContent(this.formData);
                     const summaryContent = this.createSummaryContent(this.formData);
                     
                     console.log('SRS content length:', srsContent.length);
@@ -640,6 +658,8 @@
                     // Insert content into DOM
                     this.srsDocument.innerHTML = srsContent;
                     this.contractDocument.innerHTML = contractContent;
+                    this.pricingDocument.innerHTML = pricingContent;
+                    this.roadmapDocument.innerHTML = roadmapContent;
                     this.summaryDocument.innerHTML = summaryContent;
                     
                     console.log('Content inserted into DOM');
@@ -875,6 +895,273 @@
                 return content;
             }
 
+            createPricingContent(data) {
+                let content = '<h1>Project Pricing & Timeline Estimation</h1>';
+                
+                content += '<div class="highlight-box">';
+                content += '<h2>💰 Cost Estimation</h2>';
+                content += '<p>Based on your selected features and requirements, here is the estimated project cost:</p>';
+                content += '</div>';
+
+                content += '<h2>Total Project Cost</h2>';
+                content += '<div class="highlight-box">';
+                content += '<p><strong>Estimated Total:</strong> $2,500 - $5,000 USD</p>';
+                content += '<p><strong>Nepal Rupees:</strong> NPR 332,500 - NPR 665,000</p>';
+                content += '<p><em>Note: Final pricing will be confirmed after detailed discussion</em></p>';
+                content += '</div>';
+
+                content += '<h2>Cost Breakdown</h2>';
+                content += '<div class="table-container">';
+                content += '<table class="srs-table">';
+                content += '<thead><tr><th>Component</th><th>Estimated Hours</th><th>Rate (USD/hour)</th><th>Cost (USD)</th></tr></thead>';
+                content += '<tbody>';
+                content += '<tr><td>Development</td><td>80-120</td><td>$20</td><td>$1,600 - $2,400</td></tr>';
+                content += '<tr><td>UI/UX Design</td><td>20-30</td><td>$15</td><td>$300 - $450</td></tr>';
+                content += '<tr><td>Testing & QA</td><td>15-25</td><td>$15</td><td>$225 - $375</td></tr>';
+                content += '<tr><td>Project Management</td><td>10-15</td><td>$15</td><td>$150 - $225</td></tr>';
+                content += '<tr><td>Deployment & Setup</td><td>5-10</td><td>$20</td><td>$100 - $200</td></tr>';
+                content += '</tbody>';
+                content += '</table>';
+                content += '</div>';
+
+                content += '<h2>Feature-Based Pricing</h2>';
+                content += '<div class="table-container">';
+                content += '<table class="srs-table">';
+                content += '<thead><tr><th>Feature</th><th>Complexity</th><th>Estimated Hours</th><th>Cost (USD)</th></tr></thead>';
+                content += '<tbody>';
+                
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach(feature => {
+                        const featureCost = this.getFeatureCost(feature);
+                        content += `<tr><td>${this.getFeatureDisplayName(feature)}</td><td>${featureCost.complexity}</td><td>${featureCost.hours}</td><td>$${featureCost.cost}</td></tr>`;
+                    });
+                } else {
+                    content += '<tr><td colspan="4">No features selected</td></tr>';
+                }
+                
+                content += '</tbody>';
+                content += '</table>';
+                content += '</div>';
+
+                content += '<h2>⏰ Timeline Estimation</h2>';
+                content += '<div class="highlight-box">';
+                content += '<p><strong>Total Duration:</strong> 6-12 weeks</p>';
+                content += '<p><strong>Working Days:</strong> 30-60 days</p>';
+                content += '</div>';
+
+                content += '<h2>Project Phases</h2>';
+                content += '<div class="table-container">';
+                content += '<table class="srs-table">';
+                content += '<thead><tr><th>Phase</th><th>Duration</th><th>Description</th><th>Deliverables</th></tr></thead>';
+                content += '<tbody>';
+                content += '<tr><td>Planning & Design</td><td>1-2 weeks</td><td>Project setup, UI/UX design, architecture planning</td><td>Wireframes, Design mockups, Technical architecture</td></tr>';
+                content += '<tr><td>Development</td><td>4-8 weeks</td><td>Core feature development and integration</td><td>Working app, Feature implementations</td></tr>';
+                content += '<tr><td>Testing & Deployment</td><td>1-2 weeks</td><td>Quality assurance, testing, and app store deployment</td><td>Tested app, App store submission</td></tr>';
+                content += '</tbody>';
+                content += '</table>';
+                content += '</div>';
+
+                content += '<h2>Payment Terms</h2>';
+                content += '<div class="highlight-box">';
+                content += '<ul>';
+                content += '<li><strong>30%</strong> - Project initiation and contract signing</li>';
+                content += '<li><strong>40%</strong> - After MVP completion and client approval</li>';
+                content += '<li><strong>30%</strong> - Final delivery and app store submission</li>';
+                content += '</ul>';
+                content += '</div>';
+
+                content += '<h2>Additional Considerations</h2>';
+                content += '<ul>';
+                content += '<li>All prices are in USD and based on Nepal market rates</li>';
+                content += '<li>Final pricing may vary based on specific requirements</li>';
+                content += '<li>Additional features or changes will be quoted separately</li>';
+                content += '<li>3 months of bug-fixing warranty included</li>';
+                content += '<li>Ongoing maintenance and updates available separately</li>';
+                content += '</ul>';
+
+                return content;
+            }
+
+            createRoadmapContent(data) {
+                let content = '<h1>Developer Roadmap & Implementation Guide</h1>';
+                
+                content += '<div class="highlight-box">';
+                content += '<h2>🗺️ Project Development Roadmap</h2>';
+                content += '<p>This roadmap provides a detailed guide for implementing your project with specific timelines and daily schedules.</p>';
+                content += '</div>';
+
+                content += '<h2>Technology Stack</h2>';
+                content += '<div class="table-container">';
+                content += '<table class="srs-table">';
+                content += '<thead><tr><th>Category</th><th>Technology</th><th>Purpose</th></tr></thead>';
+                content += '<tbody>';
+                content += '<tr><td>Frontend</td><td>Flutter, Dart</td><td>Cross-platform mobile development</td></tr>';
+                content += '<tr><td>Backend</td><td>Node.js, Express</td><td>API and server logic</td></tr>';
+                content += '<tr><td>Database</td><td>MongoDB, Firebase</td><td>Data storage and management</td></tr>';
+                content += '<tr><td>State Management</td><td>Provider, Bloc</td><td>Application state management</td></tr>';
+                content += '<tr><td>Tools</td><td>VS Code, Android Studio, Git</td><td>Development environment</td></tr>';
+                content += '</tbody>';
+                content += '</table>';
+                content += '</div>';
+
+                content += '<h2>Development Phases</h2>';
+                
+                // Phase 1: Project Setup
+                content += '<h3>Phase 1: Project Setup & Planning (Week 1)</h3>';
+                content += '<div class="highlight-box">';
+                content += '<h4>Day 1-2: Project Initialization</h4>';
+                content += '<ul>';
+                content += '<li><strong>9:00 AM - 12:00 PM:</strong> Initialize Flutter project, set up Git repository</li>';
+                content += '<li><strong>1:00 PM - 5:00 PM:</strong> Configure development environment, install dependencies</li>';
+                content += '</ul>';
+                content += '<h4>Day 3-4: Architecture Planning</h4>';
+                content += '<ul>';
+                content += '<li><strong>9:00 AM - 12:00 PM:</strong> Design application architecture and folder structure</li>';
+                content += '<li><strong>1:00 PM - 5:00 PM:</strong> Set up state management and routing</li>';
+                content += '</ul>';
+                content += '<h4>Day 5: UI/UX Design</h4>';
+                content += '<ul>';
+                content += '<li><strong>9:00 AM - 12:00 PM:</strong> Create wireframes and mockups</li>';
+                content += '<li><strong>1:00 PM - 5:00 PM:</strong> Design system and component library</li>';
+                content += '</ul>';
+                content += '</div>';
+
+                // Phase 2: Core Development
+                content += '<h3>Phase 2: Core Development (Weeks 2-6)</h3>';
+                
+                if (data.main_features && data.main_features.length > 0) {
+                    data.main_features.forEach((feature, index) => {
+                        const featureInfo = this.getFeatureRoadmap(feature);
+                        content += `<h4>Feature ${index + 1}: ${this.getFeatureDisplayName(feature)}</h4>`;
+                        content += '<div class="highlight-box">';
+                        content += `<p><strong>Duration:</strong> ${featureInfo.duration} days</p>`;
+                        content += `<p><strong>Complexity:</strong> ${featureInfo.complexity}</p>`;
+                        content += '<h5>Implementation Steps:</h5>';
+                        content += '<ol>';
+                        featureInfo.steps.forEach(step => {
+                            content += `<li><strong>${step.time}:</strong> ${step.description}</li>`;
+                        });
+                        content += '</ol>';
+                        content += '</div>';
+                    });
+                }
+
+                // Phase 3: Testing & Deployment
+                content += '<h3>Phase 3: Testing & Deployment (Week 7-8)</h3>';
+                content += '<div class="highlight-box">';
+                content += '<h4>Week 7: Testing & Quality Assurance</h4>';
+                content += '<ul>';
+                content += '<li><strong>Day 1-2:</strong> Unit testing and code review</li>';
+                content += '<li><strong>Day 3-4:</strong> Integration testing and bug fixes</li>';
+                content += '<li><strong>Day 5:</strong> User acceptance testing</li>';
+                content += '</ul>';
+                content += '<h4>Week 8: Deployment & Launch</h4>';
+                content += '<ul>';
+                content += '<li><strong>Day 1-2:</strong> App store preparation and submission</li>';
+                content += '<li><strong>Day 3-4:</strong> Production deployment and monitoring</li>';
+                content += '<li><strong>Day 5:</strong> Launch and initial support</li>';
+                content += '</ul>';
+                content += '</div>';
+
+                content += '<h2>Best Practices & Guidelines</h2>';
+                content += '<div class="highlight-box">';
+                content += '<ul>';
+                content += '<li>Follow Flutter best practices and coding conventions</li>';
+                content += '<li>Implement proper error handling and logging</li>';
+                content += '<li>Write comprehensive unit tests for critical functions</li>';
+                content += '<li>Use version control effectively with meaningful commit messages</li>';
+                content += '<li>Regular code reviews and refactoring</li>';
+                content += '<li>Optimize for performance and battery life</li>';
+                content += '<li>Ensure accessibility compliance</li>';
+                content += '</ul>';
+                content += '</div>';
+
+                content += '<h2>Common Challenges & Solutions</h2>';
+                content += '<div class="table-container">';
+                content += '<table class="srs-table">';
+                content += '<thead><tr><th>Challenge</th><th>Solution</th><th>Prevention</th></tr></thead>';
+                content += '<tbody>';
+                content += '<tr><td>State Management Complexity</td><td>Use Provider or Bloc pattern</td><td>Plan state structure early</td></tr>';
+                content += '<tr><td>Platform-specific Issues</td><td>Test on both iOS and Android</td><td>Use platform-specific code when needed</td></tr>';
+                content += '<tr><td>Performance Issues</td><td>Profile and optimize</td><td>Follow performance best practices</td></tr>';
+                content += '<tr><td>Third-party Integration</td><td>Use well-maintained packages</td><td>Research and test integrations early</td></tr>';
+                content += '</tbody>';
+                content += '</table>';
+                content += '</div>';
+
+                return content;
+            }
+
+            getFeatureCost(feature) {
+                const featureCosts = {
+                    'authentication': { complexity: 'Medium', hours: '16', cost: '320' },
+                    'user_management': { complexity: 'Low', hours: '12', cost: '240' },
+                    'search_filter': { complexity: 'Low', hours: '8', cost: '160' },
+                    'payment_system': { complexity: 'High', hours: '24', cost: '480' },
+                    'notifications': { complexity: 'Medium', hours: '10', cost: '200' },
+                    'messaging': { complexity: 'High', hours: '20', cost: '400' },
+                    'location_services': { complexity: 'Medium', hours: '12', cost: '240' },
+                    'media_handling': { complexity: 'Medium', hours: '16', cost: '320' },
+                    'social_integration': { complexity: 'Medium', hours: '14', cost: '280' },
+                    'analytics': { complexity: 'Low', hours: '8', cost: '160' },
+                    'offline_mode': { complexity: 'High', hours: '18', cost: '360' },
+                    'admin_panel': { complexity: 'High', hours: '20', cost: '400' }
+                };
+                
+                return featureCosts[feature] || { complexity: 'Medium', hours: '10', cost: '200' };
+            }
+
+            getFeatureRoadmap(feature) {
+                const roadmaps = {
+                    'authentication': {
+                        duration: 3,
+                        complexity: 'Medium',
+                        steps: [
+                            { time: 'Day 1, 9:00 AM - 12:00 PM', description: 'Design authentication UI and user flows' },
+                            { time: 'Day 1, 1:00 PM - 5:00 PM', description: 'Implement login and registration forms' },
+                            { time: 'Day 2, 9:00 AM - 12:00 PM', description: 'Set up backend authentication API' },
+                            { time: 'Day 2, 1:00 PM - 5:00 PM', description: 'Implement password reset functionality' },
+                            { time: 'Day 3, 9:00 AM - 12:00 PM', description: 'Add social login integration' },
+                            { time: 'Day 3, 1:00 PM - 5:00 PM', description: 'Testing and security validation' }
+                        ]
+                    },
+                    'user_management': {
+                        duration: 2,
+                        complexity: 'Low',
+                        steps: [
+                            { time: 'Day 1, 9:00 AM - 12:00 PM', description: 'Design user profile interface' },
+                            { time: 'Day 1, 1:00 PM - 5:00 PM', description: 'Implement profile editing functionality' },
+                            { time: 'Day 2, 9:00 AM - 12:00 PM', description: 'Add profile picture upload' },
+                            { time: 'Day 2, 1:00 PM - 5:00 PM', description: 'Implement user preferences and settings' }
+                        ]
+                    },
+                    'payment_system': {
+                        duration: 5,
+                        complexity: 'High',
+                        steps: [
+                            { time: 'Day 1, 9:00 AM - 12:00 PM', description: 'Research and select payment gateway' },
+                            { time: 'Day 1, 1:00 PM - 5:00 PM', description: 'Set up payment gateway integration' },
+                            { time: 'Day 2, 9:00 AM - 12:00 PM', description: 'Design payment flow UI' },
+                            { time: 'Day 2, 1:00 PM - 5:00 PM', description: 'Implement payment processing logic' },
+                            { time: 'Day 3, 9:00 AM - 12:00 PM', description: 'Add transaction history and receipts' },
+                            { time: 'Day 3, 1:00 PM - 5:00 PM', description: 'Implement refund and cancellation' },
+                            { time: 'Day 4, 9:00 AM - 12:00 PM', description: 'Security testing and validation' },
+                            { time: 'Day 4, 1:00 PM - 5:00 PM', description: 'PCI compliance implementation' },
+                            { time: 'Day 5, 9:00 AM - 5:00 PM', description: 'End-to-end testing and bug fixes' }
+                        ]
+                    }
+                };
+                
+                return roadmaps[feature] || {
+                    duration: 2,
+                    complexity: 'Medium',
+                    steps: [
+                        { time: 'Day 1, 9:00 AM - 5:00 PM', description: 'Feature implementation and testing' },
+                        { time: 'Day 2, 9:00 AM - 5:00 PM', description: 'Integration and final testing' }
+                    ]
+                };
+            }
+
             createSummaryContent(data) {
                 let content = '<h1>Project Summary & Next Steps</h1>';
                 
@@ -980,6 +1267,10 @@
                 switch(tabName) {
                     case 'contract':
                         return this.contractDocument;
+                    case 'pricing':
+                        return this.pricingDocument;
+                    case 'roadmap':
+                        return this.roadmapDocument;
                     case 'summary':
                         return this.summaryDocument;
                     default:
