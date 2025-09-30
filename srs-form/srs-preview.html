@@ -371,6 +371,28 @@
             padding: var(--space-2xl);
             color: #7f8c8d;
         }
+        
+        .loading-steps {
+            margin-top: 20px;
+        }
+        
+        .loading-steps .step {
+            padding: 8px 0;
+            color: #666;
+            font-size: 14px;
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-steps .step:nth-child(1) { animation-delay: 0s; }
+        .loading-steps .step:nth-child(2) { animation-delay: 0.5s; }
+        .loading-steps .step:nth-child(3) { animation-delay: 1s; }
+        .loading-steps .step:nth-child(4) { animation-delay: 1.5s; }
+        .loading-steps .step:nth-child(5) { animation-delay: 2s; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
 
         .error {
             text-align: center;
@@ -493,6 +515,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
+    <script src="enhanced-gemini.js"></script>
     <script>
         class SRSPreview {
             constructor() {
@@ -513,6 +536,9 @@
                 this.testSection = document.getElementById('testSection');
                 this.testBtn = document.getElementById('testBtn');
                 this.refreshBtn = document.getElementById('refreshBtn');
+                
+                // Initialize enhanced Gemini service
+                this.enhancedGemini = new EnhancedGeminiService();
                 
                 this.init();
             }
@@ -635,50 +661,88 @@
                 }
             }
 
-            generateDocuments() {
+            async generateDocuments() {
                 if (!this.formData) {
                     this.showError('No form data available');
                     return;
                 }
 
                 try {
-                    console.log('Starting document generation...');
+                    console.log('Starting AI-powered document generation...');
                     console.log('Form data:', this.formData);
-                    console.log('SRS document element:', this.srsDocument);
-                    console.log('Contract document element:', this.contractDocument);
-                    console.log('Summary document element:', this.summaryDocument);
                     
-                    // Generate content
+                    // Show loading state
+                    this.loadingMessage.style.display = 'block';
+                    this.loadingMessage.innerHTML = `
+                        <div class="loading">
+                            <h2>🤖 AI is generating your documents...</h2>
+                            <p>Creating personalized SRS, Agreement, Pricing, Roadmap, and Summary</p>
+                            <div class="loading-steps">
+                                <div class="step">📋 Generating SRS Document...</div>
+                                <div class="step">📄 Creating Project Agreement...</div>
+                                <div class="step">💰 Calculating Pricing & Timeline...</div>
+                                <div class="step">🗺️ Building Developer Roadmap...</div>
+                                <div class="step">📊 Preparing Project Summary...</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Generate all documents using AI
+                    const documents = await this.enhancedGemini.generateAllDocuments(this.formData);
+                    
+                    console.log('AI-generated documents:', documents);
+                    
+                    // Display the AI-generated content
+                    this.srsDocument.innerHTML = documents.srsDocument.content || this.createSRSContent(this.formData);
+                    this.contractDocument.innerHTML = documents.projectAgreement.content || this.createContractContent(this.formData);
+                    this.pricingDocument.innerHTML = documents.pricingTimeline.content || this.createPricingContent(this.formData);
+                    this.roadmapDocument.innerHTML = documents.developerRoadmap.content || this.createRoadmapContent(this.formData);
+                    this.summaryDocument.innerHTML = documents.projectSummary.content || this.createSummaryContent(this.formData);
+                    
+                    // Hide loading and show documents
+                    this.loadingMessage.style.display = 'none';
+                    this.documentTabs.style.display = 'flex';
+                    this.documentContent.style.display = 'block';
+                    this.actionButtons.style.display = 'flex';
+                    
+                    console.log('All AI documents generated successfully');
+                    
+                } catch (error) {
+                    console.error('Error generating AI documents:', error);
+                    console.log('Falling back to static document generation...');
+                    this.generateStaticDocuments();
+                }
+            }
+
+            generateStaticDocuments() {
+                try {
+                    console.log('Generating static documents as fallback...');
+                    
+                    // Generate content using static methods
                     const srsContent = this.createSRSContent(this.formData);
                     const contractContent = this.createContractContent(this.formData);
                     const pricingContent = this.createPricingContent(this.formData);
                     const roadmapContent = this.createRoadmapContent(this.formData);
                     const summaryContent = this.createSummaryContent(this.formData);
                     
-                    console.log('SRS content length:', srsContent.length);
-                    console.log('Contract content length:', contractContent.length);
-                    console.log('Summary content length:', summaryContent.length);
-                    
-                    // Insert content into DOM
+                    // Display content
                     this.srsDocument.innerHTML = srsContent;
                     this.contractDocument.innerHTML = contractContent;
                     this.pricingDocument.innerHTML = pricingContent;
                     this.roadmapDocument.innerHTML = roadmapContent;
                     this.summaryDocument.innerHTML = summaryContent;
                     
-                    console.log('Content inserted into DOM');
-                    
-                    // Show the documents
+                    // Show documents
                     this.loadingMessage.style.display = 'none';
                     this.documentTabs.style.display = 'flex';
                     this.documentContent.style.display = 'block';
                     this.actionButtons.style.display = 'flex';
                     
-                    console.log('All documents generated successfully');
+                    console.log('Static documents generated successfully');
+                    
                 } catch (error) {
-                    console.error('Error generating documents:', error);
-                    console.error('Error details:', error.message, error.stack);
-                    this.showError('Failed to generate documents: ' + error.message);
+                    console.error('Error generating static documents:', error);
+                    this.showError(`Failed to generate documents: ${error.message}`);
                 }
             }
 

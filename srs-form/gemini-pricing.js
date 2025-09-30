@@ -44,6 +44,39 @@ class GeminiPricingService {
         }
     }
 
+    async generateSRSDocument(formData) {
+        try {
+            const prompt = this.createSRSPrompt(formData);
+            const response = await this.callGeminiAPI(prompt);
+            return this.parseSRSResponse(response);
+        } catch (error) {
+            console.error('Error generating SRS document:', error);
+            return this.getFallbackSRS(formData);
+        }
+    }
+
+    async generateProjectAgreement(formData) {
+        try {
+            const prompt = this.createAgreementPrompt(formData);
+            const response = await this.callGeminiAPI(prompt);
+            return this.parseAgreementResponse(response);
+        } catch (error) {
+            console.error('Error generating project agreement:', error);
+            return this.getFallbackAgreement(formData);
+        }
+    }
+
+    async generateProjectSummary(formData) {
+        try {
+            const prompt = this.createSummaryPrompt(formData);
+            const response = await this.callGeminiAPI(prompt);
+            return this.parseSummaryResponse(response);
+        } catch (error) {
+            console.error('Error generating project summary:', error);
+            return this.getFallbackSummary(formData);
+        }
+    }
+
     createCostEstimationPrompt(formData) {
         const features = formData.main_features || [];
         const subFeatures = formData.sub_features || [];
