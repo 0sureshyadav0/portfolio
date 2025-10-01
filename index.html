@@ -893,17 +893,28 @@
                         const navLinks = document.getElementById('nav-links');
                         
                         if (navToggle && navLinks) {
-                            // Only apply mobile behavior on mobile screens
-                            if (window.innerWidth <= 768) {
-                                // Close menu when clicking on nav links
-                                const navLinkElements = navLinks.querySelectorAll('.nav-link');
-                                navLinkElements.forEach(link => {
-                                    link.addEventListener('click', function() {
+                            // Handle active state switching for all nav links
+                            const navLinkElements = navLinks.querySelectorAll('.nav-link');
+                            navLinkElements.forEach(link => {
+                                link.addEventListener('click', function() {
+                                    // Remove active class from all links
+                                    navLinkElements.forEach(navLink => {
+                                        navLink.classList.remove('active');
+                                    });
+                                    
+                                    // Add active class to clicked link
+                                    this.classList.add('active');
+                                    
+                                    // Close mobile menu if on mobile
+                                    if (window.innerWidth <= 768) {
                                         navToggle.classList.remove('active');
                                         navLinks.style.display = 'none';
-                                    });
+                                    }
                                 });
-                                
+                            });
+                            
+                            // Only apply mobile behavior on mobile screens
+                            if (window.innerWidth <= 768) {
                                 // Close menu when clicking outside
                                 document.addEventListener('click', function(event) {
                                     if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
