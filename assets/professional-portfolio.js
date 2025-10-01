@@ -22,11 +22,8 @@ function switchToHacker() {
 // Initialize Style from localStorage
 function initStyle() {
     const savedMode = localStorage.getItem('portfolio-mode');
-    if (savedMode === 'hacker') {
-        // Redirect to hacker mode if preference is set
-        window.location.href = './hacker.html';
-    }
-    // Default to professional mode (stay on current page)
+    // Don't redirect on page load - let user stay on current page
+    // Only redirect when they explicitly click the toggle button
     localStorage.setItem('portfolio-mode', 'professional');
 }
 
