@@ -16,17 +16,17 @@ function switchToHacker() {
     // Save current mode preference
     localStorage.setItem('portfolio-mode', 'hacker');
     // Redirect to hacker mode
-    window.location.href = './index.html';
+    window.location.href = './hacker.html';
 }
 
 // Initialize Style from localStorage
 function initStyle() {
     const savedMode = localStorage.getItem('portfolio-mode');
     if (savedMode === 'hacker') {
-        // Already in professional mode, button shows "Hacker Mode"
-        return;
+        // Redirect to hacker mode if preference is set
+        window.location.href = './hacker.html';
     }
-    // Default to professional mode
+    // Default to professional mode (stay on current page)
     localStorage.setItem('portfolio-mode', 'professional');
 }
 

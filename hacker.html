@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Suresh Yadav">
+    <meta name="description" content="Computer Science student with 3+ years of experience in Web Development, Flutter, Dart & C as well as in Android and iOS development.">
+    <meta name="keywords" content="Suresh Yadav, suresh yadav, SureshYadav, sureshyadav, portfolio, NxGen, Flutter Developer, Hacker">
+    <title>suresh@yadav:~$ portfolio</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Hacker Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lottie Animation -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Marked.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/hacker-style.css">
+    <link rel="stylesheet" href="./assets/mobile-first.css">
+    <link rel="stylesheet" href="./assets/professional-style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#00ff41">
+    <link rel="icon" href="./assets/image/icon.png">
+    
+    <!-- Meta Tags -->
+    <meta property="og:title" content="suresh@yadav:~$ portfolio">
+    <meta property="og:description" content="Computer Science student with 3+ years of experience in Flutter development">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./assets/image/icon.png">
+  </head>
+  <body>
+    <!-- Terminal Cursor -->
+    <div class="terminal-cursor"></div>
+    
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
+    
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
+    
+    <!-- Advanced Visual Effects -->
+    <div class="quantum-particles"></div>
+    <div class="neural-network"></div>
+    <div class="cyber-grid"></div>
+    
+    <!-- Terminal Header -->
+    <header class="terminal-header">
+        <div class="terminal-titlebar">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">suresh@yadav:~$ portfolio</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="hacker-nav" id="hacker-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-text">suresh@yadav</span>
+                <span class="brand-cursor">_</span>
+            </div>
+            
+            <!-- Style Switcher -->
+            <div class="style-switcher">
+                <button id="style-toggle" class="style-toggle-btn" onclick="toggleStyle()" title="Switch to Professional Mode">
+                    <span class="style-icon">🎨</span>
+                    <span class="style-text">Professional</span>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="nav-toggle" id="nav-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link active">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">home</span>
+                </a>
+                <a href="#work" class="nav-link">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">projects</span>
+                </a>
+                <a href="#about" class="nav-link">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">about</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">contact</span>
+                </a>
+                <a href="./srs-form/" class="nav-link">
+                    <span class="link-prefix">~/</span>
+                    <span class="link-text">srs_form</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-terminal">
+            <!-- Professional Mode Content -->
+            <div class="hero-content">
+                <div class="hero-title">Suresh Yadav</div>
+                <div class="hero-subtitle">Full Stack Developer & UI/UX Designer</div>
+                <div class="hero-buttons">
+                    <a href="./resume/index.html" class="hacker-btn primary">Resume</a>
+                    <a href="#work" class="hacker-btn secondary">View My Work</a>
+                    <a href="#contact" class="hacker-btn tertiary">Get In Touch</a>
+                </div>
+            </div>
+            
+            <!-- Hacker Mode Content -->
+            <div class="hacker-content">
+                <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn-close"></span>
+                        <span class="btn-minimize"></span>
+                        <span class="btn-maximize"></span>
+                    </div>
+                    <div class="terminal-title">suresh@yadav:~$ whoami</div>
+                </div>
+                
+                <div class="terminal-content">
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">whoami</span>
+                </div>
+                <div class="terminal-output" data-aos="fade-up">
+                    <div class="output-line">
+                        <span class="output-text">Suresh Yadav</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Flutter Developer | Mobile App Creator</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Computer Science Student</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">cat experience.txt</span>
+                </div>
+                <div class="terminal-output" data-aos="fade-up" data-aos-delay="200">
+                    <div class="output-line">
+                        <span class="output-text">3+ years of experience in:</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">• Web Development</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">• Flutter & Dart</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">• Android & iOS Development</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">• C Programming</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">ls -la projects/</span>
+                </div>
+                <div class="terminal-output" data-aos="fade-up" data-aos-delay="400">
+                    <div class="output-line">
+                        <span class="output-text">total 8</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">drwxr-xr-x 8 suresh suresh 4096 Jan 15 10:30 .</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">drwxr-xr-x 8 suresh suresh 4096 Jan 15 10:30 ..</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 NxGen.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 मेरो सिनेमा.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 PaaloX.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 Sangeet.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 Todo.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 Mausam.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 Fly Bird.apk</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">-rw-r--r-- 1 suresh suresh 2048 Jan 15 10:30 TechVeda.apk</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">cat motto.txt</span>
+                </div>
+                <div class="terminal-output" data-aos="fade-up" data-aos-delay="600">
+                    <div class="output-line">
+                        <span class="output-text">"Always be eager to learn"</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command typing">./start_portfolio.sh</span>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">echo "Welcome to the Matrix..."</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">Welcome to the Matrix...</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">neural_network --status=active</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">Neural Network: ONLINE</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Quantum Particles: STABLE</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Cyber Grid: SYNCHRONIZED</span>
+                    </div>
+              </div>
+                
+                <div class="terminal-line">
+                    <span class="prompt">suresh@yadav:~$</span>
+                    <span class="command">ai_mode --enable=smart_interactions</span>
+                </div>
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">AI Mode: ACTIVATED</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Smart Animations: ENABLED</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Spatial Audio: READY</span>
+              </div>
+                </div>
+                
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="800">
+                    <a href="./resume/index.html" class="hacker-btn primary">
+                        <span class="btn-icon">></span>
+                        <span class="btn-text">view_resume</span>
+                    </a>
+                    <a href="#work" class="hacker-btn secondary">
+                        <span class="btn-icon">></span>
+                        <span class="btn-text">explore_projects</span>
+                    </a>
+                </div>
+            </div>
+          </div>
+
+        <!-- Hacker Visual -->
+        <div class="hacker-visual" data-aos="fade-left">
+            <div class="code-matrix">
+                <div class="matrix-column">
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">0</span>
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">0</span>
+                    <span class="matrix-char">1</span>
+                </div>
+                <div class="matrix-column">
+                    <span class="matrix-char">0</span>
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">0</span>
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">0</span>
+                </div>
+                <div class="matrix-column">
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">0</span>
+                    <span class="matrix-char">1</span>
+                    <span class="matrix-char">1</span>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="parrot-container">
+          <lottie-player
+            id="parrot"
+            src="./assets/image/Parrot(1).json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
+                ></lottie-player>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="work-terminal">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">suresh@yadav:~$ ls -la projects/</div>
+        </div>
+
+            <div class="terminal-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-line">
+                        <span class="prompt">suresh@yadav:~$</span>
+                        <span class="command">cat projects_info.txt</span>
+                    </div>
+                    <div class="terminal-output">
+                        <div class="output-line">
+                            <span class="output-text">Available Projects:</span>
+                        </div>
+                        <div class="output-line">
+                            <span class="output-text">• Mobile Applications (8)</span>
+                        </div>
+                        <div class="output-line">
+                            <span class="output-text">• Flutter Packages (1)</span>
+                        </div>
+                        <div class="output-line">
+                            <span class="output-text">• Upcoming Projects (1)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work Filter -->
+                <div class="work-filter" data-aos="fade-up" data-aos-delay="100">
+                    <div class="terminal-line">
+                        <span class="prompt">suresh@yadav:~$</span>
+                        <span class="command">filter_projects --type=</span>
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <span class="btn-prefix">--</span>
+                            <span class="btn-text">all</span>
+                        </button>
+                        <button class="filter-btn" data-filter="apps">
+                            <span class="btn-prefix">--</span>
+                            <span class="btn-text">apps</span>
+                        </button>
+                        <button class="filter-btn" data-filter="packages">
+                            <span class="btn-prefix">--</span>
+                            <span class="btn-text">packages</span>
+                        </button>
+                        <button class="filter-btn" data-filter="upcoming">
+                            <span class="btn-prefix">--</span>
+                            <span class="btn-text">upcoming</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Work Grid -->
+                <div class="work-grid">
+                    <!-- Apps Section -->
+                    <div class="work-category" data-category="apps">
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat mobile_apps.txt</span>
+                        </div>
+                        <div id="projects" class="projects-grid"></div>
+                    </div>
+                    
+                    <!-- Packages Section -->
+                    <div class="work-category" data-category="packages">
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat packages.txt</span>
+                        </div>
+                        <div id="packages" class="packages-grid"></div>
+                    </div>
+                    
+                    <!-- Upcoming Section -->
+                    <div class="work-category" data-category="upcoming">
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat upcoming.txt</span>
+                        </div>
+                        <div id="upcomingProjects" class="upcoming-grid"></div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-terminal">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">suresh@yadav:~$ cat about.txt</div>
+            </div>
+            
+            <div class="terminal-content">
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat bio.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">I'm a passionate Computer Science student with 3+ years</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">of experience in mobile and web development.</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">I specialize in Flutter development and have created</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">multiple applications for Android and iOS platforms.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat philosophy.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">As a self-learner, I'm always eager to explore</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">new technologies and take on challenging projects.</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">I believe in creating user-friendly applications</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">that solve real-world problems.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat motto.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">"Always be eager to learn"</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat skills.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">Tech Stack:</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• Flutter & Dart</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• Android & iOS Development</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• C Programming</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• Web Development</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-visual" data-aos="fade-left">
+                        <div class="terminal-window small">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons">
+                                    <span class="btn-close"></span>
+                                    <span class="btn-minimize"></span>
+                                    <span class="btn-maximize"></span>
+                                </div>
+                                <div class="terminal-title">suresh@yadav:~$ stats</div>
+                            </div>
+                            <div class="terminal-content">
+                                <div class="terminal-line">
+                                    <span class="prompt">suresh@yadav:~$</span>
+                                    <span class="command">cat stats.txt</span>
+                                </div>
+                                <div class="terminal-output">
+                                    <div class="output-line">
+                                        <span class="output-text">Projects: 8</span>
+                                    </div>
+                                    <div class="output-line">
+                                        <span class="output-text">Experience: 3+ years</span>
+                                    </div>
+                                    <div class="output-line">
+                                        <span class="output-text">Packages: 1</span>
+                                    </div>
+                                    <div class="output-line">
+                                        <span class="output-text">Status: Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-terminal">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">suresh@yadav:~$ contact --help</div>
+            </div>
+
+            <div class="terminal-content">
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat contact_info.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">Contact Methods:</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• Email: sureshyadav.info.np@gmail.com</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• GitHub: github.com/0sureshyadav0</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">• Bank QR: Download available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">suresh@yadav:~$</span>
+                            <span class="command">cat message.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <div class="output-line">
+                                <span class="output-text">Have a project in mind?</span>
+                            </div>
+                            <div class="output-line">
+                                <span class="output-text">Let's work together to bring your ideas to life.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container" data-aos="fade-left">
+                        <div class="terminal-window small">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons">
+                                    <span class="btn-close"></span>
+                                    <span class="btn-minimize"></span>
+                                    <span class="btn-maximize"></span>
+                                </div>
+                                <div class="terminal-title">suresh@yadav:~$ send_message</div>
+                            </div>
+                            <div class="terminal-content">
+                                <form id="email-form" class="contact-form" onsubmit="handleFormSubmit(event)">
+                                    <input type="hidden" name="access_key" value="7f6edf0a-47e0-49a4-bebf-2a8be167a68b">
+                                    
+                                    <div class="form-group">
+                                        <div class="terminal-line">
+                                            <span class="prompt">suresh@yadav:~$</span>
+                                            <span class="command">input name</span>
+                                        </div>
+                                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="terminal-line">
+                                            <span class="prompt">suresh@yadav:~$</span>
+                                            <span class="command">input email</span>
+                                        </div>
+                                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="terminal-line">
+                                            <span class="prompt">suresh@yadav:~$</span>
+                                            <span class="command">input subject</span>
+                                        </div>
+                                        <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="terminal-line">
+                                            <span class="prompt">suresh@yadav:~$</span>
+                                            <span class="command">input message</span>
+                                        </div>
+                                        <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="hacker-btn primary btn-full" id="sendButton">
+                                        <span class="btn-icon">></span>
+                                        <span class="btn-text">send_message</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="hacker-footer">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">suresh@yadav:~$ cat footer.txt</div>
+            </div>
+            <div class="terminal-content">
+                <div class="terminal-output">
+                    <div class="output-line">
+                        <span class="output-text">© 2025 Suresh Yadav. All rights reserved.</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Built with ❤️ and lots of ☕</span>
+                    </div>
+                    <div class="output-line">
+                        <span class="output-text">Connect: github.com/0sureshyadav0</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </footer>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="terminal-window small">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="btn-close"></span>
+                    <span class="btn-minimize"></span>
+                    <span class="btn-maximize"></span>
+                </div>
+                <div class="terminal-title">suresh@yadav:~$ music</div>
+            </div>
+            <div class="terminal-content">
+                <!-- Manual Play Button -->
+                <button id="playBtn" style="
+                    background: var(--primary); 
+                    color: var(--bg-primary); 
+                    border: 1px solid var(--primary); 
+                    border-radius: 4px; 
+                    padding: 8px 16px; 
+                    font-family: var(--font-mono); 
+                    font-size: 12px; 
+                    cursor: pointer; 
+                    margin-bottom: 8px;
+                    width: 100%;
+                ">
+                    ▶ PLAY MUSIC
+                </button>
+                
+                    <!-- Audio Element -->
+                    <audio loop preload="auto" autoplay id="simpleAudio" style="width: 100%; height: 40px;">
+                        <source src="./assets/music/सुरेशको जीवनको कथा.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                
+                <!-- Debug info -->
+                <div id="audioDebug" style="font-size: 8px; color: var(--text-muted); margin-top: 4px; font-family: var(--font-mono);">
+                    Audio Status: Loading...
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="./assets/data.js"></script>
+    <script src="./assets/build.js"></script>
+    <script src="./assets/hacker-script.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Build content
+      buildPersonalProjects(personalProjects);
+      buildUpcomingProjects(upcomingProjects);
+      buildPackages(packages);
+
+        // Form submission handler
+      async function handleFormSubmit(event) {
+            event.preventDefault();
+            const sendButton = document.getElementById('sendButton');
+            const originalText = sendButton.innerHTML;
+            
+            sendButton.innerHTML = '<span class="btn-icon">></span><span class="btn-text">sending...</span>';
+            sendButton.disabled = true;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+                    showToast('Message sent successfully!', 'success');
+                    form.reset();
+          } else {
+                    throw new Error('Failed to send message');
+          }
+        } catch (error) {
+                console.error('Error:', error);
+                showToast('Failed to send message. Please try again.', 'error');
+            } finally {
+                sendButton.innerHTML = originalText;
+                sendButton.disabled = false;
+            }
+        }
+
+        // Toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast toast-${type}`;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 4000);
+        }
+
+            // Audio debugging and setup with autoplay
+            document.addEventListener('DOMContentLoaded', function() {
+                const audio = document.getElementById('simpleAudio');
+                const debugDiv = document.getElementById('audioDebug');
+                const playBtn = document.getElementById('playBtn');
+                
+                if (audio && debugDiv && playBtn) {
+                    let userInteracted = false;
+                    
+                    // Update debug info
+                    function updateDebug(status) {
+                        debugDiv.textContent = `Audio Status: ${status}`;
+                    }
+                    
+                    // Update play button text
+                    function updatePlayButton(isPlaying) {
+                        playBtn.textContent = isPlaying ? '⏸ PAUSE MUSIC' : '▶ PLAY MUSIC';
+                    }
+                    
+                    // Try autoplay
+                    async function tryAutoplay() {
+                        try {
+                            await audio.play();
+                            updateDebug('Autoplay: Playing');
+                            updatePlayButton(true);
+        return true;
+                        } catch (error) {
+                            updateDebug('Autoplay blocked - click to play');
+                            updatePlayButton(false);
+                            return false;
+                        }
+                    }
+                    
+                    // Audio event listeners
+                    audio.addEventListener('loadstart', () => updateDebug('Loading...'));
+                    audio.addEventListener('loadedmetadata', () => {
+                        updateDebug('Ready to play');
+                        // Try autoplay when metadata is loaded
+                        setTimeout(tryAutoplay, 100);
+                    });
+                    audio.addEventListener('canplay', () => {
+                        updateDebug('Can play');
+                        if (!userInteracted) {
+                            tryAutoplay();
+                        }
+                    });
+                    audio.addEventListener('play', () => {
+                        updateDebug('Playing');
+                        updatePlayButton(true);
+                    });
+                    audio.addEventListener('pause', () => {
+                        updateDebug('Paused');
+                        updatePlayButton(false);
+                    });
+                    audio.addEventListener('error', (e) => {
+                        updateDebug(`Error: ${e.message || 'Unknown error'}`);
+                        console.error('Audio error:', e);
+                    });
+                    
+                    // Play button click handler
+                    playBtn.addEventListener('click', async function() {
+                        userInteracted = true;
+                        try {
+                            if (audio.paused) {
+                                await audio.play();
+                                updateDebug('Playing');
+                                updatePlayButton(true);
+                            } else {
+                                audio.pause();
+                                updateDebug('Paused');
+                                updatePlayButton(false);
+                            }
+                        } catch (error) {
+                            updateDebug(`Error: ${error.message}`);
+                            console.error('Play error:', error);
+                        }
+                    });
+                    
+                    // Enable audio on any user interaction
+                    function enableAudio() {
+                        userInteracted = true;
+                        if (audio.paused && audio.readyState >= 2) {
+                            updateDebug('User interaction detected - audio enabled');
+                            tryAutoplay();
+                        }
+                    }
+                    
+                    // Add interaction listeners
+                    document.addEventListener('click', enableAudio, { once: true });
+                    document.addEventListener('keydown', enableAudio, { once: true });
+                    document.addEventListener('touchstart', enableAudio, { once: true });
+                    
+                    // Update button text based on current mode
+                    function updateStyleButton() {
+                        const button = document.getElementById('style-toggle');
+                        const textSpan = button.querySelector('.style-text');
+                        const currentMode = localStorage.getItem('portfolio-mode');
+                        
+                        if (currentMode === 'professional') {
+                            textSpan.textContent = 'Hacker Mode';
+                            button.title = 'Switch to Hacker Mode';
+                        } else {
+                            textSpan.textContent = 'Professional';
+                            button.title = 'Switch to Professional Mode';
+                        }
+                    }
+                    
+                    // Style Switcher Functionality - Redirect to Professional Mode
+                    window.toggleStyle = function() {
+                        // Save current mode preference
+                        localStorage.setItem('portfolio-mode', 'professional');
+                        // Redirect to professional mode
+                        window.location.href = './index.html';
+                    };
+                    
+                    // Initialize Style from localStorage
+                    function initStyle() {
+                        const savedMode = localStorage.getItem('portfolio-mode');
+                        if (savedMode === 'professional') {
+                            // Redirect to professional mode if preference is set
+                            window.location.href = './index.html';
+                        }
+                        // Default to hacker mode (stay on current page)
+                        localStorage.setItem('portfolio-mode', 'hacker');
+                    }
+                    
+                    // Mobile Navigation Toggle
+                    window.toggleMobileMenu = function() {
+                        const navToggle = document.getElementById('nav-toggle');
+                        const navLinks = document.getElementById('nav-links');
+                        
+                        if (navToggle && navLinks) {
+                            // Only toggle on mobile screens (768px and below)
+                            if (window.innerWidth <= 768) {
+                                const computedStyle = window.getComputedStyle(navLinks);
+                                const isVisible = computedStyle.display !== 'none';
+                                
+                                if (isVisible) {
+                                    navLinks.style.display = 'none';
+                                    navToggle.classList.remove('active');
+                                } else {
+                                    navLinks.style.display = 'flex';
+                                    navToggle.classList.add('active');
+                                }
+                            }
+                        }
+                    };
+                    
+                    // Initialize mobile navigation
+                    function initMobileNav() {
+                        const navToggle = document.getElementById('nav-toggle');
+                        const navLinks = document.getElementById('nav-links');
+                        
+                        if (navToggle && navLinks) {
+                            // Handle active state switching for all nav links
+                            const navLinkElements = navLinks.querySelectorAll('.nav-link');
+                            navLinkElements.forEach(link => {
+                                link.addEventListener('click', function() {
+                                    // Remove active class from all links
+                                    navLinkElements.forEach(navLink => {
+                                        navLink.classList.remove('active');
+                                    });
+                                    
+                                    // Add active class to clicked link
+                                    this.classList.add('active');
+                                    
+                                    // Close mobile menu if on mobile
+                                    if (window.innerWidth <= 768) {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    }
+                                });
+                            });
+                            
+                            // Only apply mobile behavior on mobile screens
+                            if (window.innerWidth <= 768) {
+                                // Close menu when clicking outside
+                                document.addEventListener('click', function(event) {
+                                    if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    }
+                                });
+                                
+                                // Close menu on escape key
+                                document.addEventListener('keydown', function(event) {
+                                    if (event.key === 'Escape') {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    
+                    // Handle window resize to switch between mobile and desktop navigation
+                    window.addEventListener('resize', function() {
+                        const navLinks = document.getElementById('nav-links');
+                        const navToggle = document.getElementById('nav-toggle');
+                        
+                        if (navLinks && navToggle) {
+                            if (window.innerWidth > 768) {
+                                // Desktop: Remove inline styles to let CSS take over
+                                navLinks.style.display = '';
+                                navToggle.classList.remove('active');
+                            } else {
+                                // Mobile: Ensure proper mobile behavior
+                                if (!navToggle.classList.contains('active')) {
+                                    navLinks.style.display = 'none';
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Initialize everything when DOM is loaded
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', function() {
+                            initStyle();
+                            initMobileNav();
+                        });
+                    } else {
+                        initStyle();
+                        initMobileNav();
+                    }
+                    
+                    // Load the audio
+                    audio.load();
+                }
+      });
+    </script>
+  </body>
+</html>
