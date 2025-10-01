@@ -1578,3 +1578,254 @@ body {
     height: 2px;
   }
 }
+
+/* Ultra Modern Get Started Buttons */
+.nav-link.get-started-btn {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+}
+
+.nav-link.get-started-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.nav-link.get-started-btn:hover::before {
+  left: 100%;
+}
+
+.nav-link.get-started-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0891b2 100%);
+}
+
+.nav-link.get-started-btn:active {
+  transform: translateY(0) scale(1.02);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+}
+
+.nav-link.get-started-btn i {
+  font-size: 1rem;
+  animation: rocketPulse 2s ease-in-out infinite;
+}
+
+@keyframes rocketPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Footer Get Started Button */
+.footer-get-started-btn {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+  color: white !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+  border: 2px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.025em;
+  margin-top: 0.5rem;
+}
+
+.footer-get-started-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.footer-get-started-btn:hover::before {
+  left: 100%;
+}
+
+.footer-get-started-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0891b2 100%);
+}
+
+.footer-get-started-btn:active {
+  transform: translateY(0) scale(1.02);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+}
+
+.footer-get-started-btn i {
+  font-size: 0.9rem;
+  animation: rocketPulse 2s ease-in-out infinite;
+}
+
+/* Responsive Design for Get Started Buttons */
+@media (max-width: 768px) {
+  .nav-link.get-started-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+  
+  .footer-get-started-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link.get-started-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .footer-get-started-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Hero Get Started Button */
+.btn.hero-get-started-btn {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+  color: white !important;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+  border: 3px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.btn.hero-get-started-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.btn.hero-get-started-btn:hover::before {
+  left: 100%;
+}
+
+.btn.hero-get-started-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 15px 35px rgba(30, 64, 175, 0.5);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0891b2 100%);
+}
+
+.btn.hero-get-started-btn:active {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+}
+
+.btn.hero-get-started-btn i {
+  font-size: 1.2rem;
+  animation: heroRocketPulse 2s ease-in-out infinite;
+}
+
+@keyframes heroRocketPulse {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg); 
+  }
+  25% { 
+    transform: scale(1.1) rotate(-5deg); 
+  }
+  50% { 
+    transform: scale(1.2) rotate(0deg); 
+  }
+  75% { 
+    transform: scale(1.1) rotate(5deg); 
+  }
+}
+
+/* Responsive Design for Hero Get Started Button */
+@media (max-width: 768px) {
+  .btn.hero-get-started-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    min-width: 160px;
+  }
+  
+  .btn.hero-get-started-btn i {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn.hero-get-started-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    min-width: 140px;
+    gap: 0.5rem;
+  }
+  
+  .btn.hero-get-started-btn i {
+    font-size: 1rem;
+  }
+}
+
+/* Hero Get Started Container */
+.hero-get-started-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Design for Hero Get Started Container */
+@media (max-width: 768px) {
+  .hero-get-started-container {
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-get-started-container {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
