@@ -32,6 +32,8 @@ class CompleteSubmissionService {
         const pricingContent = this.srsPreview.pricingDocument.innerHTML;
         const roadmapContent = this.srsPreview.roadmapDocument.innerHTML;
         const summaryContent = this.srsPreview.summaryDocument.innerHTML;
+        const termsContent = this.srsPreview.termsDocument.innerHTML;
+        const privacyContent = this.srsPreview.privacyDocument.innerHTML;
         
         // Create comprehensive package
         const packageData = {
@@ -80,13 +82,24 @@ class CompleteSubmissionService {
                     title: 'Project Summary & Overview',
                     content: summaryContent,
                     wordCount: this.getWordCount(summaryContent)
+                },
+                termsConditions: {
+                    title: 'Terms and Conditions',
+                    content: termsContent,
+                    wordCount: this.getWordCount(termsContent)
+                },
+                privacyPolicy: {
+                    title: 'Privacy Policy',
+                    content: privacyContent,
+                    wordCount: this.getWordCount(privacyContent)
                 }
             },
             statistics: {
-                totalDocuments: 5,
+                totalDocuments: 7,
                 totalWordCount: this.getWordCount(srsContent) + this.getWordCount(contractContent) + 
                               this.getWordCount(pricingContent) + this.getWordCount(roadmapContent) + 
-                              this.getWordCount(summaryContent),
+                              this.getWordCount(summaryContent) + this.getWordCount(termsContent) + 
+                              this.getWordCount(privacyContent),
                 featuresCount: this.srsPreview.formData.main_features ? this.srsPreview.formData.main_features.length : 0,
                 subFeaturesCount: this.srsPreview.formData.sub_features ? this.srsPreview.formData.sub_features.length : 0
             }
@@ -181,6 +194,22 @@ class CompleteSubmissionService {
         content += `Word Count: ${documents.projectSummary.wordCount} words\n`;
         content += `Content:\n`;
         content += this.stripHtmlTags(documents.projectSummary.content);
+        content += `\n\n`;
+        
+        // Terms and Conditions
+        content += `6️⃣ TERMS AND CONDITIONS\n`;
+        content += `------------------------\n`;
+        content += `Word Count: ${documents.termsConditions.wordCount} words\n`;
+        content += `Content:\n`;
+        content += this.stripHtmlTags(documents.termsConditions.content);
+        content += `\n\n`;
+        
+        // Privacy Policy
+        content += `7️⃣ PRIVACY POLICY\n`;
+        content += `-----------------\n`;
+        content += `Word Count: ${documents.privacyPolicy.wordCount} words\n`;
+        content += `Content:\n`;
+        content += this.stripHtmlTags(documents.privacyPolicy.content);
         content += `\n\n`;
         
         // Footer

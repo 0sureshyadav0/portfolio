@@ -388,6 +388,8 @@
         .loading-steps .step:nth-child(3) { animation-delay: 1s; }
         .loading-steps .step:nth-child(4) { animation-delay: 1.5s; }
         .loading-steps .step:nth-child(5) { animation-delay: 2s; }
+        .loading-steps .step:nth-child(6) { animation-delay: 2.5s; }
+        .loading-steps .step:nth-child(7) { animation-delay: 3s; }
         
         @keyframes pulse {
             0%, 100% { opacity: 0.5; }
@@ -461,6 +463,8 @@
             <button class="tab-btn" data-tab="pricing">Pricing & Timeline</button>
             <button class="tab-btn" data-tab="roadmap">Developer Roadmap</button>
             <button class="tab-btn" data-tab="summary">Project Summary</button>
+            <button class="tab-btn" data-tab="terms">Terms & Conditions</button>
+            <button class="tab-btn" data-tab="privacy">Privacy Policy</button>
         </div>
 
         <!-- Document Contents -->
@@ -492,6 +496,18 @@
             <div class="tab-content" id="summary-tab">
                 <div id="summaryDocument" class="srs-document">
                     <!-- Summary content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="terms-tab">
+                <div id="termsDocument" class="srs-document">
+                    <!-- Terms and Conditions content will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="privacy-tab">
+                <div id="privacyDocument" class="srs-document">
+                    <!-- Privacy Policy content will be generated here -->
                 </div>
             </div>
         </div>
@@ -530,6 +546,8 @@
                 this.pricingDocument = document.getElementById('pricingDocument');
                 this.roadmapDocument = document.getElementById('roadmapDocument');
                 this.summaryDocument = document.getElementById('summaryDocument');
+                this.termsDocument = document.getElementById('termsDocument');
+                this.privacyDocument = document.getElementById('privacyDocument');
                 this.actionButtons = document.getElementById('actionButtons');
                 this.submitBtn = document.getElementById('submitBtn');
                 this.printBtn = document.getElementById('printBtn');
@@ -680,14 +698,16 @@
                     this.loadingMessage.innerHTML = `
                         <div class="loading">
                             <h2>🤖 AI is generating your documents...</h2>
-                            <p>Creating personalized SRS, Agreement, Pricing, Roadmap, and Summary</p>
-                            <div class="loading-steps">
-                                <div class="step">📋 Generating SRS Document...</div>
-                                <div class="step">📄 Creating Project Agreement...</div>
-                                <div class="step">💰 Calculating Pricing & Timeline...</div>
-                                <div class="step">🗺️ Building Developer Roadmap...</div>
-                                <div class="step">📊 Preparing Project Summary...</div>
-                            </div>
+                            <p>Creating personalized SRS, Agreement, Pricing, Roadmap, Summary, Terms & Privacy Policy</p>
+                        <div class="loading-steps">
+                            <div class="step">📋 Generating SRS Document...</div>
+                            <div class="step">📄 Creating Project Agreement...</div>
+                            <div class="step">💰 Calculating Pricing & Timeline...</div>
+                            <div class="step">🗺️ Building Developer Roadmap...</div>
+                            <div class="step">📊 Preparing Project Summary...</div>
+                            <div class="step">⚖️ Generating Terms & Conditions...</div>
+                            <div class="step">🔒 Creating Privacy Policy...</div>
+                        </div>
                         </div>
                     `;
                     
@@ -697,11 +717,13 @@
                     console.log('AI-generated documents:', documents);
                     
                     // Display the AI-generated content
-                    this.srsDocument.innerHTML = documents.srsDocument.content || this.createSRSContent(this.formData);
-                    this.contractDocument.innerHTML = documents.projectAgreement.content || this.createContractContent(this.formData);
-                    this.pricingDocument.innerHTML = documents.pricingTimeline.content || this.createPricingContent(this.formData);
-                    this.roadmapDocument.innerHTML = documents.developerRoadmap.content || this.createRoadmapContent(this.formData);
-                    this.summaryDocument.innerHTML = documents.projectSummary.content || this.createSummaryContent(this.formData);
+                    this.srsDocument.innerHTML = documents.srsDocument || this.createSRSContent(this.formData);
+                    this.contractDocument.innerHTML = documents.projectAgreement || this.createContractContent(this.formData);
+                    this.pricingDocument.innerHTML = documents.pricingTimeline || this.createPricingContent(this.formData);
+                    this.roadmapDocument.innerHTML = documents.developerRoadmap || this.createRoadmapContent(this.formData);
+                    this.summaryDocument.innerHTML = documents.projectSummary || this.createSummaryContent(this.formData);
+                    this.termsDocument.innerHTML = documents.termsConditions || this.createTermsContent(this.formData);
+                    this.privacyDocument.innerHTML = documents.privacyPolicy || this.createPrivacyContent(this.formData);
                     
                     // Hide loading and show documents
                     this.loadingMessage.style.display = 'none';
@@ -735,6 +757,8 @@
                     this.pricingDocument.innerHTML = pricingContent;
                     this.roadmapDocument.innerHTML = roadmapContent;
                     this.summaryDocument.innerHTML = summaryContent;
+                    this.termsDocument.innerHTML = this.createTermsContent(this.formData);
+                    this.privacyDocument.innerHTML = this.createPrivacyContent(this.formData);
                     
                     // Show documents
                     this.loadingMessage.style.display = 'none';
@@ -911,6 +935,364 @@
                     'admin_panel': 'access administrative functions'
                 };
                 return descriptionMap[feature] || 'use this feature';
+            }
+
+            createTermsContent(data) {
+                const currentDate = new Date().toLocaleDateString();
+                const projectName = data.projectName || 'Flutter Project';
+                const clientName = data.clientName || 'Client';
+                
+                return `
+                    <h1>Terms and Conditions</h1>
+                    
+                    <div class="document-info">
+                        <p><strong>Project:</strong> ${projectName}</p>
+                        <p><strong>Client:</strong> ${clientName}</p>
+                        <p><strong>Effective Date:</strong> ${currentDate}</p>
+                        <p><strong>Last Updated:</strong> ${currentDate}</p>
+                    </div>
+                    
+                    <h2>1. Service Agreement</h2>
+                    <p>These Terms and Conditions ("Terms") govern the software development services provided by Suresh Yadav ("Developer", "we", "us") to ${clientName} ("Client", "you") for the development of ${projectName}.</p>
+                    
+                    <h2>2. Project Scope</h2>
+                    <p>The project scope includes:</p>
+                    <ul>
+                        <li>Software Requirements Specification (SRS) development</li>
+                        <li>Mobile/Web application development using Flutter framework</li>
+                        <li>UI/UX design and implementation</li>
+                        <li>Backend integration and API development</li>
+                        <li>Testing and quality assurance</li>
+                        <li>Deployment and maintenance support</li>
+                    </ul>
+                    
+                    <h2>3. Client Responsibilities</h2>
+                    <p>The Client agrees to:</p>
+                    <ul>
+                        <li>Provide accurate and complete project requirements</li>
+                        <li>Respond to requests for information within 48 hours</li>
+                        <li>Provide necessary access to systems and data</li>
+                        <li>Make timely payments as per agreed schedule</li>
+                        <li>Provide feedback during development phases</li>
+                        <li>Test and approve deliverables within specified timeframes</li>
+                    </ul>
+                    
+                    <h2>4. Developer Responsibilities</h2>
+                    <p>The Developer agrees to:</p>
+                    <ul>
+                        <li>Deliver high-quality software solutions</li>
+                        <li>Follow industry best practices and coding standards</li>
+                        <li>Provide regular project updates and progress reports</li>
+                        <li>Maintain confidentiality of client information</li>
+                        <li>Deliver projects within agreed timelines</li>
+                        <li>Provide post-deployment support as specified</li>
+                    </ul>
+                    
+                    <h2>5. Payment Terms</h2>
+                    <p>Payment terms are as follows:</p>
+                    <ul>
+                        <li>Initial payment: 30% upon project commencement</li>
+                        <li>Milestone payments: 40% upon completion of major phases</li>
+                        <li>Final payment: 30% upon project completion and delivery</li>
+                        <li>Payment method: Bank transfer or digital payment</li>
+                        <li>Late payment fee: 2% per month on overdue amounts</li>
+                    </ul>
+                    
+                    <h2>6. Intellectual Property</h2>
+                    <p>Upon full payment, the Client will own:</p>
+                    <ul>
+                        <li>All source code developed for the project</li>
+                        <li>Custom designs and UI/UX elements</li>
+                        <li>Project documentation and specifications</li>
+                        <li>Database schemas and configurations</li>
+                    </ul>
+                    <p>The Developer retains rights to:</p>
+                    <ul>
+                        <li>General development methodologies and frameworks</li>
+                        <li>Reusable code libraries and components</li>
+                        <li>Development tools and processes</li>
+                    </ul>
+                    
+                    <h2>7. Confidentiality</h2>
+                    <p>Both parties agree to maintain strict confidentiality regarding:</p>
+                    <ul>
+                        <li>Project specifications and requirements</li>
+                        <li>Business processes and strategies</li>
+                        <li>Technical implementations and solutions</li>
+                        <li>Any proprietary information shared during development</li>
+                    </ul>
+                    
+                    <h2>8. Project Timeline</h2>
+                    <p>The estimated project timeline is based on:</p>
+                    <ul>
+                        <li>Project complexity and feature requirements</li>
+                        <li>Client responsiveness and feedback speed</li>
+                        <li>Third-party integrations and dependencies</li>
+                        <li>Testing and quality assurance requirements</li>
+                    </ul>
+                    <p>Timeline extensions may be required for:</p>
+                    <ul>
+                        <li>Scope changes or additional requirements</li>
+                        <li>Delays in client feedback or approvals</li>
+                        <li>Third-party service dependencies</li>
+                        <li>Technical challenges beyond initial assessment</li>
+                    </ul>
+                    
+                    <h2>9. Warranty and Support</h2>
+                    <p>The Developer provides:</p>
+                    <ul>
+                        <li>90-day warranty for bug fixes and critical issues</li>
+                        <li>Technical support for implementation questions</li>
+                        <li>Documentation and user guides</li>
+                        <li>Basic training on system usage</li>
+                    </ul>
+                    <p>Support does not include:</p>
+                    <ul>
+                        <li>New feature development beyond original scope</li>
+                        <li>Third-party service issues</li>
+                        <li>Client-side infrastructure problems</li>
+                        <li>Modifications by other developers</li>
+                    </ul>
+                    
+                    <h2>10. Termination</h2>
+                    <p>Either party may terminate this agreement:</p>
+                    <ul>
+                        <li>With 30 days written notice</li>
+                        <li>Immediately for material breach of contract</li>
+                        <li>For non-payment after 15 days notice</li>
+                    </ul>
+                    <p>Upon termination:</p>
+                    <ul>
+                        <li>Client pays for completed work</li>
+                        <li>Developer delivers completed deliverables</li>
+                        <li>Confidentiality obligations continue</li>
+                    </ul>
+                    
+                    <h2>11. Limitation of Liability</h2>
+                    <p>The Developer's liability is limited to:</p>
+                    <ul>
+                        <li>Direct damages up to the total project value</li>
+                        <li>Correction of defects within warranty period</li>
+                        <li>Reasonable efforts to resolve technical issues</li>
+                    </ul>
+                    <p>The Developer is not liable for:</p>
+                    <ul>
+                        <li>Indirect or consequential damages</li>
+                        <li>Loss of profits or business opportunities</li>
+                        <li>Third-party service failures</li>
+                        <li>Client's business decisions</li>
+                    </ul>
+                    
+                    <h2>12. Governing Law</h2>
+                    <p>These Terms are governed by the laws of Nepal. Any disputes will be resolved through:</p>
+                    <ul>
+                        <li>Good faith negotiations</li>
+                        <li>Mediation if negotiations fail</li>
+                        <li>Arbitration as final recourse</li>
+                    </ul>
+                    
+                    <h2>13. Amendments</h2>
+                    <p>These Terms may be amended by:</p>
+                    <ul>
+                        <li>Written agreement of both parties</li>
+                        <li>Email confirmation of changes</li>
+                        <li>Updated project specifications</li>
+                    </ul>
+                    
+                    <h2>14. Contact Information</h2>
+                    <div class="contact-info">
+                        <p><strong>Developer:</strong> Suresh Yadav</p>
+                        <p><strong>Email:</strong> sureshyadav.info.np</p>
+                        <p><strong>Services:</strong> Flutter Development, Web Development, AI Solutions</p>
+                        <p><strong>Location:</strong> Nepal</p>
+                    </div>
+                    
+                    <div class="signature-section">
+                        <p><strong>Client Signature:</strong> _________________________</p>
+                        <p><strong>Date:</strong> _________________________</p>
+                        <p><strong>Developer Signature:</strong> _________________________</p>
+                        <p><strong>Date:</strong> _________________________</p>
+                    </div>
+                    
+                    <div class="footer-note">
+                        <p><em>By proceeding with the project, both parties acknowledge that they have read, understood, and agree to be bound by these Terms and Conditions.</em></p>
+                    </div>
+                `;
+            }
+
+            createPrivacyContent(data) {
+                const currentDate = new Date().toLocaleDateString();
+                const projectName = data.projectName || 'Flutter Project';
+                const clientName = data.clientName || 'Client';
+                
+                return `
+                    <h1>Privacy Policy</h1>
+                    
+                    <div class="document-info">
+                        <p><strong>Project:</strong> ${projectName}</p>
+                        <p><strong>Client:</strong> ${clientName}</p>
+                        <p><strong>Effective Date:</strong> ${currentDate}</p>
+                        <p><strong>Last Updated:</strong> ${currentDate}</p>
+                    </div>
+                    
+                    <h2>1. Introduction</h2>
+                    <p>This Privacy Policy describes how Suresh Yadav ("we", "us", "our") collects, uses, and protects information obtained during the development of ${projectName} for ${clientName} ("you", "your").</p>
+                    
+                    <h2>2. Information We Collect</h2>
+                    <h3>2.1 Project Information</h3>
+                    <p>We collect the following information for project development:</p>
+                    <ul>
+                        <li>Project requirements and specifications</li>
+                        <li>Business processes and workflows</li>
+                        <li>User interface designs and preferences</li>
+                        <li>Technical requirements and constraints</li>
+                        <li>Integration requirements and APIs</li>
+                        <li>Testing scenarios and use cases</li>
+                    </ul>
+                    
+                    <h3>2.2 Contact Information</h3>
+                    <p>We collect contact details including:</p>
+                    <ul>
+                        <li>Name and company information</li>
+                        <li>Email addresses and phone numbers</li>
+                        <li>Communication preferences</li>
+                        <li>Project-related correspondence</li>
+                    </ul>
+                    
+                    <h3>2.3 Technical Information</h3>
+                    <p>We may collect technical data such as:</p>
+                    <ul>
+                        <li>System configurations and environments</li>
+                        <li>Database schemas and structures</li>
+                        <li>API endpoints and integrations</li>
+                        <li>Performance metrics and analytics</li>
+                    </ul>
+                    
+                    <h2>3. How We Use Information</h2>
+                    <p>We use collected information to:</p>
+                    <ul>
+                        <li>Develop and customize software solutions</li>
+                        <li>Provide technical support and maintenance</li>
+                        <li>Communicate project updates and progress</li>
+                        <li>Ensure quality and performance standards</li>
+                        <li>Comply with project requirements</li>
+                        <li>Improve our development processes</li>
+                    </ul>
+                    
+                    <h2>4. Information Sharing</h2>
+                    <p>We do not share your information with third parties except:</p>
+                    <ul>
+                        <li>With your explicit consent</li>
+                        <li>For essential project services (hosting, APIs)</li>
+                        <li>To comply with legal obligations</li>
+                        <li>To protect our rights and interests</li>
+                        <li>In case of business transfers or mergers</li>
+                    </ul>
+                    
+                    <h2>5. Data Security</h2>
+                    <p>We implement security measures including:</p>
+                    <ul>
+                        <li>Encryption of sensitive data</li>
+                        <li>Secure development environments</li>
+                        <li>Access controls and authentication</li>
+                        <li>Regular security assessments</li>
+                        <li>Secure communication channels</li>
+                        <li>Data backup and recovery procedures</li>
+                    </ul>
+                    
+                    <h2>6. Data Retention</h2>
+                    <p>We retain information for:</p>
+                    <ul>
+                        <li>Project duration and warranty period</li>
+                        <li>Legal compliance requirements</li>
+                        <li>Technical support purposes</li>
+                        <li>Business record keeping</li>
+                    </ul>
+                    <p>After project completion, we may retain:</p>
+                    <ul>
+                        <li>Project documentation for reference</li>
+                        <li>Communication records for support</li>
+                        <li>Technical specifications for maintenance</li>
+                    </ul>
+                    
+                    <h2>7. Your Rights</h2>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access your personal information</li>
+                        <li>Correct inaccurate data</li>
+                        <li>Request data deletion (where applicable)</li>
+                        <li>Object to certain processing activities</li>
+                        <li>Data portability for project deliverables</li>
+                        <li>Withdraw consent for optional processing</li>
+                    </ul>
+                    
+                    <h2>8. Cookies and Tracking</h2>
+                    <p>Our development process may use:</p>
+                    <ul>
+                        <li>Essential cookies for functionality</li>
+                        <li>Analytics cookies for improvement</li>
+                        <li>Session cookies for security</li>
+                        <li>Preference cookies for customization</li>
+                    </ul>
+                    <p>You can control cookie settings through your browser preferences.</p>
+                    
+                    <h2>9. Third-Party Services</h2>
+                    <p>We may use third-party services for:</p>
+                    <ul>
+                        <li>Cloud hosting and storage</li>
+                        <li>Development tools and platforms</li>
+                        <li>Communication and collaboration</li>
+                        <li>Payment processing</li>
+                        <li>Analytics and monitoring</li>
+                    </ul>
+                    <p>These services have their own privacy policies that we recommend reviewing.</p>
+                    
+                    <h2>10. International Transfers</h2>
+                    <p>If data is transferred internationally:</p>
+                    <ul>
+                        <li>We ensure adequate protection measures</li>
+                        <li>We comply with applicable data protection laws</li>
+                        <li>We use standard contractual clauses where needed</li>
+                        <li>We maintain security standards across borders</li>
+                    </ul>
+                    
+                    <h2>11. Children's Privacy</h2>
+                    <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children. If we become aware of such collection, we will take steps to delete the information.</p>
+                    
+                    <h2>12. Changes to Privacy Policy</h2>
+                    <p>We may update this Privacy Policy to:</p>
+                    <ul>
+                        <li>Reflect changes in our practices</li>
+                        <li>Comply with legal requirements</li>
+                        <li>Improve clarity and transparency</li>
+                        <li>Address new technologies or services</li>
+                    </ul>
+                    <p>We will notify you of significant changes via email or project communication channels.</p>
+                    
+                    <h2>13. Compliance</h2>
+                    <p>We comply with applicable privacy laws including:</p>
+                    <ul>
+                        <li>General Data Protection Regulation (GDPR)</li>
+                        <li>Nepal's data protection regulations</li>
+                        <li>Industry-specific requirements</li>
+                        <li>Client-specific privacy requirements</li>
+                    </ul>
+                    
+                    <h2>14. Contact Information</h2>
+                    <div class="contact-info">
+                        <p><strong>Data Controller:</strong> Suresh Yadav</p>
+                        <p><strong>Email:</strong> sureshyadav.info.np</p>
+                        <p><strong>Services:</strong> Flutter Development, Web Development, AI Solutions</p>
+                        <p><strong>Location:</strong> Nepal</p>
+                    </div>
+                    
+                    <h2>15. Questions and Concerns</h2>
+                    <p>If you have questions about this Privacy Policy or our data practices, please contact us at sureshyadav.info.np. We will respond to your inquiry within 48 hours.</p>
+                    
+                    <div class="footer-note">
+                        <p><em>This Privacy Policy is effective as of ${currentDate} and applies to all information collected during the development of ${projectName}.</em></p>
+                    </div>
+                `;
             }
 
             createContractContent(data) {
@@ -1355,6 +1737,10 @@
                         return this.roadmapDocument;
                     case 'summary':
                         return this.summaryDocument;
+                    case 'terms':
+                        return this.termsDocument;
+                    case 'privacy':
+                        return this.privacyDocument;
                     default:
                         return this.srsDocument;
                 }

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Document Generation Test</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 1200px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; margin-bottom: 10px; }
+        button:hover { background-color: #0056b3; }
+        .test-section { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .test-section h3 { margin-top: 0; color: #007bff; }
+        .result { background-color: #e9ecef; padding: 15px; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; margin-top: 10px; max-height: 300px; overflow-y: scroll; }
+        .loading { color: #007bff; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .success { color: green; font-weight: bold; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .comparison-item { border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Document Generation Test</h1>
+        <p>This tool tests if the AI is generating different content based on different project configurations.</p>
+
+        <div class="test-section">
+            <h3>Test Case 1: Simple App (Authentication only)</h3>
+            <button onclick="runTest('simple')">Generate Documents</button>
+            <div id="simple-result" class="result" style="display: none;">
+                <p class="loading">Generating...</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test Case 2: Complex App (Multiple Features)</h3>
+            <button onclick="runTest('complex')">Generate Documents</button>
+            <div id="complex-result" class="result" style="display: none;">
+                <p class="loading">Generating...</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Test Case 3: E-commerce App (Payment + Analytics)</h3>
+            <button onclick="runTest('ecommerce')">Generate Documents</button>
+            <div id="ecommerce-result" class="result" style="display: none;">
+                <p class="loading">Generating...</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Comparison Test</h3>
+            <button onclick="runComparison()">Compare Simple vs Complex</button>
+            <div id="comparison-result" class="comparison" style="display: none;">
+                <div class="comparison-item">
+                    <h4>Simple App SRS</h4>
+                    <div id="simple-srs"></div>
+                </div>
+                <div class="comparison-item">
+                    <h4>Complex App SRS</h4>
+                    <div id="complex-srs"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Console Logs</h3>
+            <div id="console-logs" class="result" style="height: 200px; overflow-y: scroll; background-color: #333; color: #0f0; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.8em;">
+                <!-- Console logs will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="enhanced-gemini.js"></script>
+    <script>
+        const geminiService = new EnhancedGeminiService();
+        
+        // Capture console logs
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        const logContainer = document.getElementById('console-logs');
+
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            const div = document.createElement('div');
+            div.textContent = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        };
+
+        console.error = function(...args) {
+            originalConsoleError.apply(console, args);
+            const div = document.createElement('div');
+            div.style.color = 'red';
+            div.textContent = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ');
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        };
+
+        async function runTest(type) {
+            const resultDiv = document.getElementById(`${type}-result`);
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p class="loading">Generating documents...</p>';
+
+            let formData = {};
+            let title = '';
+
+            switch (type) {
+                case 'simple':
+                    title = 'Simple Auth App';
+                    formData = {
+                        projectName: 'Simple Auth App',
+                        clientName: 'Test Client',
+                        projectType: 'mobile_app',
+                        platforms: ['android'],
+                        main_features: ['authentication'],
+                        sub_features: ['email_login'],
+                        targetAudience: 'New users',
+                        expectedUsers: '1000',
+                        projectTimeline: '1-2 months',
+                        budgetRange: '$1000 - $3000'
+                    };
+                    break;
+                case 'complex':
+                    title = 'Feature-Rich Platform';
+                    formData = {
+                        projectName: 'Feature-Rich Platform',
+                        clientName: 'Enterprise Client',
+                        projectType: 'web_app',
+                        platforms: ['web', 'android', 'ios'],
+                        main_features: ['authentication', 'user_management', 'payment_system', 'messaging', 'admin_panel'],
+                        sub_features: ['email_login', 'google_login', 'profile_edit', 'credit_card', 'paypal', 'realtime_chat', 'group_chat', 'dashboard_analytics'],
+                        targetAudience: 'Businesses and end-users',
+                        expectedUsers: '100000',
+                        projectTimeline: '6-12 months',
+                        budgetRange: '$20000 - $50000'
+                    };
+                    break;
+                case 'ecommerce':
+                    title = 'Online Store';
+                    formData = {
+                        projectName: 'Online Store',
+                        clientName: 'E-commerce Client',
+                        projectType: 'mobile_app',
+                        platforms: ['android', 'ios'],
+                        main_features: ['authentication', 'payment_system', 'search_filter', 'analytics', 'media_handling'],
+                        sub_features: ['email_login', 'product_catalog', 'credit_card', 'paypal', 'order_tracking', 'sales_reports', 'image_upload'],
+                        targetAudience: 'Online shoppers',
+                        expectedUsers: '50000',
+                        projectTimeline: '4-8 months',
+                        budgetRange: '$10000 - $30000'
+                    };
+                    break;
+                default:
+                    return;
+            }
+
+            try {
+                console.log(`Starting test for ${title}...`);
+                console.log('Form data:', formData);
+                
+                const documents = await geminiService.generateAllDocuments(formData);
+                
+                console.log('Generated documents:', documents);
+                
+                let resultHTML = `<h4>${title} - Generated Documents</h4>`;
+                resultHTML += `<p><strong>SRS Document:</strong> ${documents.srsDocument ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Project Agreement:</strong> ${documents.projectAgreement ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Pricing Timeline:</strong> ${documents.pricingTimeline ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Developer Roadmap:</strong> ${documents.developerRoadmap ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Project Summary:</strong> ${documents.projectSummary ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Terms & Conditions:</strong> ${documents.termsConditions ? 'Generated' : 'Failed'}</p>`;
+                resultHTML += `<p><strong>Privacy Policy:</strong> ${documents.privacyPolicy ? 'Generated' : 'Failed'}</p>`;
+                
+                // Show first 500 characters of SRS document
+                if (documents.srsDocument) {
+                    resultHTML += `<h5>SRS Preview (first 500 chars):</h5>`;
+                    resultHTML += `<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9em;">${documents.srsDocument.substring(0, 500)}...</div>`;
+                }
+                
+                resultDiv.innerHTML = resultHTML;
+                
+            } catch (error) {
+                console.error(`Error in ${title}:`, error);
+                resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function runComparison() {
+            const resultDiv = document.getElementById('comparison-result');
+            resultDiv.style.display = 'grid';
+            
+            const simpleSRS = document.getElementById('simple-srs');
+            const complexSRS = document.getElementById('complex-srs');
+            
+            simpleSRS.innerHTML = '<p class="loading">Generating Simple App SRS...</p>';
+            complexSRS.innerHTML = '<p class="loading">Generating Complex App SRS...</p>';
+            
+            try {
+                // Generate simple app SRS
+                const simpleData = {
+                    projectName: 'Simple Auth App',
+                    projectType: 'mobile_app',
+                    main_features: ['authentication'],
+                    sub_features: ['email_login']
+                };
+                
+                const simpleDoc = await geminiService.generateSRSDocument(simpleData);
+                simpleSRS.innerHTML = `<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9em;">${simpleDoc.substring(0, 1000)}...</div>`;
+                
+                // Generate complex app SRS
+                const complexData = {
+                    projectName: 'Feature-Rich Platform',
+                    projectType: 'web_app',
+                    main_features: ['authentication', 'user_management', 'payment_system', 'messaging', 'admin_panel'],
+                    sub_features: ['email_login', 'google_login', 'profile_edit', 'credit_card', 'paypal', 'realtime_chat', 'group_chat', 'dashboard_analytics']
+                };
+                
+                const complexDoc = await geminiService.generateSRSDocument(complexData);
+                complexSRS.innerHTML = `<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9em;">${complexDoc.substring(0, 1000)}...</div>`;
+                
+                console.log('Comparison completed successfully');
+                
+            } catch (error) {
+                console.error('Error in comparison:', error);
+                simpleSRS.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                complexSRS.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
