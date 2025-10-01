@@ -5,7 +5,7 @@ const PortfolioData = {
     name: "Suresh Yadav",
     title: "Full Stack Developer & UI/UX Designer",
     subtitle: "Computer Science Student",
-    description: "3+ years of experience in Web Development, Flutter & Dart, Mobile App Development",
+    description: "5+ years of experience in Web Development, Flutter & Dart, Mobile App Development",
     email: "sureshyadav2004@gmail.com",
     phone: "+977 9812345678",
     location: "Kathmandu, Nepal",
