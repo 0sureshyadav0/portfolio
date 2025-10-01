@@ -1,3 +1,9 @@
+// Mode switching function
+function switchToProfessionalMode() {
+    localStorage.setItem('portfolioMode', 'professional');
+    window.location.href = './professional.html';
+}
+
 // SRS Form JavaScript - Hacker Theme
 class SRSForm {
     constructor() {

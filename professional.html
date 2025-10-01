@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Suresh Yadav">
+    <meta name="description" content="Professional portfolio of Suresh Yadav - Full Stack Developer & UI/UX Designer">
+    <meta name="keywords" content="Suresh Yadav, Flutter Developer, Mobile App Developer, UI/UX Designer, Professional Portfolio">
+    <title>Suresh Yadav - Professional Portfolio</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/professional-style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1e40af">
+    <link rel="icon" href="./assets/image/icon.png">
+    
+    <!-- Meta Tags -->
+    <meta property="og:title" content="Suresh Yadav - Professional Portfolio">
+    <meta property="og:description" content="Full Stack Developer & UI/UX Designer specializing in Flutter development">
+    <meta property="og:type" content="website">
+    <meta property="og:image" href="./assets/image/icon.png">
+</head>
+<body>
+    <!-- Professional Background -->
+    <div class="professional-bg">
+        <div class="gradient-overlay"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="professional-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="#home" class="nav-logo">
+                    <span class="logo-text">Suresh Yadav</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="./srs-form/professional.html" class="nav-link">SRS Form</a>
+                <button class="mode-switcher" onclick="switchToHackerMode()">
+                    <span class="mode-icon">💻</span>
+                    <span class="mode-text">Hacker Mode</span>
+                </button>
+            </div>
+            <div class="nav-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-up">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="title-greeting">Hello, I'm</span>
+                            <span class="title-name">Suresh Yadav</span>
+                            <span class="title-role">Full Stack Developer & UI/UX Designer</span>
+                        </h1>
+                        <p class="hero-description">
+                            I create innovative mobile and web applications with 5+ years of experience in Flutter development. 
+                            Currently pursuing Computer Science with a focus on modern technologies and user experience design.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#work" class="btn btn-primary">
+                                <span class="btn-icon">💼</span>
+                                <span class="btn-text">View My Work</span>
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <span class="btn-icon">📧</span>
+                                <span class="btn-text">Get In Touch</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image" data-aos="fade-left">
+                        <div class="image-container">
+                            <img src="./assets/image/me.png" alt="Suresh Yadav" class="profile-image">
+                            <div class="floating-elements">
+                                <div class="floating-icon flutter-icon">📱</div>
+                                <div class="floating-icon dart-icon">🎯</div>
+                                <div class="floating-icon web-icon">🌐</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Section -->
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-icon">📱</div>
+                        <div class="stat-content">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Mobile Apps</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-content">
+                            <span class="stat-number">CS</span>
+                            <span class="stat-label">Student</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="work-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">My Work</h2>
+                    <p class="section-subtitle">Explore my portfolio of mobile applications and web projects</p>
+                </div>
+                
+                <div class="work-filter" data-aos="fade-up" data-aos-delay="100">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="game">Games</button>
+                </div>
+                
+                <div class="work-grid" id="workGrid">
+                    <!-- Projects will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="about-description">
+                            I'm a passionate developer with expertise in creating innovative mobile and web applications. 
+                            My journey in technology started 5+ years ago, and I've been continuously learning and 
+                            adapting to new technologies ever since.
+                        </p>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4>Programming Languages</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Flutter</span>
+                                    <span class="skill-tag">Dart</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">C++</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Web Technologies</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">HTML5</span>
+                                    <span class="skill-tag">CSS3</span>
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Express</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Mobile Development</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Flutter</span>
+                                    <span class="skill-tag">Android</span>
+                                    <span class="skill-tag">iOS</span>
+                                    <span class="skill-tag">Cross-platform</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Tools & Technologies</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">VS Code</span>
+                                    <span class="skill-tag">Android Studio</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">Adobe XD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image" data-aos="fade-left">
+                        <div class="image-container">
+                            <img src="./assets/image/me.png" alt="Suresh Yadav" class="about-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Ready to start your next project? Let's discuss your ideas</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>sureshyadav2004@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+977 9812345678</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Kathmandu, Nepal</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-details">
+                                <h4>Availability</h4>
+                                <p>Available for freelance projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form" data-aos="fade-left">
+                        <form class="form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="7f6edf0a-47e0-49a4-bebf-2a8be167a68b">
+                            <input type="hidden" name="subject" value="New Contact Form Submission - Professional Portfolio">
+                            
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="subject" class="form-input" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" class="form-textarea" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-icon">📤</span>
+                                <span class="btn-text">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Suresh Yadav</h3>
+                    <p>Full Stack Developer & UI/UX Designer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/sureshyadav2004" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/sureshyadav2004" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/sureshyadav2004" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/sureshyadav2004" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Suresh Yadav. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/portfolio-data.js"></script>
+    <script src="./assets/professional-portfolio.js"></script>
+</body>
+</html>

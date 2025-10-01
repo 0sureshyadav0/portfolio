@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ultra Modern SRS Form | Suresh Yadav</title>
+    <meta name="description" content="Ultra modern Software Requirements Specification form with stunning UI design">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Ultra Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/image/icon.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="ultra-modern-srs-style.css">
+</head>
+<body>
+    <!-- Ultra Modern Background -->
+    <div class="ultra-bg">
+        <div class="gradient-mesh">
+            <div class="mesh-gradient mesh-1"></div>
+            <div class="mesh-gradient mesh-2"></div>
+            <div class="mesh-gradient mesh-3"></div>
+        </div>
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
+        </div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Ultra Modern Navigation -->
+    <nav class="ultra-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../professional.html" class="brand-link">
+                    <div class="brand-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="brand-text">Suresh Yadav</span>
+                </a>
+            </div>
+            
+            <div class="nav-center">
+                <div class="nav-progress">
+                    <div class="progress-circle">
+                        <svg class="progress-ring" width="40" height="40">
+                            <circle class="progress-ring-circle" cx="20" cy="20" r="18"></circle>
+                        </svg>
+                        <span class="progress-text" id="navProgress">1/9</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="mode-switcher" onclick="switchToHackerMode()">
+                    <i class="fas fa-terminal"></i>
+                    <span>Hacker Mode</span>
+                </button>
+                <button class="nav-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-up">
+                    <div class="hero-badge">
+                        <i class="fas fa-rocket"></i>
+                        <span>Ultra Modern SRS</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">Project</span>
+                        <span class="title-line highlight">Requirements</span>
+                        <span class="title-line">Specification</span>
+                    </h1>
+                    <p class="hero-description">
+                        Transform your ideas into reality with our ultra-modern project specification form. 
+                        Experience the future of form design with stunning visuals and seamless interactions.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">5-10</span>
+                                <span class="stat-label">Minutes</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Secure</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">9</span>
+                                <span class="stat-label">Steps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ultra Modern Form -->
+        <section class="form-section">
+            <div class="container">
+                <div class="form-container" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Form Header -->
+                    <div class="form-header">
+                        <div class="form-title-section">
+                            <h2 class="form-title">Project Specification</h2>
+                            <p class="form-subtitle">Let's build something amazing together</p>
+                        </div>
+                        <div class="form-progress-section">
+                            <div class="progress-bar-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <span class="progress-percentage" id="progressPercentage">11%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Content -->
+                    <form id="srsForm" class="ultra-form" action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Hidden fields -->
+                        <input type="hidden" name="access_key" value="7f6edf0a-47e0-49a4-bebf-2a8be167a68b">
+                        <input type="hidden" name="subject" value="Ultra Modern SRS Form Submission">
+                        <input type="hidden" name="from_name" value="Ultra Modern SRS Form">
+                        <input type="hidden" name="redirect" value="true">
+                        <input type="hidden" name="redirect_url" value="../professional.html?submitted=true">
+
+                        <!-- Form Steps will be dynamically generated -->
+                        <div id="formSteps"></div>
+
+                        <!-- Form Navigation -->
+                        <div class="form-navigation">
+                            <button type="button" id="prevBtn" class="nav-btn prev-btn" disabled>
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Previous</span>
+                            </button>
+                            
+                            <div class="step-indicators">
+                                <div class="indicator active" data-step="1"></div>
+                                <div class="indicator" data-step="2"></div>
+                                <div class="indicator" data-step="3"></div>
+                                <div class="indicator" data-step="4"></div>
+                                <div class="indicator" data-step="5"></div>
+                                <div class="indicator" data-step="6"></div>
+                                <div class="indicator" data-step="7"></div>
+                                <div class="indicator" data-step="8"></div>
+                                <div class="indicator" data-step="9"></div>
+                            </div>
+                            
+                            <button type="button" id="nextBtn" class="nav-btn next-btn">
+                                <span>Next</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            
+                            <button type="button" id="previewBtn" class="nav-btn preview-btn" style="display: none;">
+                                <i class="fas fa-eye"></i>
+                                <span>Preview SRS</span>
+                            </button>
+                            
+                            <button type="button" id="generateSRSBtn" class="nav-btn generate-btn" style="display: none;">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Generate SRS</span>
+                            </button>
+                            
+                            <button type="submit" id="submitBtn" class="nav-btn submit-btn" style="display: none;">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Submit & Get Contract</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents Section -->
+        <section id="documentsSection" class="documents-section" style="display: none;">
+            <div class="container">
+                <div class="documents-container" data-aos="fade-up">
+                    <div class="documents-header">
+                        <h2 class="documents-title">
+                            <i class="fas fa-file-alt"></i>
+                            Generated Project Documents
+                        </h2>
+                        <p class="documents-subtitle">AI-generated comprehensive project documentation</p>
+                    </div>
+                    
+                    <div class="document-tabs">
+                        <button class="tab-btn active" data-tab="srs">
+                            <i class="fas fa-file-code"></i>
+                            <span>SRS Document</span>
+                        </button>
+                        <button class="tab-btn" data-tab="contract">
+                            <i class="fas fa-handshake"></i>
+                            <span>Project Agreement</span>
+                        </button>
+                        <button class="tab-btn" data-tab="summary">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Project Summary</span>
+                        </button>
+                        <button class="tab-btn" data-tab="pricing">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Pricing</span>
+                        </button>
+                        <button class="tab-btn" data-tab="terms">
+                            <i class="fas fa-gavel"></i>
+                            <span>Terms & Conditions</span>
+                        </button>
+                        <button class="tab-btn" data-tab="privacy">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privacy Policy</span>
+                        </button>
+                    </div>
+                    
+                    <div class="document-content">
+                        <div class="tab-content active" id="srs-tab">
+                            <div class="document-header">
+                                <h3>Software Requirements Specification</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadSRS">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download SRS</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printSRS">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="srsContent">
+                                <!-- SRS content will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="contract-tab">
+                            <div class="document-header">
+                                <h3>Project Development Agreement</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadContract">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download Contract</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printContract">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="contractContent">
+                                <!-- Contract content will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="summary-tab">
+                            <div class="document-header">
+                                <h3>Project Summary & Next Steps</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadSummary">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download Summary</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printSummary">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="summaryContent">
+                                <!-- Summary content will be generated here -->
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="pricing-tab">
+                            <div class="document-header">
+                                <h3>Project Pricing & Estimation</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadPricing">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download Pricing</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printPricing">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="pricingContent">
+                                <!-- Pricing content will be generated here -->
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="terms-tab">
+                            <div class="document-header">
+                                <h3>Terms & Conditions</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadTerms">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download Terms</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printTerms">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="termsContent">
+                                <!-- Terms content will be generated here -->
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="privacy-tab">
+                            <div class="document-header">
+                                <h3>Privacy Policy</h3>
+                                <div class="document-actions">
+                                    <button class="action-btn download-btn" id="downloadPrivacy">
+                                        <i class="fas fa-download"></i>
+                                        <span>Download Privacy</span>
+                                    </button>
+                                    <button class="action-btn print-btn" id="printPrivacy">
+                                        <i class="fas fa-print"></i>
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="document-body" id="privacyContent">
+                                <!-- Privacy content will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="documents-footer">
+                        <button class="modify-form-btn" id="modifyForm">
+                            <i class="fas fa-edit"></i>
+                            <span>Modify Form</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="form-data.js"></script>
+    <script src="professional-gemini-pricing.js"></script>
+    <script src="ultra-modern-srs-script.js"></script>
+</body>
+</html>
