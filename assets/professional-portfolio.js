@@ -397,3 +397,199 @@ document.addEventListener('keydown', function(e) {
         closeReadmeModal();
     }
 });
+
+// Professional Music Player
+class ProfessionalMusicPlayer {
+    constructor() {
+        this.audio = document.getElementById('musicAudio');
+        this.playBtn = document.getElementById('musicPlayBtn');
+        this.playIcon = document.getElementById('playIcon');
+        this.progressBar = document.getElementById('musicProgressBar');
+        this.progressContainer = document.getElementById('musicProgress');
+        this.currentTimeEl = document.getElementById('currentTime');
+        this.durationEl = document.getElementById('duration');
+        this.volumeBar = document.getElementById('volumeBar');
+        this.volumeSlider = document.getElementById('volumeSlider');
+        this.musicStatus = document.getElementById('musicStatus');
+        this.musicContent = document.getElementById('musicContent');
+        this.musicToggleBtn = document.getElementById('musicToggleBtn');
+        
+        this.isPlaying = false;
+        this.isExpanded = false;
+        this.userInteracted = false;
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.audio || !this.playBtn) {
+            console.log('Music player elements not found');
+            return;
+        }
+        
+        this.setupEventListeners();
+        this.setupAudioProperties();
+        this.updateUI();
+    }
+    
+    setupEventListeners() {
+        // Toggle music content visibility
+        this.musicToggleBtn.addEventListener('click', () => {
+            this.toggleMusicContent();
+        });
+        
+        // Play/Pause button
+        this.playBtn.addEventListener('click', () => {
+            this.togglePlayPause();
+        });
+        
+        // Progress bar click to seek
+        this.progressContainer.addEventListener('click', (e) => {
+            this.seekToPosition(e);
+        });
+        
+        // Volume slider
+        this.volumeSlider.addEventListener('click', (e) => {
+            this.setVolume(e);
+        });
+        
+        // Audio events
+        this.audio.addEventListener('loadedmetadata', () => {
+            this.updateDuration();
+        });
+        
+        this.audio.addEventListener('timeupdate', () => {
+            this.updateProgress();
+        });
+        
+        this.audio.addEventListener('ended', () => {
+            this.handleAudioEnded();
+        });
+        
+        this.audio.addEventListener('error', (e) => {
+            this.handleAudioError(e);
+        });
+        
+        // Enable audio on first user interaction
+        document.addEventListener('click', () => {
+            if (!this.userInteracted) {
+                this.userInteracted = true;
+                this.musicStatus.textContent = 'Ready to play';
+            }
+        });
+    }
+    
+    setupAudioProperties() {
+        this.audio.preload = 'metadata';
+        this.audio.volume = 0.7;
+        this.audio.crossOrigin = 'anonymous';
+    }
+    
+    toggleMusicContent() {
+        this.isExpanded = !this.isExpanded;
+        
+        if (this.isExpanded) {
+            this.musicContent.style.display = 'block';
+            this.musicToggleBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+        } else {
+            this.musicContent.style.display = 'none';
+            this.musicToggleBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+    }
+    
+    async togglePlayPause() {
+        if (!this.userInteracted) {
+            this.musicStatus.textContent = 'Click anywhere first to enable audio';
+            return;
+        }
+        
+        try {
+            if (this.audio.paused) {
+                await this.audio.play();
+                this.isPlaying = true;
+                this.playIcon.className = 'fas fa-pause';
+                this.playBtn.classList.add('playing');
+                this.musicStatus.textContent = 'Playing...';
+            } else {
+                this.audio.pause();
+                this.isPlaying = false;
+                this.playIcon.className = 'fas fa-play';
+                this.playBtn.classList.remove('playing');
+                this.musicStatus.textContent = 'Paused';
+            }
+        } catch (error) {
+            console.error('Error playing audio:', error);
+            this.musicStatus.textContent = 'Error: ' + error.message;
+        }
+    }
+    
+    updateProgress() {
+        if (this.audio.duration) {
+            const progress = (this.audio.currentTime / this.audio.duration) * 100;
+            this.progressBar.style.width = `${progress}%`;
+            this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
+        }
+    }
+    
+    updateDuration() {
+        if (this.audio.duration) {
+            this.durationEl.textContent = this.formatTime(this.audio.duration);
+        }
+    }
+    
+    seekToPosition(e) {
+        if (!this.audio.duration) return;
+        
+        const rect = this.progressContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const percentage = clickX / width;
+        const newTime = percentage * this.audio.duration;
+        
+        this.audio.currentTime = newTime;
+    }
+    
+    setVolume(e) {
+        const rect = this.volumeSlider.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const percentage = Math.max(0, Math.min(1, clickX / width));
+        
+        this.audio.volume = percentage;
+        this.volumeBar.style.width = `${percentage * 100}%`;
+    }
+    
+    handleAudioEnded() {
+        this.isPlaying = false;
+        this.playIcon.className = 'fas fa-play';
+        this.playBtn.classList.remove('playing');
+        this.musicStatus.textContent = 'Finished';
+        this.progressBar.style.width = '0%';
+        this.currentTimeEl.textContent = '0:00';
+    }
+    
+    handleAudioError(e) {
+        console.error('Audio error:', e);
+        this.musicStatus.textContent = 'Error loading audio';
+    }
+    
+    formatTime(time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    updateUI() {
+        // Set initial volume bar width
+        this.volumeBar.style.width = '70%';
+        
+        // Set initial status
+        this.musicStatus.textContent = 'Ready to play';
+    }
+}
+
+// Initialize music player when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize music player
+    new ProfessionalMusicPlayer();
+});

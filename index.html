@@ -374,6 +374,60 @@
         </div>
     </footer>
 
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-container">
+            <div class="music-header">
+                <div class="music-title">
+                    <i class="fas fa-music"></i>
+                    <span>Background Music</span>
+                </div>
+                <div class="music-controls-toggle">
+                    <button class="music-toggle-btn" id="musicToggleBtn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="music-content" id="musicContent" style="display: none;">
+                <div class="music-info">
+                    <div class="music-track-title">सुरेशको जीवनको कथा</div>
+                    <div class="music-status" id="musicStatus">Ready to play</div>
+                </div>
+                
+                <div class="music-controls">
+                    <button class="music-play-btn" id="musicPlayBtn">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    
+                    <div class="music-progress-container">
+                        <div class="music-progress" id="musicProgress">
+                            <div class="music-progress-bar" id="musicProgressBar"></div>
+                        </div>
+                        <div class="music-time">
+                            <span class="music-current-time" id="currentTime">0:00</span>
+                            <span class="music-duration" id="duration">0:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-volume">
+                    <i class="fas fa-volume-down music-volume-icon"></i>
+                    <div class="music-volume-slider" id="volumeSlider">
+                        <div class="music-volume-bar" id="volumeBar"></div>
+                    </div>
+                    <i class="fas fa-volume-up music-volume-icon"></i>
+                </div>
+                
+                <!-- Hidden audio element -->
+                <audio id="musicAudio" preload="metadata">
+                    <source src="./assets/music/सुरेशको जीवनको कथा.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="./assets/portfolio-data.js"></script>
     <script src="./assets/professional-portfolio.js"></script>
