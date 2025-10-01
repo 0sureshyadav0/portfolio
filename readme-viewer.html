@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README Viewer - Suresh Yadav</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .github-link {
+            background: #24292e;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .github-link:hover {
+            background: #1a1e22;
+            transform: translateY(-1px);
+        }
+
+        .loading-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .error-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-1px);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .readme-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            line-height: 1.8;
+        }
+
+        .readme-content h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .readme-content h2 {
+            font-size: 2rem;
+            color: #333;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .readme-content h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 25px 0 10px 0;
+        }
+
+        .readme-content h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin: 20px 0 8px 0;
+        }
+
+        .readme-content p {
+            margin: 15px 0;
+            color: #444;
+        }
+
+        .readme-content code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #e83e8c;
+        }
+
+        .readme-content pre {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .readme-content pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .readme-content ul,
+        .readme-content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .readme-content li {
+            margin: 8px 0;
+            color: #444;
+        }
+
+        .readme-content blockquote {
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            padding: 15px 25px;
+            background: #f8f9fa;
+            font-style: italic;
+            color: #555;
+        }
+
+        .readme-content a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .readme-content a:hover {
+            text-decoration: underline;
+        }
+
+        .readme-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .readme-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .readme-content th,
+        .readme-content td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .readme-content th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .readme-content hr {
+            border: none;
+            height: 2px;
+            background: #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .readme-content strong {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .readme-content em {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .header-left,
+            .header-right {
+                justify-content: center;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .content-container {
+                padding: 20px 15px;
+            }
+
+            .readme-content {
+                padding: 25px;
+            }
+
+            .readme-content h1 {
+                font-size: 2rem;
+            }
+
+            .readme-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .readme-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .readme-content {
+                padding: 20px;
+            }
+
+            .readme-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .readme-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .readme-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .readme-content pre {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="#" class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                <h1 class="project-title" id="project-title">Loading...</h1>
+            </div>
+            <div class="header-right">
+                <a href="#" class="github-link" id="github-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-container" class="loading-container">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <div class="loading-text">Loading README content...</div>
+    </div>
+
+    <div id="error-container" class="error-container" style="display: none;">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h2 class="error-title">Unable to Load README</h2>
+        <p class="error-message">
+            Sorry, we couldn't load the README content. This might be due to network issues or CORS restrictions.
+        </p>
+        <div class="error-actions">
+            <a href="#" class="btn btn-primary" id="retry-btn">
+                <i class="fas fa-redo"></i>
+                Try Again
+            </a>
+            <a href="#" class="btn btn-secondary" id="github-fallback" target="_blank">
+                <i class="fab fa-github"></i>
+                Open on GitHub
+            </a>
+        </div>
+    </div>
+
+    <div id="content-container" class="content-container" style="display: none;">
+        <div class="readme-content" id="readme-content">
+            <!-- README content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        let projectData = null;
+        let readmeUrl = null;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjectData();
+        });
+
+        function loadProjectData() {
+            try {
+                const storedData = localStorage.getItem('readme-project');
+                if (!storedData) {
+                    showError('No project data found');
+                    return;
+                }
+
+                projectData = JSON.parse(storedData);
+                readmeUrl = projectData.readmeUrl;
+
+                // Update page title and header
+                document.getElementById('project-title').textContent = getProjectName(projectData.id);
+                document.title = `${getProjectName(projectData.id)} - README`;
+
+                // Update GitHub link
+                const githubLink = document.getElementById('github-link');
+                githubLink.href = readmeUrl;
+
+                // Load README content
+                loadReadmeContent();
+            } catch (error) {
+                console.error('Error loading project data:', error);
+                showError('Invalid project data');
+            }
+        }
+
+        async function loadReadmeContent() {
+            try {
+                // Convert GitHub URL to raw URL
+                const rawUrl = readmeUrl.replace('github.com', 'raw.githubusercontent.com').replace('/blob', '');
+                
+                const response = await fetch(rawUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const markdownContent = await response.text();
+                const htmlContent = convertMarkdownToHtml(markdownContent);
+
+                // Display content
+                document.getElementById('readme-content').innerHTML = htmlContent;
+                document.getElementById('loading-container').style.display = 'none';
+                document.getElementById('content-container').style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading README:', error);
+                showError('Failed to load README content');
+            }
+        }
+
+        function convertMarkdownToHtml(markdown) {
+            let html = markdown
+                // Headers
+                .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                
+                // Bold and italic
+                .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                
+                // Code blocks
+                .replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>')
+                .replace(/`(.*?)`/gim, '<code>$1</code>')
+                
+                // Links
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>')
+                
+                // Images
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1">')
+                
+                // Lists
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                .replace(/^- (.*$)/gim, '<li>$1</li>')
+                .replace(/^(\d+)\. (.*$)/gim, '<li>$2</li>')
+                
+                // Horizontal rules
+                .replace(/^---$/gim, '<hr>')
+                .replace(/^\*\*\*$/gim, '<hr>')
+                
+                // Line breaks
+                .replace(/\n\n/gim, '</p><p>')
+                .replace(/\n/gim, '<br>');
+            
+            // Wrap in paragraphs
+            html = '<p>' + html + '</p>';
+            
+            // Fix list formatting
+            html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+            html = html.replace(/<\/ul><ul>/gim, '');
+            
+            return html;
+        }
+
+        function getProjectName(projectId) {
+            // This would ideally come from the portfolio data
+            const projectNames = {
+                'flybird': 'Fly Bird',
+                'mausam': 'Mausam',
+                'nxgen': 'NxGen',
+                'paalox': 'PaaloX',
+                'sangeet': 'Sangeet',
+                'techveda': 'TechVeda',
+                'todo': 'Todo App',
+                'merocinema': 'मेरो सिनेमा'
+            };
+            return projectNames[projectId] || 'Project';
+        }
+
+        function showError(message) {
+            document.getElementById('loading-container').style.display = 'none';
+            document.getElementById('error-container').style.display = 'block';
+            
+            // Update retry button
+            document.getElementById('retry-btn').onclick = loadReadmeContent;
+            
+            // Update GitHub fallback
+            if (readmeUrl) {
+                document.getElementById('github-fallback').href = readmeUrl;
+            }
+        }
+
+        function goBack() {
+            // Close this tab and return to the main portfolio
+            window.close();
+            
+            // If window.close() doesn't work (some browsers block it), redirect to portfolio
+            setTimeout(() => {
+                window.location.href = './index.html';
+            }, 100);
+        }
+
+        // Retry button functionality
+        document.getElementById('retry-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('error-container').style.display = 'none';
+            document.getElementById('loading-container').style.display = 'block';
+            loadReadmeContent();
+        });
+    </script>
+</body>
+</html>
+

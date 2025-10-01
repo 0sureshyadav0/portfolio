@@ -85,9 +85,9 @@ function loadProjects() {
                     ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                 </div>
                 <div class="project-actions">
-                    <a href="${project.github}" class="project-btn" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
+                    <button class="project-btn" onclick="openReadmePage('${project.id}', '${project.readme}')">
+                        <i class="fas fa-book"></i> README
+                    </button>
                     <a href="${project.demo}" class="project-btn primary" download>
                         <i class="fas fa-download"></i> Download
                     </a>
@@ -375,3 +375,25 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// README Page Functionality
+function openReadmePage(projectId, readmeUrl) {
+    // Store project data in localStorage for the README page
+    const projectData = {
+        id: projectId,
+        readmeUrl: readmeUrl,
+        timestamp: Date.now()
+    };
+    
+    localStorage.setItem('readme-project', JSON.stringify(projectData));
+    
+    // Open README page in new tab
+    window.open('./readme-viewer.html', '_blank');
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeReadmeModal();
+    }
+});
