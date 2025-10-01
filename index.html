@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="Suresh Yadav">
     <meta name="description" content="Computer Science student with 3+ years of experience in Web Development, Flutter, Dart & C as well as in Android and iOS development.">
     <meta name="keywords" content="Suresh Yadav, suresh yadav, SureshYadav, sureshyadav, portfolio, NxGen, Flutter Developer, Hacker">
@@ -34,6 +34,7 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/hacker-style.css">
+    <link rel="stylesheet" href="./assets/mobile-first.css">
     
     <!-- PWA -->
     <link rel="manifest" href="./manifest.json">
@@ -81,7 +82,15 @@
                 <span class="brand-cursor">_</span>
             </div>
             
-            <div class="nav-links">
+            <!-- Mobile Menu Toggle -->
+            <div class="nav-toggle" id="nav-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            
+            <div class="nav-links" id="nav-links">
                 <a href="#home" class="nav-link active">
                     <span class="link-prefix">~/</span>
                     <span class="link-text">home</span>
@@ -102,12 +111,6 @@
                     <span class="link-prefix">~/</span>
                     <span class="link-text">srs_form</span>
                 </a>
-            </div>
-            
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
@@ -861,6 +864,90 @@
                     document.addEventListener('click', enableAudio, { once: true });
                     document.addEventListener('keydown', enableAudio, { once: true });
                     document.addEventListener('touchstart', enableAudio, { once: true });
+                    
+                    // Mobile Navigation Toggle
+                    window.toggleMobileMenu = function() {
+                        const navToggle = document.getElementById('nav-toggle');
+                        const navLinks = document.getElementById('nav-links');
+                        
+                        if (navToggle && navLinks) {
+                            // Only toggle on mobile screens (768px and below)
+                            if (window.innerWidth <= 768) {
+                                const computedStyle = window.getComputedStyle(navLinks);
+                                const isVisible = computedStyle.display !== 'none';
+                                
+                                if (isVisible) {
+                                    navLinks.style.display = 'none';
+                                    navToggle.classList.remove('active');
+                                } else {
+                                    navLinks.style.display = 'flex';
+                                    navToggle.classList.add('active');
+                                }
+                            }
+                        }
+                    };
+                    
+                    // Initialize mobile navigation
+                    function initMobileNav() {
+                        const navToggle = document.getElementById('nav-toggle');
+                        const navLinks = document.getElementById('nav-links');
+                        
+                        if (navToggle && navLinks) {
+                            // Only apply mobile behavior on mobile screens
+                            if (window.innerWidth <= 768) {
+                                // Close menu when clicking on nav links
+                                const navLinkElements = navLinks.querySelectorAll('.nav-link');
+                                navLinkElements.forEach(link => {
+                                    link.addEventListener('click', function() {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    });
+                                });
+                                
+                                // Close menu when clicking outside
+                                document.addEventListener('click', function(event) {
+                                    if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    }
+                                });
+                                
+                                // Close menu on escape key
+                                document.addEventListener('keydown', function(event) {
+                                    if (event.key === 'Escape') {
+                                        navToggle.classList.remove('active');
+                                        navLinks.style.display = 'none';
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    
+                    // Handle window resize to switch between mobile and desktop navigation
+                    window.addEventListener('resize', function() {
+                        const navLinks = document.getElementById('nav-links');
+                        const navToggle = document.getElementById('nav-toggle');
+                        
+                        if (navLinks && navToggle) {
+                            if (window.innerWidth > 768) {
+                                // Desktop: Remove inline styles to let CSS take over
+                                navLinks.style.display = '';
+                                navToggle.classList.remove('active');
+                            } else {
+                                // Mobile: Ensure proper mobile behavior
+                                if (!navToggle.classList.contains('active')) {
+                                    navLinks.style.display = 'none';
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Initialize mobile navigation when DOM is loaded
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initMobileNav);
+                    } else {
+                        initMobileNav();
+                    }
                     
                     // Load the audio
                     audio.load();

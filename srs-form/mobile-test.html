@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Responsiveness Test - Portfolio</title>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #00ff41;
+            line-height: 1.6;
+        }
+        
+        .test-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+        }
+        
+        .test-section {
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .test-section h2 {
+            color: #00ff41;
+            margin-bottom: 15px;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
+        }
+        
+        .test-section p {
+            color: #888;
+            margin-bottom: 10px;
+        }
+        
+        .test-button {
+            background: transparent;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 10px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .test-button:hover {
+            background: #00ff41;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .grid-item {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid #00ffff;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .grid-item h3 {
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+        
+        .grid-item p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .screen-info {
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid #ff6b35;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .screen-info h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+        
+        .screen-info p {
+            color: #888;
+            margin: 5px 0;
+        }
+        
+        /* Mobile First Responsive Design */
+        @media (min-width: 480px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .test-button {
+                width: auto;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .test-container {
+                max-width: 1200px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .responsive-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        
+        /* Landscape orientation */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .test-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .test-section,
+            .grid-item,
+            .screen-info {
+                border-width: 0.5px;
+            }
+        }
+        
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+                color: #00ff41;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .test-section,
+            .grid-item,
+            .screen-info {
+                border: 1px solid #ccc;
+                background: white;
+            }
+            
+            .test-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📱 Mobile Responsiveness Test</h1>
+        
+        <div class="screen-info">
+            <h3>Screen Information</h3>
+            <p><strong>Width:</strong> <span id="screen-width"></span>px</p>
+            <p><strong>Height:</strong> <span id="screen-height"></span>px</p>
+            <p><strong>Device Pixel Ratio:</strong> <span id="pixel-ratio"></span></p>
+            <p><strong>Orientation:</strong> <span id="orientation"></span></p>
+            <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎯 Portfolio Links</h2>
+            <p>Test the mobile responsiveness of different portfolio sections:</p>
+            <button class="test-button" onclick="window.open('../index.html', '_blank')">Main Portfolio</button>
+            <button class="test-button" onclick="window.open('index.html', '_blank')">SRS Form</button>
+            <button class="test-button" onclick="window.open('srs-preview.html', '_blank')">SRS Preview</button>
+            <button class="test-button" onclick="window.open('ai-test.html', '_blank')">AI Test</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📐 Responsive Grid Test</h2>
+            <p>This grid should adapt to different screen sizes:</p>
+            <div class="responsive-grid">
+                <div class="grid-item">
+                    <h3>Mobile</h3>
+                    <p>320px - 479px<br>1 column</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Small Tablet</h3>
+                    <p>480px - 767px<br>2 columns</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Tablet</h3>
+                    <p>768px - 1023px<br>3 columns</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Desktop</h3>
+                    <p>1024px - 1199px<br>4 columns</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Large Desktop</h3>
+                    <p>1200px+<br>5 columns</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 Mobile Features Test</h2>
+            <p>Test mobile-specific features:</p>
+            <button class="test-button" onclick="testTouch()">Touch Events</button>
+            <button class="test-button" onclick="testOrientation()">Orientation Change</button>
+            <button class="test-button" onclick="testViewport()">Viewport Meta</button>
+            <button class="test-button" onclick="testScroll()">Smooth Scroll</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📊 Performance Test</h2>
+            <p>Check performance metrics:</p>
+            <button class="test-button" onclick="testPerformance()">Run Performance Test</button>
+            <div id="performance-results" style="margin-top: 15px; padding: 15px; background: rgba(0, 255, 65, 0.05); border: 1px solid #00ff41; border-radius: 4px; display: none;">
+                <h4 style="color: #00ff41; margin-bottom: 10px;">Performance Results:</h4>
+                <div id="performance-data"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎨 CSS Features Test</h2>
+            <p>Test CSS features and compatibility:</p>
+            <button class="test-button" onclick="testCSSFeatures()">Test CSS Features</button>
+            <div id="css-results" style="margin-top: 15px; padding: 15px; background: rgba(0, 255, 255, 0.05); border: 1px solid #00ffff; border-radius: 4px; display: none;">
+                <h4 style="color: #00ffff; margin-bottom: 10px;">CSS Features:</h4>
+                <div id="css-data"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Update screen information
+        function updateScreenInfo() {
+            document.getElementById('screen-width').textContent = window.innerWidth;
+            document.getElementById('screen-height').textContent = window.innerHeight;
+            document.getElementById('pixel-ratio').textContent = window.devicePixelRatio;
+            document.getElementById('orientation').textContent = screen.orientation ? screen.orientation.type : 'unknown';
+            document.getElementById('user-agent').textContent = navigator.userAgent.substring(0, 50) + '...';
+        }
+        
+        // Update screen info on load and resize
+        updateScreenInfo();
+        window.addEventListener('resize', updateScreenInfo);
+        window.addEventListener('orientationchange', updateScreenInfo);
+        
+        // Test functions
+        function testTouch() {
+            alert('Touch events are supported: ' + ('ontouchstart' in window));
+        }
+        
+        function testOrientation() {
+            if (screen.orientation) {
+                alert('Current orientation: ' + screen.orientation.type);
+            } else {
+                alert('Orientation API not supported');
+            }
+        }
+        
+        function testViewport() {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                alert('Viewport meta tag found: ' + viewport.content);
+            } else {
+                alert('No viewport meta tag found');
+            }
+        }
+        
+        function testScroll() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            setTimeout(() => {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 1000);
+        }
+        
+        function testPerformance() {
+            const results = document.getElementById('performance-results');
+            const data = document.getElementById('performance-data');
+            
+            results.style.display = 'block';
+            data.innerHTML = '<p>Running performance test...</p>';
+            
+            // Simple performance test
+            const start = performance.now();
+            
+            // Simulate some work
+            let sum = 0;
+            for (let i = 0; i < 1000000; i++) {
+                sum += Math.random();
+            }
+            
+            const end = performance.now();
+            const duration = end - start;
+            
+            data.innerHTML = `
+                <p><strong>Test Duration:</strong> ${duration.toFixed(2)}ms</p>
+                <p><strong>Memory Usage:</strong> ${(performance.memory ? (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2) : 'N/A')}MB</p>
+                <p><strong>Performance Score:</strong> ${duration < 10 ? 'Excellent' : duration < 50 ? 'Good' : duration < 100 ? 'Fair' : 'Poor'}</p>
+            `;
+        }
+        
+        function testCSSFeatures() {
+            const results = document.getElementById('css-results');
+            const data = document.getElementById('css-data');
+            
+            results.style.display = 'block';
+            
+            const features = [
+                'CSS Grid',
+                'CSS Flexbox',
+                'CSS Custom Properties',
+                'CSS Transforms',
+                'CSS Transitions',
+                'CSS Animations',
+                'CSS Filters',
+                'CSS Clip-path',
+                'CSS Backdrop-filter',
+                'CSS Scroll-behavior'
+            ];
+            
+            const supported = features.map(feature => {
+                const test = document.createElement('div');
+                test.style.cssText = `
+                    display: grid;
+                    display: flex;
+                    --test: 1px;
+                    transform: translateX(1px);
+                    transition: all 0.1s;
+                    animation: none;
+                    filter: blur(1px);
+                    clip-path: circle(1px);
+                    backdrop-filter: blur(1px);
+                    scroll-behavior: smooth;
+                `;
+                return test;
+            });
+            
+            data.innerHTML = features.map((feature, index) => {
+                const isSupported = supported[index].style.length > 0;
+                return `<p style="color: ${isSupported ? '#00ff41' : '#ff0040'}">${feature}: ${isSupported ? '✅ Supported' : '❌ Not Supported'}</p>`;
+            }).join('');
+        }
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to test buttons
+            const buttons = document.querySelectorAll('.test-button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Add click effects
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
