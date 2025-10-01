@@ -360,13 +360,13 @@ body {
 
 .btn-outline {
   background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
 }
 
 .btn-outline:hover {
-  background: var(--white);
-  color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
 }
 
 .btn-full {
