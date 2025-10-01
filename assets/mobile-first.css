@@ -134,8 +134,8 @@ body {
   border-bottom-color: var(--secondary);
 }
 
-/* Mobile Hero Section */
-.hero-section {
+/* Mobile Hero Section - Only for professional mode */
+body.professional-mode .hero-section {
   padding: calc(var(--nav-total-height) + var(--space-xl)) var(--space-md) var(--space-xl);
   margin: 0 var(--space-sm);
   min-height: 100vh;
@@ -518,7 +518,7 @@ p {
     margin: 0 auto;
   }
 
-  .hero-section {
+  body.professional-mode .hero-section {
     max-width: var(--container-max);
     margin: 0 auto;
   }
@@ -561,7 +561,7 @@ p {
 
 /* Mobile Landscape (480px - 767px) */
 @media (min-width: 480px) and (max-width: 767px) and (orientation: landscape) {
-  .hero-section {
+  body.professional-mode .hero-section {
     padding: calc(var(--nav-total-height) + var(--space-md)) var(--space-md) var(--space-md);
   }
 

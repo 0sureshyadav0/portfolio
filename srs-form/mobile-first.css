@@ -521,6 +521,9 @@
     height: 28px;
     font-size: 0.8rem;
   }
+  .hero-terminal {
+    width: 100%;
+  }
 }
 
 /* Large Desktop Styles (1200px+) */

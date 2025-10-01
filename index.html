@@ -35,6 +35,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/hacker-style.css">
     <link rel="stylesheet" href="./assets/mobile-first.css">
+    <link rel="stylesheet" href="./assets/professional-style.css">
     
     <!-- PWA -->
     <link rel="manifest" href="./manifest.json">
@@ -82,6 +83,14 @@
                 <span class="brand-cursor">_</span>
             </div>
             
+            <!-- Style Switcher -->
+            <div class="style-switcher">
+                <button id="style-toggle" class="style-toggle-btn" onclick="toggleStyle()" title="Switch between Hacker and Professional mode">
+                    <span class="style-icon">🎨</span>
+                    <span class="style-text">Professional</span>
+                </button>
+            </div>
+            
             <!-- Mobile Menu Toggle -->
             <div class="nav-toggle" id="nav-toggle" onclick="toggleMobileMenu()">
                 <span></span>
@@ -116,18 +125,31 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-terminal">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-buttons">
-                    <span class="btn-close"></span>
-                    <span class="btn-minimize"></span>
-                    <span class="btn-maximize"></span>
+    <section id="home" class="hero-section">
+        <div class="hero-terminal">
+            <!-- Professional Mode Content -->
+            <div class="hero-content">
+                <div class="hero-title">Suresh Yadav</div>
+                <div class="hero-subtitle">Full Stack Developer & UI/UX Designer</div>
+                <div class="hero-buttons">
+                    <a href="#work" class="hacker-btn primary">View My Work</a>
+                    <a href="#contact" class="hacker-btn secondary">Get In Touch</a>
                 </div>
-                <div class="terminal-title">suresh@yadav:~$ whoami</div>
             </div>
             
-            <div class="terminal-content">
+            <!-- Hacker Mode Content -->
+            <div class="hacker-content">
+                <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn-close"></span>
+                        <span class="btn-minimize"></span>
+                        <span class="btn-maximize"></span>
+                    </div>
+                    <div class="terminal-title">suresh@yadav:~$ whoami</div>
+                </div>
+                
+                <div class="terminal-content">
                 <div class="terminal-line">
                     <span class="prompt">suresh@yadav:~$</span>
                     <span class="command">whoami</span>
@@ -300,6 +322,8 @@
                     <span class="matrix-char">1</span>
                     <span class="matrix-char">1</span>
                 </div>
+                </div>
+            </div>
             </div>
             
             <div class="parrot-container">
@@ -312,6 +336,7 @@
             autoplay
                 ></lottie-player>
             </div>
+        </div>
         </div>
     </section>
 
@@ -865,6 +890,25 @@
                     document.addEventListener('keydown', enableAudio, { once: true });
                     document.addEventListener('touchstart', enableAudio, { once: true });
                     
+                    // Style Switcher Functionality - Redirect to Professional Mode
+                    window.toggleStyle = function() {
+                        // Save current mode preference
+                        localStorage.setItem('portfolio-mode', 'professional');
+                        // Redirect to professional mode
+                        window.location.href = './professional.html';
+                    };
+                    
+                    // Initialize Style from localStorage
+                    function initStyle() {
+                        const savedMode = localStorage.getItem('portfolio-mode');
+                        if (savedMode === 'professional') {
+                            // Redirect to professional mode if preference is set
+                            window.location.href = './professional.html';
+                        }
+                        // Default to hacker mode
+                        localStorage.setItem('portfolio-mode', 'hacker');
+                    }
+                    
                     // Mobile Navigation Toggle
                     window.toggleMobileMenu = function() {
                         const navToggle = document.getElementById('nav-toggle');
@@ -953,10 +997,14 @@
                         }
                     });
                     
-                    // Initialize mobile navigation when DOM is loaded
+                    // Initialize everything when DOM is loaded
                     if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', initMobileNav);
+                        document.addEventListener('DOMContentLoaded', function() {
+                            initStyle();
+                            initMobileNav();
+                        });
                     } else {
+                        initStyle();
                         initMobileNav();
                     }
                     

@@ -523,11 +523,67 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 3px;
+/* Style Switcher */
+.style-switcher {
+  display: flex;
+  align-items: center;
+  margin-right: var(--space-lg);
+}
+
+.style-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.style-toggle-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--secondary);
+  box-shadow: var(--shadow-glow);
+}
+
+.style-icon {
+  font-size: 0.9rem;
+}
+
+.style-text {
+  font-weight: 500;
+}
+
+/* Professional mode style switcher */
+body.professional-mode .style-toggle-btn {
+  background: var(--prof-bg-primary);
+  border: 1px solid var(--prof-bg-tertiary);
+  color: var(--prof-text-primary);
+}
+
+body.professional-mode .style-toggle-btn:hover {
+  background: var(--prof-bg-hover);
+  border-color: var(--prof-primary);
+  box-shadow: var(--prof-shadow-md);
+}
+
+@media (max-width: 768px) {
+  .style-switcher {
+    margin-right: var(--space-md);
+  }
+  
+  .style-toggle-btn {
+    padding: var(--space-xs);
+  }
+  
+  .style-text {
+    display: none;
+  }
 }
 
 .nav-toggle span {
@@ -535,6 +591,17 @@ h1, h2, h3, h4, h5, h6 {
   height: 2px;
   background: var(--text-primary);
   transition: var(--transition-fast);
+}
+
+/* Hacker Content */
+.hacker-content {
+  display: block;
+  width: 100%;
+}
+
+/* Ensure hacker content is visible in hacker mode */
+body:not(.professional-mode) .hacker-content {
+  display: block !important;
 }
 
 /* Terminal Windows */
@@ -602,15 +669,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .terminal-content {
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-3xl);
   min-height: 200px;
+  text-align: left !important;
 }
 
 /* Terminal Elements */
 .terminal-line {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .prompt {
@@ -634,13 +703,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .terminal-output {
   margin-left: var(--space-lg);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .output-line {
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .output-text {
@@ -648,22 +718,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hero Section */
+.hero-section {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .hero-terminal {
   padding-top: calc(30px + var(--nav-height));
   padding-bottom: var(--space-3xl);
   position: relative;
+  text-align: left;
 }
 
 .hero-terminal .terminal-window {
   margin: var(--space-xl) auto;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 /* Hacker Visual */
 .hacker-visual {
   position: absolute;
   top: 50%;
-  right: 5%;
+  right: 15%;
   transform: translateY(-50%);
   z-index: -1;
 }
@@ -1434,6 +1511,19 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links.active {
     left: 0;
   }
+  
+  .hero-terminal .terminal-window {
+    margin: var(--space-lg) auto;
+    max-width: 95%;
+  }
+  
+  .hacker-visual {
+    right: 10%;
+  }
+  
+  .terminal-content {
+    padding: var(--space-lg) var(--space-md);
+  }
 
   .nav-toggle {
     display: flex;
@@ -1538,7 +1628,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .terminal-content {
-    padding: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .hero-terminal .terminal-window {
+    margin: var(--space-lg) auto;
+    max-width: 98%;
+  }
+  
+  .hacker-visual {
+    right: 5%;
+    opacity: 0.5;
   }
 
   .projects-grid,
@@ -1676,4 +1776,11 @@ h1, h2, h3, h4, h5, h6 {
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* Override mobile-first.css hero section constraints */
+section.hero-section {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
