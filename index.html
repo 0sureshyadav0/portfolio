@@ -85,7 +85,7 @@
             
             <!-- Style Switcher -->
             <div class="style-switcher">
-                <button id="style-toggle" class="style-toggle-btn" onclick="toggleStyle()" title="Switch between Hacker and Professional mode">
+                <button id="style-toggle" class="style-toggle-btn" onclick="toggleStyle()" title="Switch to Professional Mode">
                     <span class="style-icon">🎨</span>
                     <span class="style-text">Professional</span>
                 </button>
@@ -890,23 +890,49 @@
                     document.addEventListener('keydown', enableAudio, { once: true });
                     document.addEventListener('touchstart', enableAudio, { once: true });
                     
-                    // Style Switcher Functionality - Redirect to Professional Mode
+                    // Update button text based on current mode
+                    function updateStyleButton() {
+                        const button = document.getElementById('style-toggle');
+                        const textSpan = button.querySelector('.style-text');
+                        const currentMode = localStorage.getItem('portfolio-mode');
+                        
+                        if (currentMode === 'professional') {
+                            textSpan.textContent = 'Hacker Mode';
+                            button.title = 'Switch to Hacker Mode';
+                        } else {
+                            textSpan.textContent = 'Professional';
+                            button.title = 'Switch to Professional Mode';
+                        }
+                    }
+                    
+                    // Style Switcher Functionality - Toggle between modes
                     window.toggleStyle = function() {
-                        // Save current mode preference
-                        localStorage.setItem('portfolio-mode', 'professional');
-                        // Redirect to professional mode
-                        window.location.href = './professional.html';
+                        const currentMode = localStorage.getItem('portfolio-mode');
+                        if (currentMode === 'professional') {
+                            // Switch to hacker mode
+                            document.body.classList.remove('professional-mode');
+                            localStorage.setItem('portfolio-mode', 'hacker');
+                        } else {
+                            // Switch to professional mode
+                            document.body.classList.add('professional-mode');
+                            localStorage.setItem('portfolio-mode', 'professional');
+                        }
+                        updateStyleButton();
                     };
                     
                     // Initialize Style from localStorage
                     function initStyle() {
                         const savedMode = localStorage.getItem('portfolio-mode');
-                        if (savedMode === 'professional') {
-                            // Redirect to professional mode if preference is set
-                            window.location.href = './professional.html';
+                        if (savedMode === 'hacker') {
+                            // Show hacker mode
+                            document.body.classList.remove('professional-mode');
+                            localStorage.setItem('portfolio-mode', 'hacker');
+                        } else {
+                            // Default to professional mode
+                            document.body.classList.add('professional-mode');
+                            localStorage.setItem('portfolio-mode', 'professional');
                         }
-                        // Default to hacker mode
-                        localStorage.setItem('portfolio-mode', 'hacker');
+                        updateStyleButton();
                     }
                     
                     // Mobile Navigation Toggle
