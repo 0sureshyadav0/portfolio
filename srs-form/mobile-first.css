@@ -529,7 +529,7 @@
 /* Large Desktop Styles (1200px+) */
 @media (min-width: 1200px) {
   .checkbox-group {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .radio-group {

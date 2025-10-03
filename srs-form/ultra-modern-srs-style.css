@@ -645,35 +645,48 @@ body {
   box-shadow: 0 5px 15px rgba(30, 64, 175, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+.checkbox-item:hover .checkmark {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
 .checkbox-item input[type="checkbox"] {
   display: none;
 }
 
 .checkmark {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-sm);
-  position: relative;
-  transition: var(--transition-normal);
-  flex-shrink: 0;
+  width: 24px !important;
+  height: 24px !important;
+  border: 3px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  position: relative !important;
+  transition: var(--transition-normal) !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  margin-right: var(--space-sm) !important;
 }
 
 .checkbox-item input[type="checkbox"]:checked + .checkmark {
-  background: var(--gradient-primary);
-  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.3) !important;
 }
 
 .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 6px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  content: '✓' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  color: white !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
 }
 
 .checkbox-text {
@@ -1526,3 +1539,26 @@ body {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+
+/* Force Checkbox Visibility - Override any conflicting styles */
+.checkbox-item .checkmark {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+  border: 3px solid #ffffff !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  display: block !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark {
+  background: #1e40af !important;
+  border-color: #1e40af !important;
+}
+
