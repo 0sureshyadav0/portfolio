@@ -108,8 +108,8 @@ function loadServices() {
         <div class="service-card ${index === 1 ? 'featured' : ''} animate-fade-in-up">
             ${index === 1 ? '<div class="service-badge">Most Popular</div>' : ''}
             <h3 class="service-title">${service.name}</h3>
-            <div class="service-price">${service.price}</div>
-            <div class="service-duration">${service.duration}</div>
+            <div class="service-price" style="color: ${service.id === 'standard' ? 'white !important' : 'var(--primary)'}">${service.price}</div>
+            <div class="service-duration" style="color: ${service.id === 'standard' ? 'white !important' : 'var(--gray-600)'}">${service.duration}</div>
             <p class="service-description">${service.description}</p>
             <ul class="service-features">
                 ${service.features.map(feature => `<li class="service-feature">${feature}</li>`).join('')}

@@ -26,7 +26,7 @@ const PortfolioData = {
     {
       id: "flybird",
       name: "Fly Bird",
-      description: "A Flutter-based mobile game inspired by the classic Flappy Bird, featuring smooth animations and engaging gameplay mechanics.",
+      description: "An email generator app which uses AI to generate a random email based on user's subject.",
       image: "https://github.com/0sureshyadav0/asstets/blob/main/icon_2.png?raw=true",
       technologies: ["Flutter", "Dart", "Game Development"],
       features: ["Smooth Animations", "Score System", "Sound Effects", "High Score Tracking"],
@@ -37,7 +37,7 @@ const PortfolioData = {
     {
       id: "mausam",
       name: "Mausam",
-      description: "Weather application providing real-time weather updates with beautiful UI and location-based forecasts.",
+      description: "A weather app that provides users with current weather and forecast based on their current location.",
       image: "https://github.com/0sureshyadav0/mausam/blob/master/android/app/src/main/res/drawable/icon.png?raw=true",
       technologies: ["Flutter", "Dart", "API Integration", "Location Services"],
       features: ["Real-time Weather", "Location-based Forecasts", "Beautiful UI", "Offline Support"],
@@ -48,7 +48,7 @@ const PortfolioData = {
     {
       id: "nxgen",
       name: "NxGen",
-      description: "Next generation mobile application with modern UI/UX design and advanced functionality.",
+      description: "NxGen is a basic chatbot app.",
       image: "https://github.com/0sureshyadav0/asstets/blob/main/nxgen.jpeg?raw=true",
       technologies: ["Flutter", "Dart", "Firebase", "Modern UI"],
       features: ["Modern UI/UX", "Firebase Integration", "Real-time Updates", "User Authentication"],
@@ -59,7 +59,7 @@ const PortfolioData = {
     {
       id: "paalox",
       name: "PaaloX",
-      description: "Social networking application with real-time messaging and community features.",
+      description: "An app that allows users to check the real-time queue status of stores such as hospitals, salons etc",
       image: "https://github.com/0sureshyadav0/asstets/blob/main/icon_.png?raw=true",
       technologies: ["Flutter", "Dart", "Firebase", "Real-time Database"],
       features: ["Real-time Messaging", "Community Features", "User Profiles", "Media Sharing"],
@@ -70,7 +70,7 @@ const PortfolioData = {
     {
       id: "sangeet",
       name: "Sangeet",
-      description: "Music streaming application with offline playback and playlist management.",
+      description: "A music app that allows users to listen available songs on their device.",
       image: "https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/assets/images/icon.png?raw=true",
       technologies: ["Flutter", "Dart", "Audio Processing", "Local Storage"],
       features: ["Music Streaming", "Offline Playback", "Playlist Management", "Audio Controls"],
@@ -81,7 +81,7 @@ const PortfolioData = {
     {
       id: "techveda",
       name: "TechVeda",
-      description: "Educational platform for learning programming and technology concepts.",
+      description: "TechVeda is a app that offers guide for various programming languages, helping users learn and compare languages like Python, Java, Flutter, Dart and more in easy way through pdf.",
       image: "https://github.com/0sureshyadav0/techVeda/blob/master/assets/images/techicon.png?raw=true",
       technologies: ["Flutter", "Dart", "Educational Content", "Progress Tracking"],
       features: ["Educational Content", "Progress Tracking", "Interactive Learning", "Certificates"],
@@ -92,7 +92,7 @@ const PortfolioData = {
     {
       id: "todo",
       name: "Todo App",
-      description: "Simple yet powerful task management application with cloud sync capabilities.",
+      description: "SA task tracker app that allows users to add and delete tasks to increase the productivity.",
       image: "https://github.com/0sureshyadav0/todo/blob/master/android/app/src/main/res/drawable/todoicon.jpeg?raw=true",
       technologies: ["Flutter", "Dart", "Cloud Sync", "Task Management"],
       features: ["Task Management", "Cloud Sync", "Categories", "Reminders"],
@@ -103,7 +103,7 @@ const PortfolioData = {
     {
       id: "merocinema",
       name: "मेरो सिनेमा",
-      description: "Nepali movie information and booking application with local cinema integration.",
+      description: "मेरो सिनेमा is a movie streaming app that allows users to browse, search, and watch Nepali movies.",
       image: "https://github.com/0sureshyadav0/asstets/blob/main/icon.png?raw=true",
       technologies: ["Flutter", "Dart", "Localization", "Cinema Integration"],
       features: ["Movie Information", "Booking System", "Nepali Language", "Local Cinemas"],
@@ -118,7 +118,7 @@ const PortfolioData = {
     {
       id: "basic",
       name: "Basic Package",
-      price: "NPR 15,000",
+      price: "NPR 35,000",
       duration: "2-3 weeks",
       description: "Perfect for simple mobile applications with basic functionality.",
       features: [
@@ -134,7 +134,7 @@ const PortfolioData = {
     {
       id: "standard",
       name: "Standard Package",
-      price: "NPR 35,000",
+      price: "NPR 50,000",
       duration: "4-6 weeks",
       description: "Comprehensive mobile application with advanced features and integrations.",
       features: [
