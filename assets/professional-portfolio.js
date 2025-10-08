@@ -114,9 +114,11 @@ function loadServices() {
             <ul class="service-features">
                 ${service.features.map(feature => `<li class="service-feature">${feature}</li>`).join('')}
             </ul>
-            <button class="service-btn" onclick="contactForService('${service.name}')">
+            <a href="https://sureshyadav.info.np/srs-form/index.html">
+            <button class="service-btn" >
                 Get Started
             </button>
+            </a>
         </div>
     `).join('');
 }
