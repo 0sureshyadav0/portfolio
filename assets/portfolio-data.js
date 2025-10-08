@@ -256,17 +256,17 @@ const PortfolioData = {
 
   // Social Links
   social: {
-    github: "https://github.com/sureshyadav2004",
-    linkedin: "https://linkedin.com/in/sureshyadav2004",
-    twitter: "https://twitter.com/sureshyadav2004",
-    instagram: "https://instagram.com/sureshyadav2004"
+    github: "https://github.com/",
+    linkedin: "https://linkedin.com/in/",
+    twitter: "https://twitter.com",
+    instagram: "https://instagram.com"
   },
 
   // Contact Information
   contact: {
-    email: "sureshyadav2004@gmail.com",
-    phone: "+977 9812345678",
-    address: "Kathmandu, Nepal",
+    email: "sureshyadav.info.np@gmail.com",
+    phone: "+977 9763878278",
+    address: "Dang, Nepal",
     availability: "Available for freelance projects",
     response_time: "Usually responds within 24 hours"
   }
